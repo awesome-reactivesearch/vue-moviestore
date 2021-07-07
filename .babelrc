@@ -1,0 +1,14 @@
+{
+    "presets": ["@emotion/babel-preset-css-prop"],
+    "plugins": [
+      [
+        "import", 
+        {
+          "libraryName": "ant-design-vue",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ],
+      "@babel/plugin-proposal-class-properties"
+    ]
+}
