@@ -1,0 +1,14 @@
+{
+  "name": "movies-list",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.6",
+    "antd": "^4.16.6",
+    "nuxt": "^2.15.7"
+  }
+}

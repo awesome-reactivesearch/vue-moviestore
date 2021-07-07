@@ -1,0 +1,1 @@
+import { wrapFunctional } from './utils'
