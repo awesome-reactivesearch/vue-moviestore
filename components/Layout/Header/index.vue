@@ -2,9 +2,9 @@
     <div :class="classes.headerCls">
         <nav class="menuBar">
             <div class="logo">
-                <NuxtLink to="/">
+                <nuxt-link to="/">
                     <img src="/images/logo@1x.png" alt="logo" />
-                </NuxtLink>
+                </nuxt-link>
             </div>
             <div class="menuCon">
                 <div class="leftMenu">

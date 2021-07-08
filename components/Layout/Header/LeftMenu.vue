@@ -2,7 +2,7 @@
     <div>
         <a-menu mode="horizontal">
             <a-menu-item key="new_movies">
-                <NuxtLink to="new-movies">New Movies</NuxtLink>
+                <nuxt-link to="new-movies">New Movies</nuxt-link>
             </a-menu-item>
         </a-menu>
     </div>

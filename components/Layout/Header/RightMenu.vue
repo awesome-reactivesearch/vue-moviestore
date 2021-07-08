@@ -2,13 +2,13 @@
     <div>
         <a-menu :mode="mode">
             <a-menu-item key="search">
-                <NuxtLink to="/search">Search</NuxtLink>
+                <nuxt-link to="/search">Search</nuxt-link >
             </a-menu-item>
             <a-menu-item key="login">
-                <NuxtLink to="/login">Login</NuxtLink>
+                <nuxt-link  to="/login">Login</nuxt-link >
             </a-menu-item>
             <a-menu-item key="cart">
-                <NuxtLink to="/cart">Cart</NuxtLink>
+                <nuxt-link  to="/cart">Cart</nuxt-link >
             </a-menu-item>
         </a-menu>
     </div>
