@@ -1,7 +1,6 @@
 <template>
     <div>
         <a-layout :class="layoutCls" class="layout">
-            <!-- <a-layout-header>{{ title }}</a-layout-header> -->
             <slot name="container"></slot>
         </a-layout>
     </div>
