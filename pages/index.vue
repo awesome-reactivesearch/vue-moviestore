@@ -14,7 +14,7 @@
                 <div class="overview">{{bannerConfig.overview}}</div>
                 <div class="price">${{bannerConfig.price}}</div>
                 <div class="action">
-                  <a-button>Purchase</a-button>
+                  <a-button @click="addToCart(bannerConfig.id)">Purchase</a-button>
                   <a-button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">Watch Trailer</a-button>
                 </div>
               </div>
@@ -132,6 +132,14 @@
         'app-content': Content,
         'app-header': Header,
         'app-footer': Footer
+    },
+    methods: {
+      addToCart(id) {
+        if (!this.$store.state.cartValues[id]) {
+          this.$store.state.cartValues[id] = 1;
+        } 
+        this.$store.commit("addToCart");
+      },
     }
   }
 </script>
