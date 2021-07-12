@@ -210,6 +210,7 @@ export const Title = styled('h3')`
 	opacity: 0.65;
 	font-family: Lato;
 `;
+
 const searchCls = css`
 	.filter-class {
 		a {
@@ -369,7 +370,8 @@ export default {
         return {
 			showFilters: false,
             languageMap,
-			themeConfig
+			themeConfig,
+			searchCls
         }
     }
 }

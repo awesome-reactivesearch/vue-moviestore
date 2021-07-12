@@ -8868,6 +8868,11 @@ vue-slider-component@^2.8.16:
   resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-2.8.16.tgz#b2036f816ed64fa4fcd6741219b80c5063b4fd60"
   integrity sha512-06gDoheKMU8TdqjoofIJaYfXw3uuWOXF2I14d/F5yW/8iOxnoI4Ks9WSXy8RWY+gs62GBE6tQXHDSX/H6IOaAw==
 
+vue-snip@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-snip/-/vue-snip-1.2.0.tgz#5e1cd4807dbe22dc649dfaa34e42d7372fee811d"
+  integrity sha512-7+5ry3lkG0bSbBBxpTQMBjfh+FE3+Oc1Y9l0lDHFtO0gXlkJZ8KRhNux4LiuPa3khmlVmX4efKuz9/8VbrmKnA==
+
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.3.tgz#6d55863a51fa757ab24e89d9371465072aa7bc35"

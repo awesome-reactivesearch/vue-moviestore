@@ -4,14 +4,8 @@ import { css } from '@emotion/css';
 const Flex = styled('div')`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection || 'row'};
-  ${({ alignItems }) => alignItems
-    && css`
-      align-items: ${alignItems};
-    `};
-  ${({ justifyContent }) => justifyContent
-    && css`
-      justify-content: ${justifyContent};
-    `};
+  align-items: ${({ alignItems }) => alignItems || ''};
+  justify-content: ${({ justifyContent }) => justifyContent || ''};
 `;
 
 export default Flex;

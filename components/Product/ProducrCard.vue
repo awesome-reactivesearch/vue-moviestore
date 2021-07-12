@@ -28,27 +28,27 @@
 					<h2>{{originalTitle}}</h2>
 					<h3> {{releaseYear}} |  {{ genresData.toString().replace(/,/g, ', ')}} </h3>
 					<div class="overview">
-						 <!-- <Truncate line="4" truncateText="…" text="overview" />  -->
+                        <p  v-snip="4">{{ overview }}</p>
 					</div>
 					<Star :rating="voteAverage" />
 				</div>
 				<Flex justifyContent="space-between">
 					<h2>${{price}}</h2>
-					<!-- <PuchaseButton title={originalTitle} price={price} />  -->
+					<puchase-button :title="originalTitle" :price="price" /> 
 				</Flex>
 			</Flex>
 		</Flex>
-		<!-- <div className="hover-icon">
-			<Link
-				:href="{
+		<div class="hover-icon">
+			<nuxt-link
+				:to="{
 					path: '/product',
 					query: { id, payload: JSON.stringify(product) },
 				}"
 				:as="`/product/${id}`"
 			>
-				<img alt="dropdown" src="static/images/icon-down.png" />
-			</Link>
-		</div> -->
+				<img alt="dropdown" src="/images/icon-down.png" />
+			</nuxt-link>
+		</div>
 
     </div>
 </template>
@@ -58,6 +58,7 @@ import { css } from '@emotion/css';
 import media from '../../utils/media';
 import Flex from '../Flex';
 import AppImage from '../CustomImage';
+import PuchaseButton from "../Button/Purchase.vue";
 
 const mainCls = css`
 	height: 360px;
@@ -102,6 +103,7 @@ const mainCls = css`
 		width: 100%;
 		background: rgba(0, 0, 0, 0.8);
 		padding: 5px;
+        z-index: 99;
 		img {
 			width: 100px;
 			height: 20px;
@@ -149,6 +151,7 @@ export default {
     components: {
         Flex,
         'product-image': AppImage,
+        'puchase-button': PuchaseButton,
     }
 }
 </script>
