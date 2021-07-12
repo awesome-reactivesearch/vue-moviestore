@@ -1,122 +1,178 @@
 <template>
     <div>
-        <app-container tiitle="Search">
+        <app-container>
             <template v-slot:container>
                 <app-header />
-                
-                <app-content>
+
+                <app-content :style="{ height: '76vh', overflowY: 'scroll' }">
                     <template v-slot:content>
-                        <app-section>
-							<selected-filters
-								className="filter-class"
-								filterLabel="Filters"
-								showClearAll="default"
-								clearAllLabel="Clear filters"
-							/>
-						</app-section>
-                        <!-- <multi-list
-                            componentId="year-list"
-                            dataField="release_year"
-                            :size="20"
-                            sortBy="desc"
-                            queryFormat="or"
-                            selectAllLabel="All"
-                            :showCheckbox="true"
-                            :showSearch="true"
-                            placeholder="Search for a Year"
-                            :react="{ and: ['SearchSensor', 'results', 'price', 'language-list'] }"
-                            :showFilter="true"
-                            :showCount="false"
-                            filterLabel="Year"
-                            :URLParams="false"
-                        /> -->
+						<Flex :class="searchCls" :style="{ width: '100%' }">
+							<Flex
+								:class="[showFilters? 'leftbar' : 'leftbar-optional']"
+								:style="{ flex: '20%', background: '#0C0E12' }"
+  								flexDirection="column"
+							>
+								<app-section>
+									<selected-filters
+										className="filter-class"
+										filterLabel="Filters"
+										:showClearAll="true"
+										clearAllLabel="Clear filters"
+									/>
+								</app-section>
+								<app-section>
+									<app-title>Release Year</app-title>
+									<multi-list
+										:class="year-filter"
+										componentId="year-list"
+										dataField="release_year"
+										:size="20"
+										sortBy="desc"
+										queryFormat="or"
+										selectAllLabel="All"
+										:showCheckbox="true"
+										:showSearch="true"
+										:innerClass="{
+											label: 'multilist-checkbox',
+											checkbox: 'checkbox',
+										}"
+										placeholder="Search for a Year"
+										:react="{ and: ['SearchSensor', 'results', 'price', 'language-list'] }"
+										:showFilter="true"
+										:showCount="false"
+										filterLabel="Year"
+										:URLParams="false"
+									/> 
+								</app-section>
+								<app-section>
+									<app-title>Original Language</app-title>
+									<multi-list
+										componentId="language-list"
+										dataField="original_language.keyword"
+										:size="100"
+										sortBy="count"
+										queryFormat="or"
+										selectAllLabel="All Languages"
+										:showCheckbox="true"
+										:showSearch="true"
+										:innerClass="{
+											label: 'multilist-checkbox',
+											checkbox: 'checkbox',
+										}"
+										placeholder="Search for a language"
+										:react="{ and: ['SearchSensor', 'results', 'price', 'year-list'] }"
+										:showFilter="true"
+										filterLabel="Language"
+										:URLParams="false"
+									>
+										<div slot="renderItem" slot-scope="{label,count}">
+											<span>
+												<span className="multilist-checkbox">
+												{{languageMap[label] || label}}
+												</span>
+												<span v-if="count">{{count}}</span>
+											</span>
+										</div>
+									</multi-list>
+								</app-section>
+								<app-section>
+									<range-slider
+										componentId="price"
+										:react="{ and: ['SearchSensor', 'language-list', 'year-list'] }"
+										dataField="price"
+										:innerClass="{
+											label: 'range-slider-label',
+											slider: 'range-slider',
+										}"
+										:range="{
+											start: 0,
+											end: 1500,
+										}"
+										:showHistogram="false"
+										:rangeLabels="{
+										start: '$0',
+										end: '$1500',
+										}"
+									/>
+								</app-section>
+							</Flex>
+							
+							<Flex
+								:style="{
+									flex: '80%',
+									background: themeConfig.secondaryBg,
+								}"
+								flexDirection="column"
+								:class="[showFilters ? 'rightbar' : 'rightbar-optional']"
+							>
+								 <reactive-list
+									componentId="results"
+									dataField="original_title"
+									:react="{ and: ['SearchSensor', 'price', 'language-list', 'year-list'] }"
+									:innerClass="{
+										list: 'search-results',
+										pagination: 'pagination',
+										poweredBy: 'powered-by',
+										sortOptions: 'sort-options',
+										resultStats: 'resultStats',
+									}"
+									:pagination="true"
+									paginationAt="bottom"
+									:pages="5"
+									:size="4"
+									Loader="Loading..."
+									noResults="No results were found..."
+									:sortOptions="[
+										{
+										'dataField': 'popularity',
+										'sortBy': 'desc',
+										'label': 'Sort by Popularity(High to Low)\u00A0 \u00A0'
+										},
+										{
+										'dataField': 'price',
+										'sortBy': 'asc',
+										'label': 'Sort by Price(Low to High) \u00A0'
+										},
+										{
+										'dataField': 'vote_average',
+										'sortBy': 'desc',
+										'label': 'Sort by Ratings(High to Low) \u00A0'
+										},
+										{
+										'dataField': 'original_title.keyword',
+										'sortBy': 'asc',
+										'label': 'Sort by Title(A-Z) \u00A0'
+										}
+									]"
+								>
+									<div slot="renderNoResults" >
+										<Flex :class="noResults">
+											<span>No results were found...</span>
+										</Flex>
+									</div>
+									<div slot="renderItem" slot-scope="{ item }">
+										<product-card 
+											:id="item.id"
+											:posterPath="item.poster_path"
+											:originalTitle="item.original_title"
+											:releaseYear="item.release_year"
+											:genresData="item.genres_data"
+											:overview="item.overview"
+											:price="item.price"
+											:voteAverage="item.vote_average"
+											:product="item"
+										/>
+									</div>
+								</reactive-list> 
+							</Flex>
+						</Flex>
+                        
+                        <!-- -->
 
-                        <multi-list
-                            componentId="language-list"
-                            dataField="original_language.keyword"
-                            :size="100"
-                            sortBy="count"
-                            queryFormat="or"
-                            selectAllLabel="All Languages"
-                            :showCheckbox="true"
-                            :showSearch="true"
-                            placeholder="Search for a language"
-                            :react="{ and: ['SearchSensor', 'results', 'price', 'year-list'] }"
-                            :showFilter="true"
-                            filterLabel="Language"
-                            :URLParams="false"
-                        >
-                            <div slot="renderItem" slot-scope="{label,count}">
-                                <span>
-                                    <span className="multilist-checkbox">
-                                      {{languageMap[label] || label}}
-                                    </span>
-                                    <span v-if="count">{{count}}</span>
-                                </span>
-                            </div>
-                        </multi-list>
+                        
+                       <!--  -->
 
-                       <!-- <range-slider
-                            componentId="price"
-                            :react="{ and: ['SearchSensor', 'language-list', 'year-list'] }"
-                            dataField="price"
-                            :range="{
-                                start: 0,
-                                end: 1500,
-                            }"
-                            :showHistogram="false"
-                            :rangeLabels="{
-                            start: '$0',
-                            end: '$1500',
-                            }"
-                        /> -->
-
-                        <reactive-list
-                            componentId="results"
-                            dataField="original_title"
-                            :react="{ and: ['SearchSensor', 'price', 'language-list', 'year-list'] }"
-                            :pagination="true"
-                            paginationAt="bottom"
-                            :pages="5"
-                            :size="4"
-                            Loader="Loading..."
-                            noResults="No results were found..."
-                            :sortOptions="[
-                                {
-                                'dataField': 'popularity',
-                                'sortBy': 'desc',
-                                'label': 'Sort by Popularity(High to Low)\u00A0 \u00A0'
-                                },
-                                {
-                                'dataField': 'price',
-                                'sortBy': 'asc',
-                                'label': 'Sort by Price(Low to High) \u00A0'
-                                },
-                                {
-                                'dataField': 'vote_average',
-                                'sortBy': 'desc',
-                                'label': 'Sort by Ratings(High to Low) \u00A0'
-                                },
-                                {
-                                'dataField': 'original_title.keyword',
-                                'sortBy': 'asc',
-                                'label': 'Sort by Title(A-Z) \u00A0'
-                                }
-                            ]"
-                        >
-                            <div slot="renderItem" slot-scope="{ item }">
-                                <product-card 
-                                    :id="item.id"
-                                    :posterPath="item.poster_path"
-                                    :originalTitle="item.original_title"
-                                    :releaseYear="item.release_year"
-                                    :genresData="item.genres_data"
-                                    :overview="item.overview"
-                                    :price="item.price"
-                                    :voteAverage="item.vote_average"
-                                />
-                            </div>
-                        </reactive-list> 
+                       
                     </template>
                 </app-content>
     
@@ -129,18 +185,31 @@
 </template>
 
 <script>
+
+import { css } from '@emotion/css'
+import { styled } from '@egoist/vue-emotion'
 import Container from "../components/Layout/Container.vue";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import Content from "../components/Layout/Content.vue";
 import ProductCard from "../components/Product/ProducrCard.vue";
-// import Page from '../components/Page';
+import Flex from '../components/Flex';
 import media from '../utils/media';
 import { themeConfig } from '../utils/constants';
 import { languageMap } from '../utils/helper';
-import { Title,Section } from "../components/Layout/styles";
-import { css } from '@emotion/css'
 
+
+export const Section = styled('div')`
+	border-bottom: 0.5px solid #29303e;
+	padding: 30px;
+`;
+
+export const Title = styled('h3')`
+	padding: "10px 0";
+	color: #fdfdfd;
+	opacity: 0.65;
+	font-family: Lato;
+`;
 const searchCls = css`
 	.filter-class {
 		a {
@@ -293,13 +362,14 @@ export default {
         'app-header': Header,
         'app-footer': Footer,
         'product-card': ProductCard,
-        'app-title': Title,
-        'app-section': Section
+		'app-title': Title,
+		'app-section': Section
     },
     data() {
         return {
+			showFilters: false,
             languageMap,
-
+			themeConfig
         }
     }
 }
