@@ -23,7 +23,7 @@
 								<app-section>
 									<app-title>Release Year</app-title>
 									<multi-list
-										:class="year-filter"
+										className="year-filter"
 										componentId="year-list"
 										dataField="release_year"
 										:size="20"
@@ -35,6 +35,7 @@
 										:innerClass="{
 											label: 'multilist-checkbox',
 											checkbox: 'checkbox',
+											input: 'multilist-input',
 										}"
 										placeholder="Search for a Year"
 										:react="{ and: ['SearchSensor', 'results', 'price', 'language-list'] }"
@@ -48,6 +49,7 @@
 									<app-title>Original Language</app-title>
 									<multi-list
 										componentId="language-list"
+										className="year-filter"
 										dataField="original_language.keyword"
 										:size="100"
 										sortBy="count"
@@ -58,6 +60,7 @@
 										:innerClass="{
 											label: 'multilist-checkbox',
 											checkbox: 'checkbox',
+											input: 'multilist-input',
 										}"
 										placeholder="Search for a language"
 										:react="{ and: ['SearchSensor', 'results', 'price', 'year-list'] }"
@@ -65,12 +68,25 @@
 										filterLabel="Language"
 										:URLParams="false"
 									>
-										<div slot="renderItem" slot-scope="{label,count}">
-											<span>
+										<div 
+											slot="renderItem" 
+											slot-scope="{label,count}"
+											:style="{ width: '100%' }"
+										>
+											<span
+												:style="{
+													width: '100%',
+													display: 'flex',
+													'flex-direction': 'row',
+													'-webkit-box-pack': 'justify',
+													'justify-content': 'space-between',
+													'line-height': '1.3rem',
+												}"
+											>
 												<span class="multilist-checkbox">
 												{{languageMap[label] || label}}
 												</span>
-												<span v-if="count">{{count}}</span>
+												<span v-if="count" :style="{ color: 'rgb(240, 240, 240)' }">{{count}}</span>
 											</span>
 										</div>
 									</multi-list>
@@ -81,9 +97,11 @@
 										:react="{ and: ['SearchSensor', 'language-list', 'year-list'] }"
 										dataField="price"
 										:innerClass="{
+											title: 'range-slider-title',
 											label: 'range-slider-label',
 											slider: 'range-slider',
 										}"
+										title="Price"
 										:range="{
 											start: 0,
 											end: 1500,
@@ -251,6 +269,20 @@ const searchCls = css`
 			border-color: ${themeConfig.secondary};
 		}
 	}
+	.multilist-input {
+		width: 100%;
+		height: 42px;
+		padding: 8px 12px;
+		border: 1px solid rgb(102, 102, 102);
+		font-size: 0.9rem;
+		outline: none;
+		background-color: rgb(33, 33, 33);
+		color: rgb(151, 151, 151);
+
+		&:focus {
+			background-color: rgb(33, 33, 33);
+		}
+	}
 	.checkbox {
 		&:hover {
 			+ label {
@@ -272,19 +304,33 @@ const searchCls = css`
 		}
 	}
 	.range-slider {
-		color: red;
-		.rheostat-handle {
+		color: #FF3957;
+		.vue-slider-dot-handle {
 			background-color: ${themeConfig.secondary};
 			border: none;
 		}
-		.rheostat-progress {
+		.vue-slider-process {
 			background-color: ${themeConfig.secondary};
+    		border-radius: 15px;
+		}
+		.label-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 		}
 	}
 	.range-slider-label {
 		font-family: Lato;
 		font-size: 14px;
 		line-height: 17px;
+		color: #fdfdfd;
+		opacity: 0.65;
+	}
+	.range-slider-title {
+		font-size: 18.72px;
+		color: #fdfdfd;
+		opacity: 0.65;
+		font-weight: 500;
 	}
 	.search-results {
 		flex-direction: row;
