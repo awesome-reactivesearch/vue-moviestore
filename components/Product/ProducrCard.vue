@@ -1,45 +1,42 @@
 <template>
     <div :class="mainCls" key="id">
-        <Flex className="result-card-content">
-            <progressive-img
-            src="https://unsplash.it/1920/1080?image=10"
-            placeholder="https://unsplash.it/1920/1080?image=10"
-        />
-			<!-- <nuxt-link
+        <Flex class="result-card-content">
+			<nuxt-link
 				:to="{
 					path: '/product',
 					query: { id, payload: JSON.stringify(product) },
 				}"
 				:as="`/product/${id}`"
 			>
+            
 				<product-image
 					:placeholderStyle="{
-						width: 240,
-						height: 360,
+						width: '240px',
+						height: '360px',
 					}"
 					:src="`https://image.tmdb.org/t/p/w500${posterPath}`"
 					alt="originalTitle"
 				/>
-			</nuxt-link> -->
-
-			<!-- <Flex
+			</nuxt-link>
+			<Flex
 				justifyContent="space-between"
-				className="content"
+				class="content"
 				flexDirection="column"
 			>
 				<div>
+
 					<h2>{{originalTitle}}</h2>
 					<h3> {{releaseYear}} |  {{ genresData.toString().replace(/,/g, ', ')}} </h3>
-					<div className="overview">
-						 <Truncate line="4" truncateText="…" text="overview" /> 
+					<div class="overview">
+						 <!-- <Truncate line="4" truncateText="…" text="overview" />  -->
 					</div>
 					<Star :rating="voteAverage" />
 				</div>
 				<Flex justifyContent="space-between">
-					<h2>{{price}}</h2>
-					<PuchaseButton title={originalTitle} price={price} /> 
+					<h2>${{price}}</h2>
+					<!-- <PuchaseButton title={originalTitle} price={price} />  -->
 				</Flex>
-			</Flex> -->
+			</Flex>
 		</Flex>
 		<!-- <div className="hover-icon">
 			<Link
@@ -60,7 +57,7 @@
 import { css } from '@emotion/css';
 import media from '../../utils/media';
 import Flex from '../Flex';
-// import AppImage from '../CustomImage';
+import AppImage from '../CustomImage';
 
 const mainCls = css`
 	height: 360px;
@@ -137,6 +134,7 @@ export default {
         id: Number,
         originalTitle: String,
         genresData: [ Array, String ],
+        voteAverage: Number,
         releaseYear: Number,
         posterPath: String,
         overview: String,
@@ -150,7 +148,7 @@ export default {
     },
     components: {
         Flex,
-        // 'product-image': AppImage,
+        'product-image': AppImage,
     }
 }
 </script>

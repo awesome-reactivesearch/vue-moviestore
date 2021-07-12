@@ -1,14 +1,9 @@
 <template>
-    <div>
-        <progressive-img
-            src="https://unsplash.it/1920/1080?image=10"
-            placeholder="https://unsplash.it/1920/1080?image=10"
-        />
-        <!-- <progressive-img :class="mainCls" src="src" placeholder="">
-            
+    <div :style="placeholderStyle">
+        <progressive-img :imageCustomClass="mainCls" :src="src" placeholder="">
             <div slot="content" slot-scope="{ visible }">
                 <img
-					src="src"
+					:src="src"
 					alt="alt"
 					class="[loading ? `${className} loading-img` : className]"
 					v-bind="$attrs"
@@ -20,7 +15,7 @@
 				/>
                 </div>
             </div>
-        </progressive-img> -->
+        </progressive-img>
     </div>
 </template>
 
@@ -51,7 +46,7 @@ export default {
     data() {
        return {
            mainCls,
-           themeConfig
+           themeConfig,
        } 
     },
     components: {

@@ -22,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/ant-design-vue'
+    '@/plugins/ant-design-vue',
+    { src: '@/plugins/progressive-image', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

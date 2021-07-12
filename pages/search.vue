@@ -67,7 +67,7 @@
 									>
 										<div slot="renderItem" slot-scope="{label,count}">
 											<span>
-												<span className="multilist-checkbox">
+												<span class="multilist-checkbox">
 												{{languageMap[label] || label}}
 												</span>
 												<span v-if="count">{{count}}</span>
