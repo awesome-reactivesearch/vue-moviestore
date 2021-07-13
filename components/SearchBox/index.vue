@@ -1,17 +1,17 @@
 <template>
     <div>
         <data-search
-            :css="dataSearchCls(isSearchPage())"
+            :class="dataSearchCls(isSearchPage())"
             componentId="SearchSensor"
             :dataField="[
-            'original_title',
-			'original_title.autosuggest',
-			'original_title.keyword',
-			'original_title.search',
-			'overview',
-			'overview.autosuggest',
-			'overview.keyword',
-			'overview.search',
+				'original_title',
+				'original_title.autosuggest',
+				'original_title.keyword',
+				'original_title.search',
+				'overview',
+				'overview.autosuggest',
+				'overview.keyword',
+				'overview.search',
             ]"
             :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
 			:fuzziness="1"
@@ -19,9 +19,9 @@
 			filterLabel="search"
 			placeholder="Search for movies"
             queryFormat="and"
-            :URLParams="true"
-           
-           
+			:showClear="false"
+            :URLParams="isSearchPage()"
+			@keyDown="handleKeyPress"
         />
     </div>
 </template>
@@ -131,6 +131,15 @@ export default {
                 return false;
             }
         },
+
+		handleKeyPress(e) {
+			const { value } = e.target;
+			if (e.key === 'Enter' && value.trim()) {
+				if (!window.location.href.includes('search')) {
+					this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
+				}
+			}
+		},
     }
 }
 </script>

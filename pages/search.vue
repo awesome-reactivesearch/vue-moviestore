@@ -22,6 +22,7 @@
 								</app-section>
 								<app-section>
 									<app-title>Release Year</app-title>
+
 									<multi-list
 										className="year-filter"
 										componentId="year-list"
@@ -44,13 +45,34 @@
 										filterLabel="Year"
 										:URLParams="false"
 									/> 
+									  <!-- <range-input
+											componentId="year-list"
+											dataField="release-year"
+											:range="{
+												start: 1990,
+												end: 2021,
+											}"
+											:rangeLabels="{
+												start: '1990',
+												end: '2021',
+											}"
+											:defaultValue="{
+												start: 1990,
+												end: 2021
+											}"
+											:showHistogram="false"
+											:stepValue="1"
+											className="year-filter"
+											:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
+										/> -->
+
 								</app-section>
 								<app-section>
 									<app-title>Original Language</app-title>
 									<multi-list
 										componentId="language-list"
 										className="year-filter"
-										dataField="original_language.keyword"
+										dataField="genres_data.keyword"
 										:size="100"
 										sortBy="count"
 										queryFormat="or"

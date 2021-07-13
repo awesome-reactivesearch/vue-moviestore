@@ -35,6 +35,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+     '@nuxtjs/axios',
+     '@nuxtjs/auth'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -45,5 +47,19 @@ export default {
     port: 4000,
     host: '0.0.0.0',
     timing: false
-  }
+  },
+
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'dev-l-glzef7.us.auth0.com',
+        client_id: 'EtRB3aMxyaoBGdAOChBNJKUSzSgUS8MQ'
+      }
+    }
+  },
 }
