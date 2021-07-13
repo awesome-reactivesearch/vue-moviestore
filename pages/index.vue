@@ -1,33 +1,46 @@
 <template>
   <div>
     <app-container>
-      <template v-slot:container>
+      <template #container>
         <app-header />
         <app-content>
-          <template v-slot:content>
-            <div :class="mainCls" justify-content="space-between">
+          <template #content>
+            <div
+              :class="mainCls"
+              justify-content="space-between"
+            >
               <div class="content">
-                <div class="title">{{bannerConfig.original_title}}</div>
-                <div class="subtitle">
-                2016 | {{bannerConfig.genres_data.toString().replace(/,/g, ', ')}}  
+                <div class="title">
+                  {{ bannerConfig.original_title }}
                 </div>
-                <div class="overview">{{bannerConfig.overview}}</div>
-                <div class="price">${{bannerConfig.price}}</div>
+                <div class="subtitle">
+                  2016 | {{ bannerConfig.genres_data.toString().replace(/,/g, ', ') }}
+                </div>
+                <div class="overview">
+                  {{ bannerConfig.overview }}
+                </div>
+                <div class="price">
+                  ${{ bannerConfig.price }}
+                </div>
                 <div class="action">
-                  <a-button @click="addToCart(bannerConfig.id)">Purchase</a-button>
-                  <a-button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">Watch Trailer</a-button>
+                  <a-button @click="addToCart(bannerConfig.id)">
+                    Purchase
+                  </a-button>
+                  <a-button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">
+                    Watch Trailer
+                  </a-button>
                 </div>
               </div>
               <nuxt-link :to="`/product/${bannerConfig.id}`">
                 <img
                   :src="`https://image.tmdb.org/t/p/w500${bannerConfig.poster_path}`"
                   :alt="bannerConfig.original_title"
-                />
+                >
               </nuxt-link>
             </div>
           </template>
         </app-content>
-       
+
         <app-footer />
       </template>
     </app-container>
@@ -35,14 +48,14 @@
 </template>
 
 <script>
-  
-  import Container from "../components/Layout/Container.vue";
-  import Header from "../components/Layout/Header";
-  import Footer from "../components/Layout/Footer";
-  import Content from "../components/Layout/Content.vue";
-  import { css } from '@emotion/css';
 
-  const mainCls = css`
+import { css } from '@emotion/css';
+import Container from '../components/Layout/Container.vue';
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
+import Content from '../components/Layout/Content.vue';
+
+const mainCls = css`
   max-width: 1000px;
   display: flex;
   flex-direction: row;
@@ -111,35 +124,35 @@
   }
 `;
 
-  export default {
-    data() {
-      return {
-        bannerConfig : {
-          id: 278927,
-          original_title: 'The Jungle Book',
-          overview:
+export default {
+  components: {
+    'app-container': Container,
+    'app-content': Content,
+    'app-header': Header,
+    'app-footer': Footer,
+  },
+  data() {
+    return {
+      bannerConfig: {
+        id: 278927,
+        original_title: 'The Jungle Book',
+        overview:
             'After a threat from the tiger Shere Khan forces him to flee the jungle, a man-cub named Mowgli embarks on a journey of self discovery with the help of panther, Bagheera, and free spirited bear, Baloo.',
-          poster_path: '/tOEOlmLP71IojeJ91dyJ9Nsb8O8.jpg',
-          release_year: 2016,
-          genres_data: ['Family', 'Adventure', 'Drama', 'Fantasy'],
-          price: 305,
-        },
-        mainCls,
-      }
-    },
-    components: {
-        'app-container': Container,
-        'app-content': Content,
-        'app-header': Header,
-        'app-footer': Footer
-    },
-    methods: {
-      addToCart(id) {
-        if (!this.$store.state.cartValues[id]) {
-          this.$store.state.cartValues[id] = 1;
-        } 
-        this.$store.commit("addToCart");
+        poster_path: '/tOEOlmLP71IojeJ91dyJ9Nsb8O8.jpg',
+        release_year: 2016,
+        genres_data: ['Family', 'Adventure', 'Drama', 'Fantasy'],
+        price: 305,
       },
-    }
-  }
+      mainCls,
+    };
+  },
+  methods: {
+    addToCart(id) {
+      if (!this.$store.state.cartValues[id]) {
+        this.$store.state.cartValues[id] = 1;
+      }
+      this.$store.commit('addToCart');
+    },
+  },
+};
 </script>

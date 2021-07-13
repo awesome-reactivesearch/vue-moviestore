@@ -3,7 +3,14 @@
         <nav class="menuBar">
             <div class="logo">
                 <nuxt-link to="/">
-                    <img src="/images/logo@1x.png" alt="logo" />
+                    <product-image
+                        :placeholderStyle="{
+                            width: '210px',
+                            height: '64px',
+                        }"
+                        src="/images/logo@1x.png"
+                        alt="logo"
+                    />
                 </nuxt-link>
             </div>
             <div class="menuCon">
@@ -13,7 +20,7 @@
                 <div class="rightMenu">
                     <right-menu />
                 </div>
-                <a-button class="barsMenu" :onClick="showDrawer">
+                <a-button class="barsMenu" @click="showDrawer">
                     <span class="barsBtn" />
                 </a-button>
                 <a-drawer
@@ -23,8 +30,8 @@
                     :visible="visible"
                     @close="onClose"
                 >
-                <left-menu />
-                <right-menu mode="vertical" />
+                    <left-menu />
+                    <right-menu mode="vertical" :onClose="onClose()"/>
                 </a-drawer>
             </div>
         </nav>
@@ -35,6 +42,7 @@
 import { headerCls, drawerCls } from "./styles";
 import LeftMenu from "./LeftMenu.vue";
 import RightMenu from './RightMenu.vue';
+import AppImage from '../../CustomImage.vue';
 
 export default {
     data() {
@@ -56,6 +64,7 @@ export default {
         }
     },
     components: {
+        'product-image': AppImage,
         'left-menu': LeftMenu,
         'right-menu': RightMenu,
     }

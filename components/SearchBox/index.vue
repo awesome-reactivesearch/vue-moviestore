@@ -5,18 +5,30 @@
             componentId="SearchSensor"
             :dataField="[
             'original_title',
+			'original_title.autosuggest',
+			'original_title.keyword',
+			'original_title.search',
+			'overview',
+			'overview.autosuggest',
+			'overview.keyword',
+			'overview.search',
             ]"
-            :fieldWeights="[3, 1, 5, 1]"
+            :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
+			:fuzziness="1"
+			:autosuggest="false"
+			filterLabel="search"
+			placeholder="Search for movies"
             queryFormat="and"
-            :autosuggest="false"
-            filterLabel="search"
             :URLParams="true"
+           
+           
         />
     </div>
 </template>
 
 <script>
 import { css } from '@emotion/css';
+import media from '../../utils/media';
 
 const dataSearchCls = isFullWidth => css`
 	input {
