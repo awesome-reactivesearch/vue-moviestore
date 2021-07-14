@@ -118,11 +118,15 @@ const drawerCls = css`
 `;
 
 export default {
+	components: {
+        Flex,
+    },
     data() {
        return {
            mainCls,
            drawerCls,
            visible: false,
+		   tutorials,
        } 
     },
     methods: {
@@ -133,8 +137,5 @@ export default {
             this.visible = false
         }
     },
-    components: {
-        Flex,
-    }
 }
 </script>

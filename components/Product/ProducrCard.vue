@@ -3,12 +3,11 @@
         <Flex class="result-card-content">
 			<nuxt-link
 				:to="{
-					path: '/product',
+					path: 'product',
 					query: { id, payload: JSON.stringify(product) },
 				}"
 				:as="`/product/${id}`"
-			>
-            
+			>            
 				<product-image
 					:placeholderStyle="{
 						width: '240px',
@@ -148,6 +147,12 @@ export default {
             mainCls,
         }
     },
+	methods: {
+		handleProductClick(product) {
+			this.$store.commit('setSelectedProduct', product);
+			this.$router.push(`/product/${product.id}`);
+		}
+	},
     components: {
         Flex,
         'product-image': AppImage,

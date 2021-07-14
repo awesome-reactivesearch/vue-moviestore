@@ -68,7 +68,7 @@
 
 								</app-section>
 								<app-section>
-									<app-title>Original Language</app-title>
+									<app-title>Genres</app-title>
 									<multi-list
 										componentId="language-list"
 										className="year-filter"

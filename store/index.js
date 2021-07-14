@@ -1,6 +1,7 @@
 export const state = () => ({
     cartCount: 0,
-    cartValues: {}
+    cartValues: {},
+    selectedProduct: {},
   })
   
   export const mutations = {
@@ -10,5 +11,8 @@ export const state = () => ({
     },
     removeFromCart(state) {
         state.cartCount--;
+    },
+    setSelectedProduct(state, product) {
+      state.selectedProduct = product; 
     }
   }
