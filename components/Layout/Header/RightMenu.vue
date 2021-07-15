@@ -24,7 +24,7 @@
                 </Flex>
             </a-menu-item>
             <a-menu-item key="cart">
-                <nuxt-link  to="/cart">Cart ({{numberOfCartItems}})</nuxt-link >
+                <nuxt-link  to="/cart">Cart ({{this.$store.state.cartCount}})</nuxt-link >
             </a-menu-item>
               <a-menu-item key="login">
                  <div v-if="$auth.loggedIn">

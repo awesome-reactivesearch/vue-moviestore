@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-button :class="btnCls" v-bind="$attrs">
-            <slot name="primary-button"></slot>
+            <slot name="primaryButton"></slot>
         </a-button>
     </div>
 </template>

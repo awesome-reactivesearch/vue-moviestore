@@ -2,6 +2,11 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxtApp',
+    script: [
+      {
+        src: 'https://js.stripe.com/v3'
+      }
+    ],
     htmlAttrs: {
       lang: 'en'
     },
@@ -24,6 +29,8 @@ export default {
   plugins: [
     '@/plugins/ant-design-vue',
     { src: '@/plugins/progressive-image', ssr: false },
+    { src: '~/plugins/persistedState.js', ssr: false },
+    { src: '~/plugins/vue-stripe.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

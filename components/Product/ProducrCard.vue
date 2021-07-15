@@ -1,13 +1,14 @@
 <template>
-    <div :class="mainCls" key="id">
+    <div :class="mainCls" key="id" @click="handleProductSelect(product)">
         <Flex class="result-card-content">
-			<nuxt-link
+			<div>
+			<!-- <nuxt-link
 				:to="{
 					path: 'product',
 					query: { id, payload: JSON.stringify(product) },
 				}"
 				:as="`/product/${id}`"
-			>            
+			>             -->
 				<product-image
 					:placeholderStyle="{
 						width: '240px',
@@ -16,7 +17,8 @@
 					:src="`https://image.tmdb.org/t/p/w500${posterPath}`"
 					alt="originalTitle"
 				/>
-			</nuxt-link>
+			<!-- </nuxt-link> -->
+			</div>
 			<Flex
 				justifyContent="space-between"
 				class="content"
@@ -147,16 +149,16 @@ export default {
             mainCls,
         }
     },
-	methods: {
-		handleProductClick(product) {
-			this.$store.commit('setSelectedProduct', product);
-			this.$router.push(`/product/${product.id}`);
-		}
-	},
     components: {
         Flex,
         'product-image': AppImage,
         'puchase-button': PuchaseButton,
-    }
+    },
+	methods: {
+		handleProductSelect(product) {
+			this.$store.commit('setSelectedProduct', product);
+			this.$router.push(`/product/${product.id}`);
+		}
+	}
 }
 </script>

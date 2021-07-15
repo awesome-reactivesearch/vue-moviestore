@@ -2,6 +2,7 @@
     <div>
         <a-layout :class="layoutCls" class="layout">
             <reactive-base
+                :appbaseConfig="{ recordAnalytics: true,enableQueryRules: false }"
                 enableAppbase
                 url="https://appbase-demo-ansible-abxiydt-arc.searchbase.io" 
                 app="movies-store-app" 
@@ -17,8 +18,7 @@
                         primaryTextColor: '#fff',
                         primaryColor: themeConfig.secondary,
                     },
-                }"
-                :appbaseConfig="{ recordAnalytics: true,enableQueryRules: false }"
+                }"               
             >
                 <tutorial-menu />
                 <slot name="container"></slot>
@@ -37,7 +37,7 @@ import {
 import TutorialMenu from "../TutorialMenu.vue";
 
 const layoutCls = css`
- background: #152530;
+ background: ${themeConfig.primary};
  color: #fff;
  font-family: Lato;
 `;

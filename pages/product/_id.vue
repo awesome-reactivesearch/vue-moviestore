@@ -15,40 +15,36 @@
                             </nuxt-link>
                         </div>
                         <Flex :class="mainCls">
+                            <Flex>
+							    <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
+						    </Flex>
                             <Flex :class="contentCls" flexDirection="column">
-                                <h2>{{ title }}</h2>
-                            </Flex>
-                            <!-- <Flex css={contentCls} flexDirection="column">
-                                <h2>{title}</h2>
-                                <br />
-                                <h3>{getGenresTag(releaseYear, genresData)}</h3>
-                                <Star rating={voteAverage} />
-                                <div className="overview">{overview}</div>
-                                <div className="price">{`$${price}`}</div>
-                                <WatchTrailer
-                                    href={`https://www.youtube.com/results?search_query=${title.replace(
-                                        / /g,
-                                        '+',
-                                    )}+trailer`}
+                                <h2>{{ productData.title }}</h2>
+                                <br/>
+                                <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
+                                <Star :rating="productData.vote_average" />
+                                <div class="overview">{{productData.overview}}</div>
+							    <div class="price">${{productData.price}}</div>
+                                <watch-trailer
+                                    v-if="productData.title"
+								    :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
                                 />
-                                <Flex className="action">
-                                    <PurchaseButton price={price}>
-                                        <PrimaryButton
-                                            onClick={this.handleBuy}
-                                            className="purchase-button"
-                                        >
-                                            Purchase
-                                        </PrimaryButton>
-                                    </PurchaseButton>
-                                    <Button className="cart-button" onClick={this.handleBuy}>
+
+                                <Flex class="action">
+                                    <purchase-button :price="productData.price">
+                                        <!-- <template v-slot:purchaseButton>
+                                            
+                                        </template>  -->
+                                    </purchase-button>
+                                    <a-button class="cart-button" @click="handleBuy(productData)"> 
                                         ADD TO CART
-                                    </Button>
+                                    </a-button>
                                 </Flex>
-                            </Flex> -->
+                            </Flex>                          
                         </Flex>
-                        
                     </template>
                  </app-content>
+                <app-footer />
             </template>
         </app-container>
     </div>
@@ -56,13 +52,16 @@
 
 <script>
 import { css } from '@emotion/css';
-import Container from "../components/Layout/Container.vue";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Layout/Footer";
-import Content from "../components/Layout/Content.vue";
-import Flex from "../components/Flex";
-import Star from "../components/Star.vue";
-import media from '../utils/media';
+import Container from "../../components/Layout/Container.vue";
+import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
+import Content from "../../components/Layout/Content.vue";
+import Flex from "../../components/Flex";
+import Star from "../../components/Star.vue";
+import WatchTrailer from "../../components/Button/WatchTrailer.vue";
+import PurchaseButton from "../../components/Button/Purchase.vue";
+import PrimaryButton from "../../components/Button/Primary.vue";
+import media from '../../utils/media';
 
 // Page, PuchaseButton,WatchTrailer,PrimaryButton, { fetchProduct, addToCart } from '../modules/actions';
 
@@ -141,21 +140,14 @@ const mainContentCls = css`
 `;
 
 export default {
-    // routes: {
-    //     extendRoutes(routes, resolve) {
-    //       routes.push({
-    //           path: '/product/:id',
-    //           components: {
-    //               default: resolve(__dirname, 'pages/product')
-    //           }
-    //       })  
-    //     }
-    // },
     components: {
         'app-container': Container,
         'app-content': Content,
         'app-header': Header,
         'app-footer': Footer,
+        'watch-trailer': WatchTrailer,
+        'purchase-button': PurchaseButton,
+        'primary-button': PrimaryButton,
         Flex,
         Star
     },
@@ -164,14 +156,18 @@ export default {
            contentCls,
            mainCls,
            mainContentCls,
+           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '' }
        }
    },
    methods: {
        getGenresTag(releaseYear, genresData) {
-           if (genresData.length) {
-                return `${releaseYear}  |  ${genresData.toString().replace(/,/g, ', ')}`;
+           if (genresData?.length) {
+                return `${releaseYear}  | ${genresData?.toString()?.replace(/,/g, ', ')}`;
             }
             return releaseYear;
+        },
+        handleBuy(product) {
+            this.$store.commit("addToCart",product);
         }
     },
     props: {

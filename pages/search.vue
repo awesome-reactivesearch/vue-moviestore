@@ -186,7 +186,7 @@
 									]"
 								>
 									<div slot="renderNoResults" >
-										<Flex :class="noResults">
+										<Flex class="noResults">
 											<span>No results were found...</span>
 										</Flex>
 									</div>

@@ -7,21 +7,61 @@
                  <app-content :style="{ 'min-height': 'calc(100vh - 135px)' }">
                     <template v-slot:content>
                         <Flex :class="mainCls">
-                            {{items.length}}
-                            <!-- <a-card class="cart-items" :title="`My Cart(${items.length})`">
-                                <div v-for="(item,index) in items" :key="index">
+                            <a-card class="cart-items" :title="`My Cart(${cartCount})`">
+                                <div v-for="(item,index) in cartItems" :key="index">
                                     <Flex
-                                        :key="item._id"
-                                        :style="{ padding: 20, 'border-bottom': 'solid 1px #E8E8E8'}"
+                                        :key="item.id"
+                                        :style="{ padding: '20px', 'border-bottom': 'solid 1px #E8E8E8'}"
                                     >
-                                        hello
-                                    </Flex>
+                                        <img
+                                            :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
+                                            :alt="item.original_title"
+                                            :style="{
+                                                height: '150px',
+                                                'align-self': 'flex-start',
+                                                cursor: 'pointer',
+                                            }"
+                                        />
+                                        <Flex :style="{ 'margin-left': '20px' }" flexDirection="column">
+                                            <h2>{{ item.original_title }}</h2>
+                                            <h2>{{ item.price }}</h2>
+                                            <a-button 
+                                                :style="{
+                                                    'margin-top': '30px',
+                                                    'width': '100px'
+                                                }"
+                                                type="danger"
+                                                @click="removeFromCart(item,index)"
+                                            >
+                                                Remove
+                                            </a-button>
+
+                                        </Flex>
+                                   </Flex>
                                 </div>
-                            </a-card> -->
+                            </a-card>
+                            <a-card class="total-price" title="Total Price">
+                                <a-card-meta>
+                                    <a-button>Checkout</a-button>
+                                </a-card-meta>
+                                <Flex justifyContent="space-between">
+                                    <h2>Total:</h2>
+                                    <h2>${{totalPrice}}</h2>
+                                </Flex>
+                                <nuxt-link to="/checkout">
+                                    <purchase-button :price="totalPrice">
+                                        <primary-button style="{ width: '100%', margin-top: '20px' }">
+                                            Checkout
+                                        </primary-button>
+                                    </purchase-button>
+                                </nuxt-link>
+                            </a-card>
+
                         </Flex>
                         
                     </template>
                  </app-content>
+                 <app-footer />
             </template>
         </app-container>
     </div>
@@ -77,14 +117,22 @@ export default {
         Flex,
     },
    data() {
+       console.log(this.$store.state.cartItems);
        return {
            mainCls,
+           cartItems: this.$store.state.cartItems || [],
+           cartCount: this.$store.state.cartCount || 0,
+           totalPrice: this.$store.state.totalPrice || 0,
        }
    },
-   props: {
-        items: Array,
-        totalPrice: Number,
-        removeFromCart: Function,
+   methods: {
+       handleProductSelect(product) {
+			this.$store.commit('setSelectedProduct', product);
+			this.$router.push(`/product/${product.id}`);
+		},
+        removeFromCart(product,index) {
+            this.$store.commit('removeFromCart', {'product': product, 'index': index});
+        }
    }
 }
 </script>
