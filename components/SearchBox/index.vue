@@ -18,10 +18,11 @@
 			:fuzziness="1"
 			:autosuggest="true"
 			:enablePredictiveSuggestions="true"
+			:enableRecentSearches="true"
 			filterLabel="search"
 			placeholder="Search for movies"
             queryFormat="and"
-			:showClear="true"
+			:showClear="false"
 			:theme="{
 				typography: {
 					fontFamily: 'Lato',
@@ -142,7 +143,9 @@ const dataSearchCls = isFullWidth => css`
 	`)}
 `;
 
+
 export default {
+
     data() {
         return {
             dataSearchCls,

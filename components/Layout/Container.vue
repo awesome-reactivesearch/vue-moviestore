@@ -20,9 +20,11 @@
                     },
                 }"               
             >
-                <div class="header-search-container ">
-                    <search-box />
-                </div>    
+                <no-ssr>
+                    <div class="header-search-container ">
+                        <search-box />
+                    </div>   
+                </no-ssr>     
                 <tutorial-menu />
                 <slot name="container"></slot>
             </reactive-base>
