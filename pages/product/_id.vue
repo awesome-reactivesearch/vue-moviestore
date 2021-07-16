@@ -31,10 +31,14 @@
                                 />
 
                                 <Flex class="action">
-                                    <purchase-button :price="productData.price">
-                                        <!-- <template v-slot:purchaseButton>
-                                            
-                                        </template>  -->
+                                    <purchase-button :price="productData.price" :showSlot="true">
+                                        <template v-slot:purchaseButton>
+                                            <primary-button class="purchase-button">
+                                                <template v-slot:primaryButton>
+                                                    PURCHASE
+                                                </template>
+                                            </primary-button>
+                                        </template> 
                                     </purchase-button>
                                     <a-button class="cart-button" @click="handleBuy(productData)"> 
                                         ADD TO CART
@@ -156,7 +160,8 @@ export default {
            contentCls,
            mainCls,
            mainContentCls,
-           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '' }
+           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '' },
+           lastPage: this.$store?.state.recentRoute || '/',
        }
    },
    methods: {
@@ -175,7 +180,6 @@ export default {
         product: Object,
         productImage: [ String, Number ],
         title: String,
-        lastPage: String,
         price: [ String, Number ],
         releaseYear: [ String, Number ],
         genresData: [ String, Number ],

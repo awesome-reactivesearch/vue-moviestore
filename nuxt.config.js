@@ -56,6 +56,10 @@ export default {
     timing: false
   },
 
+  serverMiddleware: {
+    '/api': '~/api'
+  },
+  
   auth: {
     redirect: {
       login: '/', // redirect user when not connected

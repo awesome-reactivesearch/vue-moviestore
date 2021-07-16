@@ -1,7 +1,7 @@
 <template>
-    <div :class="mainCls" key="id" @click="handleProductSelect(product)">
+    <div :class="mainCls" key="id">
         <Flex class="result-card-content">
-			<div>
+			<div @click="handleProductSelect(product)">
 			<!-- <nuxt-link
 				:to="{
 					path: 'product',
@@ -10,6 +10,7 @@
 				:as="`/product/${id}`"
 			>             -->
 				<product-image
+
 					:placeholderStyle="{
 						width: '240px',
 						height: '360px',
@@ -39,16 +40,16 @@
 				</Flex>
 			</Flex>
 		</Flex>
-		<div class="hover-icon">
-			<nuxt-link
+		<div class="hover-icon" @click="handleProductSelect(product)">
+			<!-- <nuxt-link
 				:to="{
 					path: '/product',
 					query: { id, payload: JSON.stringify(product) },
 				}"
 				:as="`/product/${id}`"
-			>
+			> -->
 				<img alt="dropdown" src="/images/icon-down.png" />
-			</nuxt-link>
+			<!-- </nuxt-link> -->
 		</div>
 
     </div>
@@ -156,6 +157,7 @@ export default {
     },
 	methods: {
 		handleProductSelect(product) {
+			this.$store.state.recentRoute = '/search';
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
 		}

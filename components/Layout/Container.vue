@@ -11,7 +11,7 @@
 				themePreset="dark" 
                 :theme="{
                     typography: {
-                        'font-family': 'Lato',
+                        fontFamily: 'Lato',
                     },
                     colors: {
                         textColor: '#979797',
@@ -23,6 +23,7 @@
                 <tutorial-menu />
                 <slot name="container"></slot>
             </reactive-base>
+            <app-footer />
         </a-layout>
     </div>
 </template>
@@ -34,18 +35,22 @@ import {
 	themeConfig,
 	appBaseConfig,
 } from '../../utils/constants';
+import Footer from './Footer.vue';
 import TutorialMenu from "../TutorialMenu.vue";
 
 const layoutCls = css`
  background: ${themeConfig.primary};
  color: #fff;
  font-family: Lato;
+ height: 100vh;
 `;
 
 export default {
     name: "Container",   
     components: {
         'tutorial-menu': TutorialMenu,
+        'app-footer': Footer,
+
     },
     data() {
         return {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <data-search
-            :class="dataSearchCls(isSearchPage())"
+            :className="dataSearchCls(isSearchPage())"
             componentId="SearchSensor"
             :dataField="[
 				'original_title',
@@ -15,11 +15,11 @@
             ]"
             :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
 			:fuzziness="1"
-			:autosuggest="false"
+			:autosuggest="true"
 			filterLabel="search"
 			placeholder="Search for movies"
             queryFormat="and"
-			:showClear="false"
+			:showClear="true"
             :URLParams="isSearchPage()"
 			@keyDown="handleKeyPress"
         />

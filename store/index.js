@@ -4,6 +4,7 @@ export const state = () => ({
     cartItems: [],
     selectedProduct: {},
     totalPrice: 0,
+    recentRoute: '/',
   })
   
   export const mutations = {
@@ -28,5 +29,8 @@ export const state = () => ({
     setSelectedProduct( state, product ) {
       state.selectedProduct = product; 
     },
+    setRecentRoute(state, route) {
+      state.recentRoute = route;
+    }
     
   }

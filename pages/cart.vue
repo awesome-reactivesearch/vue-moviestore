@@ -4,7 +4,7 @@
             <template v-slot:container>
                 <app-header />
                   
-                 <app-content :style="{ 'min-height': 'calc(100vh - 135px)' }">
+                 <app-content :style="{ 'height': 'calc(100vh - 205px)', overflow: 'auto' }">
                     <template v-slot:content>
                         <Flex :class="mainCls">
                             <a-card class="cart-items" :title="`My Cart(${cartCount})`">
@@ -21,10 +21,11 @@
                                                 'align-self': 'flex-start',
                                                 cursor: 'pointer',
                                             }"
+                                            @click="handleProductSelect(item)"
                                         />
                                         <Flex :style="{ 'margin-left': '20px' }" flexDirection="column">
                                             <h2>{{ item.original_title }}</h2>
-                                            <h2>{{ item.price }}</h2>
+                                            <h2>$ {{ item.price }}</h2>
                                             <a-button 
                                                 :style="{
                                                     'margin-top': '30px',
@@ -48,20 +49,24 @@
                                     <h2>Total:</h2>
                                     <h2>${{totalPrice}}</h2>
                                 </Flex>
-                                <nuxt-link to="/checkout">
-                                    <purchase-button :price="totalPrice">
-                                        <primary-button style="{ width: '100%', margin-top: '20px' }">
-                                            Checkout
+                                
+                                <purchase-button :price="totalPrice" :showSlot="true">
+                                    <template v-slot:purchaseButton>
+                                        <primary-button :style="{ width: '100%', 'margin-top': '20px' }"  :isCheckout="true">
+                                            <template v-slot:primaryButton>
+                                                Checkout
+                                            </template>
                                         </primary-button>
-                                    </purchase-button>
-                                </nuxt-link>
+                                    </template>
+                                </purchase-button>
+                               
                             </a-card>
 
                         </Flex>
                         
                     </template>
                  </app-content>
-                 <app-footer />
+                
             </template>
         </app-container>
     </div>
@@ -127,6 +132,7 @@ export default {
    },
    methods: {
        handleProductSelect(product) {
+            this.$store.commit('setRecentRoute' ,'/cart');
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
 		},

@@ -216,7 +216,7 @@
                     </template>
                 </app-content>
     
-                <app-footer />
+                <!-- <app-footer /> -->
             </template>
         </app-container>
     </div>

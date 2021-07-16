@@ -30,12 +30,12 @@
             </app-content>
             <Flex flexDirection="column" :class="listCls" :style="{ width: '100%', 'margin-top': '50px' }">
               <H2>Trending Now</H2>
-              <!-- <Flex>
-                <ReactiveList {...reactiveListProps} />
-              </Flex> -->
+              <Flex>
+                <trending-list/>
+              </Flex>
             </Flex>
           </div>
-        <app-footer />
+        <!-- <app-footer /> -->
       </template>
     </app-container>
   </div>
@@ -46,11 +46,12 @@
 import { css } from '@emotion/css';
 import Container from '../components/Layout/Container.vue';
 import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
+
 import Content from '../components/Layout/Content.vue';
 import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
 import PurchaseButton from '../components/Button/Purchase';
 import WatchTrailer from '../components/Button/WatchTrailer';
+import TrendingList from '../components/TrendingList.vue';
 import Flex from '../components/Flex';
 import { H2 } from '../components/Typography';
 import media from '../utils/media';
@@ -111,6 +112,7 @@ const mainCls = css`
     line-height: 18px;
   }
   .action {
+    display: flex;
     margin-top: 20px;
   }
   img {
@@ -143,9 +145,9 @@ export default {
     'app-container': Container,
     'app-content': Content,
     'app-header': Header,
-    'app-footer': Footer,
     'purchase-button': PurchaseButton,
     'watch-trailer': WatchTrailer,
+    'trending-list': TrendingList,
     Flex,
     H2,
   },
@@ -154,10 +156,12 @@ export default {
       bannerConfig,
       appBaseConfig,
       mainCls,
+      listCls
     };
   },
   methods: {
     handleProductSelect(product) {
+      this.$store.commit('setRecentRoute' ,'/');
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
 		},

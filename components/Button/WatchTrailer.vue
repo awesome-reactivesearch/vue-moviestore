@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a target="#" rel="noopener noreferrer" href="href" :class="mainCls" v-bind="$attrs">
+        <a target="_blank" :href="href" :class="mainCls" v-bind="$attrs">
             {{ title }}
             <a-icon type="play-circle" class="play-icon" />
         </a>

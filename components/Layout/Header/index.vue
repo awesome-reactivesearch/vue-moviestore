@@ -3,8 +3,8 @@
         <nav class="menuBar">
             <div class="logo">
                 <nuxt-link to="/">
-                    <product-image
-                        :placeholderStyle="{
+                    <img
+                        style="{
                             width: '210px',
                             height: '64px',
                         }"

@@ -3,9 +3,8 @@
         <a-menu :mode="mode">
             <a-menu-item :class="searchLink" key="search">
                 <Flex justifyContent="flex-end">
-                    <!-- <nuxt-link to="/search"> -->
-                        <search-box />
-                    <!-- </nuxt-link > -->
+                    <search-box />
+                    
                     
                     <!-- <a-icon
                         :class="css({

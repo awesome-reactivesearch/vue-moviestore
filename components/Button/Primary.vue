@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :style="{ display: 'flex',justifyContent:'center'}">
         <a-button :class="btnCls" v-bind="$attrs">
             <slot name="primaryButton"></slot>
         </a-button>
@@ -31,5 +31,8 @@ export default {
            btnCls,
        } 
     },
+    props: {
+        isCheckout: Boolean,
+    }
 }
 </script>
