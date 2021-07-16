@@ -11,7 +11,7 @@
 				themePreset="dark" 
                 :theme="{
                     typography: {
-                        fontFamily: 'Lato',
+                        'font-family': 'Lato',
                     },
                     colors: {
                         textColor: '#979797',

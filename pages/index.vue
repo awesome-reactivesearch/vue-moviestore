@@ -159,6 +159,15 @@ export default {
       listCls
     };
   },
+
+  async created() {
+      if (window.location.hash.indexOf('access_token') !== -1) {
+          window.history.pushState({}, document.title, window.location.pathname);
+          window.location.reload();
+      }
+  },
+
+
   methods: {
     handleProductSelect(product) {
       this.$store.commit('setRecentRoute' ,'/');

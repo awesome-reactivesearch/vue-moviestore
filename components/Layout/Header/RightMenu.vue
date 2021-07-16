@@ -67,10 +67,13 @@ const searchLink = css`
 // `;
 
 export default {
+
+
     data() {
         return {
             searchLink,
             mediaKey,
+            user: this.$auth,
         }
     },
     components : {
@@ -78,6 +81,7 @@ export default {
         Flex,
 
     },
+    
     props : {
         mode: {
             type: String,
@@ -91,6 +95,7 @@ export default {
         onClose: Function,
         // mode: String,
     },
+
     methods: {
         login() {
             this.$auth.loginWith('auth0');
