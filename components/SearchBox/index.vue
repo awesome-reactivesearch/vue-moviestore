@@ -15,7 +15,7 @@
             ]"
             :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
 			:fuzziness="1"
-			:autosuggest="true"
+			:autosuggest="false"
 			filterLabel="search"
 			placeholder="Search for movies"
             queryFormat="and"
