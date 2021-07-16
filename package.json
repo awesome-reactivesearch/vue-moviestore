@@ -5,7 +5,8 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "lint": "eslint --ext .js,.vue pages"
+    "lint": "eslint --ext .js,.vue pages",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@appbaseio/reactivesearch-vue": "^1.17.0",
