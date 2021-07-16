@@ -46,7 +46,6 @@
 import { css } from '@emotion/css';
 import Container from '../components/Layout/Container.vue';
 import Header from '../components/Layout/Header';
-
 import Content from '../components/Layout/Content.vue';
 import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
 import PurchaseButton from '../components/Button/Purchase';

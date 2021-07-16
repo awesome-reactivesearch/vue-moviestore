@@ -20,6 +20,9 @@
                     },
                 }"               
             >
+                <div class="header-search-container ">
+                    <search-box />
+                </div>    
                 <tutorial-menu />
                 <slot name="container"></slot>
             </reactive-base>
@@ -28,6 +31,21 @@
     </div>
 </template>
 
+<style>
+    .header-search-container {
+        top: 14px;
+        position: absolute;
+        right: 250px;
+    }
+
+    @media(max-width:600px) {
+        .header-search-container {
+            top: 11px;
+            right: 70px;
+        }
+    }
+
+</style>
 <script>
 // import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { css } from '@emotion/css'
@@ -37,6 +55,8 @@ import {
 } from '../../utils/constants';
 import Footer from './Footer.vue';
 import TutorialMenu from "../TutorialMenu.vue";
+import SearchBox from '../SearchBox';
+
 
 const layoutCls = css`
  background: ${themeConfig.primary};
@@ -50,8 +70,10 @@ export default {
     components: {
         'tutorial-menu': TutorialMenu,
         'app-footer': Footer,
+        'search-box': SearchBox,
 
     },
+
     data() {
         return {
             layoutCls,

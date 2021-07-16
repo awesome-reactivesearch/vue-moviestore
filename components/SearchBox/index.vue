@@ -1,7 +1,7 @@
 <template>
     <div>
         <data-search
-            :className="[dataSearchCls(isSearchPage()), 'search-container']"
+            :className="dataSearchCls(isSearchPage())"
             componentId="SearchSensor"
             :dataField="[
 				'original_title',
@@ -13,15 +13,28 @@
 				'overview.keyword',
 				'overview.search',
             ]"
+			ref="data-search"
             :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
 			:fuzziness="1"
-			:autosuggest="false"
+			:autosuggest="true"
+			:enablePredictiveSuggestions="true"
 			filterLabel="search"
 			placeholder="Search for movies"
             queryFormat="and"
 			:showClear="true"
+			:theme="{
+				typography: {
+					fontFamily: 'Lato',
+				},
+				colors: {
+					textColor: '#979797',
+					primaryTextColor: '#fff',
+					primaryColor: 'red',
+				},
+			}"
             :URLParams="isSearchPage()"
 			@keyDown="handleKeyPress"
+			innerRef="input"
         />
     </div>
 </template>
@@ -38,6 +51,11 @@ import media from '../../utils/media';
 
 
 const dataSearchCls = isFullWidth => css`
+
+	#SearchSensor-downshift > div {
+		width: 450px;
+	}
+
 	input {
 		outline: none;
 		display: block;
@@ -130,6 +148,16 @@ export default {
             dataSearchCls,
         }
     },
+	mounted() {
+		this.$refs['data-search'].$children[0].$refs['input'].addEventListener('keydown', (e) => {
+			const { value } = e.target;
+			if (e.key === 'Enter' && value.trim()) {
+				if (!window.location.href.includes('search')) {
+					this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
+				}
+			}
+		});
+	},
     methods: {
         isSearchPage() {
             try {

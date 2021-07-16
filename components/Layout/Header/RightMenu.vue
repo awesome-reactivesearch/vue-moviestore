@@ -3,7 +3,7 @@
         <a-menu :mode="mode">
             <a-menu-item :class="searchLink" key="search">
                 <Flex justifyContent="flex-end">
-                    <search-box />
+                    <!-- <search-box /> -->
                     
                     
                     <!-- <a-icon
@@ -81,7 +81,7 @@ export default {
         Flex,
 
     },
-    
+
     props : {
         mode: {
             type: String,
