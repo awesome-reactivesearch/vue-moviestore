@@ -1,7 +1,7 @@
 <template>
     <div>
         <data-search
-            :className="dataSearchCls(isSearchPage())"
+            :className="[dataSearchCls(isSearchPage()), 'search-container']"
             componentId="SearchSensor"
             :dataField="[
 				'original_title',
@@ -26,14 +26,18 @@
     </div>
 </template>
 
+<style>
+	.search-container > div:first-child  {
+		width: 450px;
+	}
+</style>
+
 <script>
 import { css } from '@emotion/css';
 import media from '../../utils/media';
 
+
 const dataSearchCls = isFullWidth => css`
-	#SearchSensor-downshift > div {
-		width: 450px;
-	}
 	input {
 		outline: none;
 		display: block;
