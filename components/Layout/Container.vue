@@ -63,7 +63,7 @@ import SearchBox from '../SearchBox';
 const layoutCls = css`
  background: ${themeConfig.primary};
  color: #fff;
- font-family: Lato;
+ 
  height: 100vh;
 `;
 

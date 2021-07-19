@@ -2,11 +2,11 @@
     <div>
         <a-layout-footer style="padding: 0px; position: fixed; bottom: 0px; left: 0px; right: 0px;">
             <div :class="footerCls">
-                Appbase.io ©{{ new Date().getFullYear() }} Created by Appbase Inc.
+                Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
             </div>   
             <div :class="MarketplaceFooter">
                 <p style="margin: 0px">
-                    This app is part of the ReactiveSearch Marketplace. You can check more apps <a href="https://www.reactiveapps.io/">here</a>.
+                    This app is part of the ReactiveSearch Marketplace. You can check more apps <a href="https://www.reactiveapps.io/" :style="{ color: 'white'}">here</a>.
                 </p>                   
                 <button class="marketplaceButton" @click="handlePurchaseClick">Buy Now for $49</button>
             </div>   

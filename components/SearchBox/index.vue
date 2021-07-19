@@ -55,6 +55,7 @@ const dataSearchCls = isFullWidth => css`
 
 	#SearchSensor-downshift > div {
 		width: 450px;
+		font-size: 14px;
 	}
 
 	input {

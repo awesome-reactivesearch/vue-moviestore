@@ -23,7 +23,7 @@
 								<app-section>
 									<app-title>Release Year</app-title>
 
-									<multi-list
+									<!-- <multi-list
 										className="year-filter"
 										componentId="year-list"
 										dataField="release_year"
@@ -44,10 +44,10 @@
 										:showCount="false"
 										filterLabel="Year"
 										:URLParams="false"
-									/> 
-									  <!-- <range-input
+									/>  -->
+									  <range-input
 											componentId="year-list"
-											dataField="release-year"
+											dataField="release_year"
 											:range="{
 												start: 1990,
 												end: 2021,
@@ -64,7 +64,7 @@
 											:stepValue="1"
 											className="year-filter"
 											:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
-										/> -->
+										/>
 
 								</app-section>
 								<app-section>
@@ -76,7 +76,7 @@
 										:size="100"
 										sortBy="count"
 										queryFormat="or"
-										selectAllLabel="All Languages"
+										selectAllLabel="All Genres"
 										:showCheckbox="true"
 										:showSearch="true"
 										:innerClass="{
@@ -84,7 +84,7 @@
 											checkbox: 'checkbox',
 											input: 'multilist-input',
 										}"
-										placeholder="Search for a language"
+										placeholder="Search for a genre"
 										:react="{ and: ['SearchSensor', 'results', 'price', 'year-list'] }"
 										:showFilter="true"
 										filterLabel="Language"
@@ -114,6 +114,7 @@
 									</multi-list>
 								</app-section>
 								<app-section>
+									<!-- <app-title>Price</app-title> -->
 									<range-slider
 										componentId="price"
 										:react="{ and: ['SearchSensor', 'language-list', 'year-list'] }"
@@ -206,12 +207,6 @@
 								</reactive-list> 
 							</Flex>
 						</Flex>
-                        
-                        <!-- -->
-
-                        
-                       <!--  -->
-
                        
                     </template>
                 </app-content>
@@ -248,7 +243,7 @@ export const Title = styled('h3')`
 	padding: "10px 0";
 	color: #fdfdfd;
 	opacity: 0.65;
-	font-family: Lato;
+	
 `;
 
 const searchCls = css`
@@ -398,7 +393,7 @@ const searchCls = css`
 		padding: 50px;
 	}
 	.resultStats {
-		color: ${themeConfig.secondary};
+		color: #fff;
 		opacity: 0.95;
 	}
 	${media.medium(css`
