@@ -64,6 +64,11 @@
 											:stepValue="1"
 											className="year-filter"
 											:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
+											:innerClass="{
+												
+											
+												'slider-container': 'range-slider',
+											}"
 										/>
 
 								</app-section>
@@ -72,7 +77,7 @@
 									<multi-list
 										componentId="language-list"
 										className="year-filter"
-										dataField="genres_data.keyword"
+										dataField="genres_new_data.keyword"
 										:size="100"
 										sortBy="count"
 										queryFormat="or"
@@ -206,17 +211,13 @@
 									</div>
 								</reactive-list> 
 							</Flex>
-						</Flex>
-                       
+						</Flex>                       
                     </template>
-                </app-content>
-    
+                </app-content>   
                 <!-- <app-footer /> -->
             </template>
         </app-container>
-    </div>
-
-    
+    </div>    
 </template>
 
 <script>
@@ -249,6 +250,7 @@ export const Title = styled('h3')`
 const searchCls = css`
 	.filter-class {
 		a {
+			max-width: 230px;
 			&:hover {
 				color: ${themeConfig.secondary};
 			}

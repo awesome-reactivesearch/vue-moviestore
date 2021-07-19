@@ -35,8 +35,16 @@
 			}"
             :URLParams="isSearchPage()"
 			@keyDown="handleKeyPress"
+			@valueSelected="handleSuggestion"
 			innerRef="input"
         />
+
+		<!-- #SearchSensor-input {
+			border-radius: 0;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			width: 403px;
+	} -->
     </div>
 </template>
 
@@ -57,6 +65,36 @@ const dataSearchCls = isFullWidth => css`
 		width: 450px;
 		font-size: 14px;
 	}
+
+	#SearchSensor-downshift > div > ul{
+		background: #05070b;
+		border-top: none;
+		margin-top: -7px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		-webkit-animation: cssAnimation 0.5s forwards; 
+    	animation: cssAnimation 0.5s forwards;
+	} 
+
+	@keyframes cssAnimation {
+		0%   {opacity: 0;}
+		90%  {opacity: 0;}
+		100% {opacity: 1;}
+	}
+	@-webkit-keyframes cssAnimation {
+		0%   {opacity: 0;}
+		90%  {opacity: 0;}
+		100% {opacity: 1;}
+	}
+
+	#SearchSensor-downshift > div > ul >li {
+		background: none !important;
+	}
+
+	#SearchSensor-downshift > div > ul >li:hover, #SearchSensor-downshift > div > ul >li:active, #SearchSensor-downshift > div > ul >li:focus{
+		background: #ccc !important;
+	}
+
 
 	input {
 		outline: none;
@@ -126,7 +164,12 @@ const dataSearchCls = isFullWidth => css`
 		color: #979797;
 		background-color: transparent;
 		cursor: auto;
+		border-radius: 0;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		width: 405px; 
 	}
+
 	input:focus::-webkit-input-placeholder {
 		color: #979797;
 	}
@@ -179,6 +222,11 @@ export default {
 				}
 			}
 		},
+		handleSuggestion(currentValue) {
+			if (!window.location.href.includes('search') && arguments[1] !== 'ENTER') {
+				this.$router.push(`/search?SearchSensor="${currentValue.replace(/\s/g, '+')}"`);
+			}
+		}
     }
 }
 </script>
