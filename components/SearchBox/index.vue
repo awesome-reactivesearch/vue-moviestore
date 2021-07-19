@@ -1,50 +1,43 @@
 <template>
     <div>
-        <data-search
-            :className="dataSearchCls(isSearchPage())"
-            componentId="SearchSensor"
-            :dataField="[
-				'original_title',
-				'original_title.autosuggest',
-				'original_title.keyword',
-				'original_title.search',
-				'overview',
-				'overview.autosuggest',
-				'overview.keyword',
-				'overview.search',
-            ]"
-			ref="data-search"
-            :fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
-			:fuzziness="1"
-			:autosuggest="true"
-			:enablePredictiveSuggestions="true"
-			:enableRecentSearches="true"
-			filterLabel="search"
-			placeholder="Search for movies"
-            queryFormat="and"
-			:showClear="false"
-			:theme="{
-				typography: {
-					fontFamily: 'Lato',
-				},
-				colors: {
-					textColor: '#979797',
-					primaryTextColor: '#fff',
-					primaryColor: 'red',
-				},
-			}"
-            :URLParams="isSearchPage()"
-			@keyDown="handleKeyPress"
-			@valueSelected="handleSuggestion"
-			innerRef="input"
-        />
-
-		<!-- #SearchSensor-input {
-			border-radius: 0;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-			width: 403px;
-	} -->
+			<data-search
+				:className="dataSearchCls(isSearchPage())"
+				componentId="SearchSensor"
+				:dataField="[
+					'original_title',
+					'original_title.autosuggest',
+					'original_title.keyword',
+					'original_title.search',
+					'overview',
+					'overview.autosuggest',
+					'overview.keyword',
+					'overview.search',
+				]"
+				ref="data-search"
+				:fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
+				:fuzziness="1"
+				:autosuggest="!isSearchPage()"
+				:enablePredictiveSuggestions="!isSearchPage()"
+				:enableRecentSearches="true"
+				filterLabel="search"
+				placeholder="Search for movies"
+				queryFormat="and"
+				:showClear="false"
+				:theme="{
+					typography: {
+						fontFamily: 'Lato',
+					},
+					colors: {
+						textColor: '#979797',
+						primaryTextColor: '#fff',
+						primaryColor: 'red',
+					},
+				}"
+				:URLParams="isSearchPage()"
+				@keyDown="handleKeyPress"
+				@valueSelected="handleSuggestion"
+				innerRef="input"
+			/>
     </div>
 </template>
 
@@ -196,14 +189,17 @@ export default {
         }
     },
 	mounted() {
-		this.$refs['data-search'].$children[0].$refs['input'].addEventListener('keydown', (e) => {
-			const { value } = e.target;
-			if (e.key === 'Enter' && value.trim()) {
-				if (!window.location.href.includes('search')) {
-					this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
+		if (!this.isSearchPage()) {
+			this.$refs['data-search'].$children[0].$refs['input'].addEventListener('keydown', (e) => {
+				const { value } = e.target;
+				if (e.key === 'Enter' && value.trim()) {
+					if (!window.location.href.includes('search')) {
+						this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
+					}
 				}
-			}
-		});
+			});
+		}
+	
 	},
     methods: {
         isSearchPage() {
@@ -226,7 +222,7 @@ export default {
 			if (!window.location.href.includes('search') && arguments[1] !== 'ENTER') {
 				this.$router.push(`/search?SearchSensor="${currentValue.replace(/\s/g, '+')}"`);
 			}
-		}
+		},
     }
 }
 </script>
