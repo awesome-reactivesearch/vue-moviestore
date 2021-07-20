@@ -14,15 +14,16 @@
                                 </div>
                             </nuxt-link>
                         </div>
-                        <Flex :class="mainCls">
-                            <Flex v-if="productData.poster_path">
+                        <Flex :class="mainCls" v-if="productData.title">
+                            <Flex>
+                                <p>{{ productData.poster_path }}</p>
 							    <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
 						    </Flex>
                             <Flex :class="contentCls" flexDirection="column">
                                 <h2>{{ productData.title }}</h2>
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                <Star v-if="productData.vote_average" :rating="productData.vote_average" />
+                                <Star :rating="productData.vote_average" />
                                 <div class="overview">{{productData.overview}}</div>
 							    <div class="price">${{productData.price}}</div>
                                 <watch-trailer
