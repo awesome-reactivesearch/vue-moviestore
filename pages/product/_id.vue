@@ -2,58 +2,62 @@
     <div>
         <app-container>           
             <template v-slot:container>
-                <app-header />
-                  
-                 <app-content :class="mainContentCls">
-                    <template v-slot:content>
-                        <div v-if="lastPage">
-                            <nuxt-link :to="lastPage">
-                                <div class="back-to-results">
-                                    <a-icon type="arrow-left" />
-                                    Go Back
-                                </div>
-                            </nuxt-link>
-                        </div>
-                        <Flex :class="mainCls" v-if="productData.title">
-                            <Flex>
-							    <!-- <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" /> -->
-						    </Flex>
-                            <Flex :class="contentCls" flexDirection="column">
-                                <br/>
-                                <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                <Star :rating="productData.vote_average" />
-                                <div class="overview">{{productData.overview}}</div>
-							    <div class="price">${{productData.price}}</div>
-                                <watch-trailer
-                                    v-if="productData.title"
-								    :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
-                                />
-
-                                <Flex class="action">
-                                    <purchase-button :price="productData.price" :showSlot="true">
-                                        <template v-slot:purchaseButton>
-                                            <primary-button class="purchase-button">
-                                                <template v-slot:primaryButton>
-                                                    PURCHASE
-                                                </template>
-                                            </primary-button>
-                                        </template> 
-                                    </purchase-button>
-                                    <a-button class="cart-button" @click="handleBuy(productData)"> 
-                                        ADD TO CART
-                                    </a-button>
-                                </Flex>
-                            </Flex>                          
-                        </Flex>
-                    </template>
+                <div>
+                    <app-header />
                     
-                 </app-content>
-                 
-                <div :class="footerCls">
-                    Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-                </div> 
+                    <app-content :class="mainContentCls">
+                        <template v-slot:content>
+                            <div>
+                                <div v-if="lastPage">
+                                    <nuxt-link :to="lastPage">
+                                        <div class="back-to-results">
+                                            <a-icon type="arrow-left" />
+                                            Go Back
+                                        </div>
+                                    </nuxt-link>
+                                </div>
+                                <Flex :class="mainCls" v-if="productData.title">
+                                    <Flex>
+                                        <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
+                                    </Flex>
+                                    <Flex :class="contentCls" flexDirection="column">
+                                        <br/>
+                                        <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
+                                        <Star :rating="productData.vote_average" />
+                                        <div class="overview">{{productData.overview}}</div>
+                                        <div class="price">${{productData.price}}</div>
+                                        <watch-trailer
+                                            v-if="productData.title"
+                                            :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
+                                        />
 
-                <app-footer />
+                                        <Flex class="action">
+                                            <purchase-button :price="productData.price" :showSlot="true">
+                                                <template v-slot:purchaseButton>
+                                                    <primary-button class="purchase-button">
+                                                        <template v-slot:primaryButton>
+                                                            PURCHASE
+                                                        </template>
+                                                    </primary-button>
+                                                </template> 
+                                            </purchase-button>
+                                            <a-button class="cart-button" @click="handleBuy(productData)"> 
+                                                ADD TO CART
+                                            </a-button>
+                                        </Flex>
+                                    </Flex>                          
+                                </Flex>
+                            </div>    
+                        </template>
+                        
+                    </app-content>
+                    
+                    <div :class="footerCls">
+                        Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                    </div> 
+
+                    <app-footer />
+                </div>    
             </template>
         </app-container>
     </div>
