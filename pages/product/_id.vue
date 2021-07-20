@@ -2,7 +2,7 @@
     <div>
         <app-container>           
             <template v-slot:container>
-                <div>
+                <client-only>
                     <app-header />
                     
                     <app-content :class="mainContentCls">
@@ -16,7 +16,7 @@
                                         </div>
                                     </nuxt-link>
                                 </div>
-                                <Flex :class="mainCls" v-if="productData.title">
+                                <Flex :class="mainCls" v-show="productData.title">
                                     <Flex>
                                         <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
                                     </Flex>
@@ -27,7 +27,7 @@
                                         <div class="overview">{{productData.overview}}</div>
                                         <div class="price">${{productData.price}}</div>
                                         <watch-trailer
-                                            v-if="productData.title"
+                                            v-show="productData.title"
                                             :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
                                         />
 
@@ -57,7 +57,7 @@
                     </div> 
 
                     <app-footer />
-                </div>    
+                </client-only>    
             </template>
         </app-container>
     </div>
