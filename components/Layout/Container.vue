@@ -26,7 +26,9 @@
                     </div>   
                 </no-ssr>     
                 <tutorial-menu />
-                <slot name="container"></slot>
+                <div style="margin-top: 70px">
+                    <slot name="container"></slot>
+                </div>    
             </reactive-base>
             <!-- <div class="footerCls">
                 Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
@@ -40,8 +42,10 @@
 <style>
     .header-search-container {
         top: 14px;
-        position: absolute;
+        position: fixed;
         right: 250px;
+        z-index: 999;
+
     }
 
     @media(max-width:600px) {

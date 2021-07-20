@@ -3,6 +3,10 @@ import { css } from '@emotion/css'
 export const headerCls = css`
   background-color: #04070b;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
   ul {
     background-color: #04070b;
     li {

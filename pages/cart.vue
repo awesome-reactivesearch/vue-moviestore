@@ -63,11 +63,13 @@
                             </a-card>
 
                         </Flex>
-                        <div :class="footerCls">
-                    Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-                </div> 
+                     <div :class="footerCls" id="app-footer-container">
+                        Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                    </div> 
                     </template>
+                   
                  </app-content>
+                
             </template>
         </app-container>
     </div>
@@ -88,7 +90,7 @@ const footerCls = css`
     text-align: center;
     background: #04070b;
     color: #fff;
-    padding: 24px 50px;  
+    padding: 24px 50px; 
 `
 
 const mainCls = css`
@@ -135,6 +137,20 @@ export default {
            footerCls,
            cartItems: this.$store.state.cartItems || [],
        }
+   },
+   mounted() {
+       const cartContainer = document.getElementsByClassName('cart-items')[0];
+       const { height } = window.getComputedStyle(cartContainer);
+        const heightValue = height.split('px')[0];
+        const footerContainer = document.getElementById('app-footer-container');
+        
+        if (parseInt(heightValue) < 600) {              
+            footerContainer.style.position = 'absolute';
+            footerContainer.style.left = '0px';
+            footerContainer.style.bottom = '60px';
+            footerContainer.style.right = '0px';
+            footerContainer.style.marginBottom = '0px';
+        } 
    },
    methods: {
        handleProductSelect(product) {

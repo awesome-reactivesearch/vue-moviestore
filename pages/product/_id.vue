@@ -22,9 +22,9 @@
                                 <h2>{{ productData.title }}</h2>
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                <Star :rating="productData.vote_average" />
+                                <!-- <Star :rating="productData.vote_average" /> -->
                                 <div class="overview">{{productData.overview}}</div>
-							    <div class="price">${{productData.price}}</div>
+							    <!-- <div class="price">${{productData.price}}</div> -->
                                 <watch-trailer
                                     v-if="productData.title"
 								    :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
@@ -46,13 +46,14 @@
                                 </Flex>
                             </Flex>                          
                         </Flex>
-                        <div :class="footerCls">
-                            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-                        </div> 
                     </template>
                     
                  </app-content>
                  
+                <div :class="footerCls">
+                    Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                </div> 
+
                 <app-footer />
             </template>
         </app-container>
@@ -130,9 +131,7 @@ const mainCls = css`
 
 const mainContentCls = css`
 	padding: 50px;
-    padding-bottom: 0px;
 	height: 84vh;
-	overflow-y: scroll;
 	max-width: 1000px;
 	margin: 0 auto;
 	${media.medium(css`
@@ -154,7 +153,7 @@ const footerCls = css`
     background: #04070b;
     color: #fff;
     padding: 24px 50px;  
-    margin-top: 50px;
+    margin-bottom: 60px;
 `
 
 export default {
