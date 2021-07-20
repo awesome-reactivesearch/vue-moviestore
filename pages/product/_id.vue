@@ -170,7 +170,6 @@ export default {
     },
    data() {
 
-       console.log('******PRODUCT_DATA******', JSON.parse(JSON.stringify(this.$store?.state?.selectedProduct)));
        return {
            contentCls,
            mainCls,

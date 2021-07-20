@@ -24,6 +24,7 @@ const mainCls = css`
 
 export default {
     data() {
+        console.log(this);
        return {
            mainCls,
        } 
