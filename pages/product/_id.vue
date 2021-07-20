@@ -175,7 +175,7 @@ export default {
            mainCls,
            mainContentCls,
            footerCls,
-           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '', vote_average: 0.0 },
+           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '', vote_average: 0.0, overview: '' },
            lastPage: this.$store?.state.recentRoute || '/',
        }
    },
