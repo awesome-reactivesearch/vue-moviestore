@@ -23,7 +23,7 @@
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
                                 <Star :rating="productData.vote_average" />
-                                <div class="overview">{{$store?.state?.selectedProduct.overview}}</div>
+                                <div class="overview">{{$store.state.selectedProduct.overview}}</div>
 							    <div class="price">${{productData.price}}</div>
                                 <watch-trailer
                                     v-if="productData.title"
