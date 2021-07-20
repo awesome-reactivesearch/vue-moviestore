@@ -14,6 +14,13 @@ export const headerCls = css`
     padding: 0 20px;
     overflow: auto;
   }
+  @media (max-width: 640px) {
+    .menuBar {
+      height: 120px;
+      padding: 0 20px;
+      overflow: auto;
+    }
+  }
   .logo {
     width: 220px;
     float: left;

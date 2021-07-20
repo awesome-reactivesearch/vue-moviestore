@@ -4,7 +4,7 @@
             <template v-slot:container>
                 <app-header />
 
-                <app-content :style="{ height: '76vh', overflowY: 'scroll' }">
+                <app-content :style="{ height: '84vh', overflowY: 'scroll' }">
                     <template v-slot:content>
 						<Flex :class="searchCls" :style="{ width: '100%' }">
 							<Flex
@@ -60,14 +60,13 @@
 												start: 1990,
 												end: 2021
 											}"
+											className="range-slider-input"
 											:showHistogram="false"
 											:stepValue="1"
-											className="year-filter"
+											
 											:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
 											:innerClass="{
-												
-											
-												'slider-container': 'range-slider',
+												slider: 'range-slider',
 											}"
 										/>
 
@@ -136,8 +135,8 @@
 										}"
 										:showHistogram="false"
 										:rangeLabels="{
-										start: '$0',
-										end: '$1500',
+											start: '$0',
+											end: '$1500',
 										}"
 									/>
 								</app-section>
@@ -211,9 +210,13 @@
 									</div>
 								</reactive-list> 
 							</Flex>
-						</Flex>                       
+						</Flex> 
+						<div :class="footerCls">
+							Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+						</div>                         
                     </template>
-                </app-content>   
+                </app-content>
+				
                 <!-- <app-footer /> -->
             </template>
         </app-container>
@@ -234,6 +237,12 @@ import media from '../utils/media';
 import { themeConfig } from '../utils/constants';
 import { languageMap } from '../utils/helper';
 
+const footerCls = css`
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;  
+`
 
 export const Section = styled('div')`
 	border-bottom: 0.5px solid #29303e;
@@ -248,6 +257,7 @@ export const Title = styled('h3')`
 `;
 
 const searchCls = css`
+	
 	.filter-class {
 		a {
 			max-width: 230px;
@@ -279,6 +289,15 @@ const searchCls = css`
 		font-size: 13px;
 		font-family: "Open Sans";
 	}
+
+	.year-filter>div>div {
+		.vue-slider-component {
+			.vue-slider {
+
+			}
+		}
+	}
+
 	.multilist-checkbox {
 		&:before {
 			border: 1px solid #808184;
@@ -322,6 +341,12 @@ const searchCls = css`
 			}
 		}
 	}
+
+	.vue-slider-dot-handle {
+		background: #FF3957;
+   		border: none;
+	}
+
 	.range-slider {
 		color: #FF3957;
 		.vue-slider-dot-handle {
@@ -338,6 +363,24 @@ const searchCls = css`
 			justify-content: space-between;
 		}
 	}
+
+	.range-slider-input {
+		.vue-slider-dot-handle {
+			background-color: ${themeConfig.secondary};
+			border: none;
+		}
+		.vue-slider-process {
+			background-color: ${themeConfig.secondary};
+    		border-radius: 15px;
+		}
+		.label-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+
 	.range-slider-label {
 		font-family: Lato;
 		font-size: 14px;
@@ -436,7 +479,8 @@ export default {
 			showFilters: false,
             languageMap,
 			themeConfig,
-			searchCls
+			searchCls,
+			footerCls
         }
     }
 }

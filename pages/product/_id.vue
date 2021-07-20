@@ -46,8 +46,13 @@
                                 </Flex>
                             </Flex>                          
                         </Flex>
+                        <div :class="footerCls">
+                            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                        </div> 
                     </template>
+                    
                  </app-content>
+                 
                 <app-footer />
             </template>
         </app-container>
@@ -125,7 +130,8 @@ const mainCls = css`
 
 const mainContentCls = css`
 	padding: 50px;
-	height: 76vh;
+    padding-bottom: 0px;
+	height: 84vh;
 	overflow-y: scroll;
 	max-width: 1000px;
 	margin: 0 auto;
@@ -142,6 +148,14 @@ const mainContentCls = css`
 		font-size: 16px;
 	}
 `;
+
+const footerCls = css`
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;  
+    margin-top: 50px;
+`
 
 export default {
     components: {
@@ -160,12 +174,15 @@ export default {
            contentCls,
            mainCls,
            mainContentCls,
+           footerCls,
            productData: this.$store?.state?.selectedProduct || { genresData: [], title: '' },
            lastPage: this.$store?.state.recentRoute || '/',
        }
    },
    methods: {
        getGenresTag(releaseYear, genresData) {
+
+           console.log(this.$store?.state?.selectedProduct);
            if (genresData?.length) {
                 return `${releaseYear}  | ${genresData?.toString()?.replace(/,/g, ', ')}`;
             }

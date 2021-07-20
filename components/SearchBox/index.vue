@@ -1,43 +1,43 @@
 <template>
     <div>
-			<data-search
-				:className="dataSearchCls(isSearchPage())"
-				componentId="SearchSensor"
-				:dataField="[
-					'original_title',
-					'original_title.autosuggest',
-					'original_title.keyword',
-					'original_title.search',
-					'overview',
-					'overview.autosuggest',
-					'overview.keyword',
-					'overview.search',
-				]"
-				ref="data-search"
-				:fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
-				:fuzziness="1"
-				:autosuggest="!isSearchPage()"
-				:enablePredictiveSuggestions="!isSearchPage()"
-				:enableRecentSearches="true"
-				filterLabel="search"
-				placeholder="Search for movies"
-				queryFormat="and"
-				:showClear="false"
-				:theme="{
-					typography: {
-						fontFamily: 'Lato',
-					},
-					colors: {
-						textColor: '#979797',
-						primaryTextColor: '#fff',
-						primaryColor: 'red',
-					},
-				}"
-				:URLParams="isSearchPage()"
-				@keyDown="handleKeyPress"
-				@valueSelected="handleSuggestion"
-				innerRef="input"
-			/>
+		<data-search
+			:className="dataSearchCls(isSearchPage())"
+			componentId="SearchSensor"
+			:dataField="[
+				'original_title',
+				'original_title.autosuggest',
+				'original_title.keyword',
+				'original_title.search',
+				'overview',
+				'overview.autosuggest',
+				'overview.keyword',
+				'overview.search',
+			]"
+			ref="data-search"
+			:fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
+			:fuzziness="1"
+			:autosuggest="!isSearchPage()"
+			:enablePredictiveSuggestions="!isSearchPage()"
+			:enableRecentSearches="true"
+			filterLabel="search"
+			placeholder="Search for movies"
+			queryFormat="and"
+			:showClear="false"
+			:theme="{
+				typography: {
+					fontFamily: 'Lato',
+				},
+				colors: {
+					textColor: '#979797',
+					primaryTextColor: '#fff',
+					primaryColor: 'red',
+				},
+			}"
+			:URLParams="isSearchPage()"
+			@keyDown="handleKeyPress"
+			@valueSelected="handleSuggestion"
+			innerRef="input"
+		/>
     </div>
 </template>
 
@@ -53,7 +53,7 @@ import media from '../../utils/media';
 
 
 const dataSearchCls = isFullWidth => css`
-
+	font-size: 14px;
 	#SearchSensor-downshift > div {
 		width: 450px;
 		font-size: 14px;
@@ -85,7 +85,7 @@ const dataSearchCls = isFullWidth => css`
 	}
 
 	#SearchSensor-downshift > div > ul >li:hover, #SearchSensor-downshift > div > ul >li:active, #SearchSensor-downshift > div > ul >li:focus{
-		background: #ccc !important;
+		background: #cccccc36 !important;
 	}
 
 
@@ -157,10 +157,13 @@ const dataSearchCls = isFullWidth => css`
 		color: #979797;
 		background-color: transparent;
 		cursor: auto;
-		border-radius: 0;
-		border-top-left-radius: 10px;
-		border-top-right-radius: 10px;
-		width: 405px; 
+		${!isFullWidth ? `
+			border-radius: 0;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			width: 405px; 
+		` : ''}
+		
 	}
 
 	input:focus::-webkit-input-placeholder {
@@ -204,7 +207,7 @@ export default {
     methods: {
         isSearchPage() {
             try {
-                return window.location.href.includes('search');
+                return window.location.href.includes('search') || window.location.href.includes('product') || window.location.href.includes('cart');
             } catch (e) {
                 return false;
             }

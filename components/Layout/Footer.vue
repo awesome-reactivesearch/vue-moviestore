@@ -1,9 +1,7 @@
 <template>
     <div>
-        <a-layout-footer style="padding: 0px; position: fixed; bottom: 0px; left: 0px; right: 0px;">
-            <div :class="footerCls">
-                Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-            </div>   
+        <a-layout-footer style="padding: 0px; position: fixed; bottom: 0px; left: 0px; right: 0px; z-index:1">
+              
             <div :class="MarketplaceFooter">
                 <p style="margin: 0px">
                     This app is part of the ReactiveSearch Marketplace. You can check more apps <a href="https://www.reactiveapps.io/" :style="{ color: 'white'}">here</a>.
@@ -52,8 +50,7 @@ const footerCls = css`
     text-align: center;
     background: #04070b;
     color: #fff;
-    padding: 24px 50px;
-    
+    padding: 24px 50px;  
 `
 export default {
    data() {

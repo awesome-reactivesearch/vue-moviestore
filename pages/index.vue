@@ -3,7 +3,7 @@
     <app-container>
       <template #container>
         <app-header />
-          <div :style="{ height: '73vh', 'overflow-y': 'scroll' }">
+          <div :style="{ height: '84vh', 'overflow-y': 'scroll' }">
             <app-content>
               <template v-slot:content>
                 <Flex :class="mainCls" justifyContent="space-between">
@@ -26,16 +26,22 @@
                     />
                   </div>
                 </Flex>
-              </template>
-            </app-content>
+
+           
             <Flex flexDirection="column" :class="listCls" :style="{ width: '100%', 'margin-top': '50px' }">
               <H2>Trending Now</H2>
               <Flex>
                 <trending-list/>
               </Flex>
             </Flex>
+              </template>
+            </app-content>
+              <div :class="footerCls">
+                Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+            </div>
           </div>
-        <!-- <app-footer /> -->
+      
+        <app-footer />
       </template>
     </app-container>
   </div>
@@ -138,6 +144,12 @@ const mainCls = css`
   `)};
 `;
 
+const footerCls = css`
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;  
+`
 
 export default {
   components: {
@@ -155,7 +167,8 @@ export default {
       bannerConfig,
       appBaseConfig,
       mainCls,
-      listCls
+      listCls,
+      footerCls
     };
   },
 

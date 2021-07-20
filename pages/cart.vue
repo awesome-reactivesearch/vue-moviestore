@@ -4,10 +4,10 @@
             <template v-slot:container>
                 <app-header />
                   
-                 <app-content :style="{ 'height': 'calc(100vh - 205px)', overflow: 'auto' }">
+                 <app-content :style="{ 'height': 'calc(100vh - 134px)', overflow: 'auto' }">
                     <template v-slot:content>
                         <Flex :class="mainCls">
-                            <a-card class="cart-items" :title="`My Cart(${cartCount})`">
+                            <a-card class="cart-items" :title="`My Cart(${$store.state.cartCount || 0})`">
                                 <div v-for="(item,index) in cartItems" :key="index">
                                     <Flex
                                         :key="item.id"
@@ -47,7 +47,7 @@
                                 </a-card-meta>
                                 <Flex justifyContent="space-between">
                                     <h2>Total:</h2>
-                                    <h2>${{totalPrice}}</h2>
+                                    <h2>${{ $store.state.totalPrice || 0 }}</h2>
                                 </Flex>
                                 
                                 <purchase-button :price="totalPrice" :showSlot="true">
@@ -63,10 +63,11 @@
                             </a-card>
 
                         </Flex>
-                        
+                        <div :class="footerCls">
+                    Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                </div> 
                     </template>
                  </app-content>
-                
             </template>
         </app-container>
     </div>
@@ -82,6 +83,13 @@ import Flex from "../components/Flex";
 import media from '../utils/media';
 import PrimaryButton from '../components/Button/Primary';
 import PurchaseButton from '../components/Button/Purchase';
+
+const footerCls = css`
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;  
+`
 
 const mainCls = css`
 	.cart-items {
@@ -122,12 +130,10 @@ export default {
         Flex,
     },
    data() {
-       console.log(this.$store.state.cartItems);
        return {
            mainCls,
+           footerCls,
            cartItems: this.$store.state.cartItems || [],
-           cartCount: this.$store.state.cartCount || 0,
-           totalPrice: this.$store.state.totalPrice || 0,
        }
    },
    methods: {

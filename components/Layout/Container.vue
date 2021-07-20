@@ -28,6 +28,10 @@
                 <tutorial-menu />
                 <slot name="container"></slot>
             </reactive-base>
+            <!-- <div class="footerCls">
+                Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+            </div> -->
+            
             <app-footer />
         </a-layout>
     </div>
@@ -42,8 +46,8 @@
 
     @media(max-width:600px) {
         .header-search-container {
-            top: 11px;
-            right: 70px;
+            top: 60px;
+            right: 20px;
         }
     }
 
@@ -59,12 +63,17 @@ import Footer from './Footer.vue';
 import TutorialMenu from "../TutorialMenu.vue";
 import SearchBox from '../SearchBox';
 
-
 const layoutCls = css`
  background: ${themeConfig.primary};
  color: #fff;
- 
  height: 100vh;
+ .footerCls {
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;
+    position: relative;  
+ }
 `;
 
 export default {
