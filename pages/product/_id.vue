@@ -23,7 +23,7 @@
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
                                 <Star :rating="productData.vote_average" />
-                                <div class="overview">{{$store.state.selectedProduct.overview}}</div>
+                                <div class="overview">{{productData.overview}}</div>
 							    <div class="price">${{productData.price}}</div>
                                 <watch-trailer
                                     v-if="productData.title"
@@ -175,14 +175,12 @@ export default {
            mainCls,
            mainContentCls,
            footerCls,
-           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '' },
+           productData: this.$store?.state?.selectedProduct || { genresData: [], title: '', vote_average: 0.0 },
            lastPage: this.$store?.state.recentRoute || '/',
        }
    },
    methods: {
        getGenresTag(releaseYear, genresData) {
-
-           console.log(this.$store?.state?.selectedProduct);
            if (genresData?.length) {
                 return `${releaseYear}  | ${genresData?.toString()?.replace(/,/g, ', ')}`;
             }
