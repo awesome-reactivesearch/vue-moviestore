@@ -22,7 +22,7 @@
                                 <h2>{{ productData.title }}</h2>
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                <Star :rating="productData.vote_average" />
+                                <!-- <Star :rating="productData.vote_average" /> -->
                                 <div class="overview">{{productData.overview}}</div>
 							    <div class="price">${{productData.price}}</div>
                                 <watch-trailer
@@ -170,6 +170,7 @@ export default {
     },
    data() {
 
+       console.log('******PRODUCT_DATA******', JSON.parse(JSON.stringify(this.$store?.state?.selectedProduct)));
        return {
            contentCls,
            mainCls,
