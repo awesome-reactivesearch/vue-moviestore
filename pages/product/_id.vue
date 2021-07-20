@@ -15,14 +15,14 @@
                             </nuxt-link>
                         </div>
                         <Flex :class="mainCls">
-                            <Flex>
+                            <Flex v-if="productData.poster_path">
 							    <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
 						    </Flex>
                             <Flex :class="contentCls" flexDirection="column">
                                 <h2>{{ productData.title }}</h2>
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                <!-- <Star :rating="productData.vote_average" /> -->
+                                <Star v-if="productData.vote_average" :rating="productData.vote_average" />
                                 <div class="overview">{{productData.overview}}</div>
 							    <div class="price">${{productData.price}}</div>
                                 <watch-trailer
@@ -190,16 +190,5 @@ export default {
             this.$store.commit("addToCart",product);
         }
     },
-    props: {
-        handleAddToCart: Function,
-        product: Object,
-        productImage: [ String, Number ],
-        title: String,
-        price: [ String, Number ],
-        releaseYear: [ String, Number ],
-        genresData: [ String, Number ],
-        voteAverage: Number,
-        overview: String,
-    } 
 }
 </script>

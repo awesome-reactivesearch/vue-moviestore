@@ -9,7 +9,6 @@ export const state = () => ({
   
   export const mutations = {
     addToCart( state, product ) {
-      console.log(product)
       if(!state.cartValues[product.id]) {
         state.cartValues[product.id] = 1;
         state.cartCount++;
