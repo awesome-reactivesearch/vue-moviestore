@@ -157,8 +157,9 @@ export default {
     },
 	methods: {
 		handleProductSelect(product) {
+			this.$emit('productClick');
 			this.$store.state.recentRoute = '/search';
-			this.$store.commit('setSelectedProduct', product);
+			this.$store.commit('setSelectedProduct', JSON.stringify(product));
 			this.$router.push(`/product/${product.id}`);
 		}
 	}

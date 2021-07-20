@@ -195,7 +195,7 @@
 											<span>No results were found...</span>
 										</Flex>
 									</div>
-									<div slot="renderItem" slot-scope="{ item }">
+									<div slot="renderItem" slot-scope="{ item, triggerClickAnalytics }">
 										<product-card 
 											:id="item.id"
 											:posterPath="item.poster_path"
@@ -206,6 +206,7 @@
 											:price="item.price"
 											:voteAverage="item.vote_average"
 											:product="item"
+											@productClick="triggerClickAnalytics"
 										/>
 									</div>
 								</reactive-list> 
