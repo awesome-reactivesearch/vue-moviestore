@@ -14,7 +14,10 @@ import Flex from './Flex';
 export default {
     name: "Star",
     props: {
-        rating: Number,
+        rating: {
+            type: Number,
+            default: 0,
+        }
     },
     components: {
         Flex,

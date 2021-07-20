@@ -3,9 +3,6 @@
         <a-layout-content v-bind="$attrs">
             <slot name="content"></slot>
         </a-layout-content>
-        <!-- <div :class="footerCls">
-            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-        </div> -->
     </div>
 </template>
 

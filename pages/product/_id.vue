@@ -16,11 +16,9 @@
                         </div>
                         <Flex :class="mainCls" v-if="productData.title">
                             <Flex>
-                                <p>{{ productData.poster_path }}</p>
-							    <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
+							    <!-- <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" /> -->
 						    </Flex>
                             <Flex :class="contentCls" flexDirection="column">
-                                <h2>{{ productData.title }}</h2>
                                 <br/>
                                 <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
                                 <Star :rating="productData.vote_average" />
