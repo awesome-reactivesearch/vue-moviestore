@@ -134,10 +134,13 @@ const mainCls = css`
 `;
 
 const mainContentCls = css`
-	padding: 50px;
+	padding: 40px;
 	height: 84vh;
 	max-width: 1000px;
 	margin: 0 auto;
+    margin-bottom: 60px;
+    padding-bottom:90px;
+    overflow-y: auto;
 	${media.medium(css`
 		padding: 20px;
 	`)}
@@ -157,8 +160,12 @@ const footerCls = css`
     background: #04070b;
     color: #fff;
     padding: 24px 50px;  
-    margin-bottom: 60px;
     font-size: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    z-index: 1;
 `
 
 export default {

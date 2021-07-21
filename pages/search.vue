@@ -243,7 +243,12 @@ const footerCls = css`
     background: #04070b;
     color: #fff;
     padding: 24px 50px; 
-	font-size: 14px; 
+	font-size: 14px;
+	position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    z-index: 999; 
 `
 
 export const Section = styled('div')`
@@ -259,7 +264,7 @@ export const Title = styled('h3')`
 `;
 
 const searchCls = css`
-	
+	margin-bottom:40px;
 	.filter-class {
 		a {
 			max-width: 230px;

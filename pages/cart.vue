@@ -63,9 +63,9 @@
                             </a-card>
 
                         </Flex>
-                     <div :class="footerCls" id="app-footer-container">
-                        Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-                    </div> 
+                        <div :class="footerCls" id="app-footer-container">
+                            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+                        </div> 
                     </template>
                    
                  </app-content>
@@ -92,9 +92,15 @@ const footerCls = css`
     color: #fff;
     padding: 24px 50px; 
     font-size: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    z-index: 1;
 `
 
 const mainCls = css`
+    margin-bottom:60px;
 	.cart-items {
 		width: 70%;
 		margin: 20px;
@@ -139,20 +145,20 @@ export default {
            cartItems: this.$store.state.cartItems || [],
        }
    },
-   mounted() {
-       const cartContainer = document.getElementsByClassName('cart-items')[0];
-       const { height } = window.getComputedStyle(cartContainer);
-        const heightValue = height.split('px')[0];
-        const footerContainer = document.getElementById('app-footer-container');
+//    mounted() {
+//        const cartContainer = document.getElementsByClassName('cart-items')[0];
+//        const { height } = window.getComputedStyle(cartContainer);
+//         const heightValue = height.split('px')[0];
+//         const footerContainer = document.getElementById('app-footer-container');
         
-        if (parseInt(heightValue) < 600) {              
-            footerContainer.style.position = 'absolute';
-            footerContainer.style.left = '0px';
-            footerContainer.style.bottom = '60px';
-            footerContainer.style.right = '0px';
-            footerContainer.style.marginBottom = '0px';
-        } 
-   },
+//         if (parseInt(heightValue) < 600) {              
+//             footerContainer.style.position = 'absolute';
+//             footerContainer.style.left = '0px';
+//             footerContainer.style.bottom = '60px';
+//             footerContainer.style.right = '0px';
+//             footerContainer.style.marginBottom = '0px';
+//         } 
+//    },
    methods: {
        handleProductSelect(product) {
             this.$store.commit('setRecentRoute' ,'/cart');
