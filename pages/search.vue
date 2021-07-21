@@ -242,7 +242,8 @@ const footerCls = css`
     text-align: center;
     background: #04070b;
     color: #fff;
-    padding: 24px 50px;  
+    padding: 24px 50px; 
+	font-size: 14px; 
 `
 
 export const Section = styled('div')`

@@ -39,7 +39,7 @@
     .header-search-container {
         top: 14px;
         position: fixed;
-        right: 250px;
+        right: 180px;
         z-index: 999;
 
     }
@@ -73,6 +73,7 @@ const layoutCls = css`
     color: #fff;
     padding: 24px 50px;
     position: relative;  
+    font-size: 14px;
  }
 `;
 

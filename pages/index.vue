@@ -149,6 +149,7 @@ const footerCls = css`
     background: #04070b;
     color: #fff;
     padding: 24px 50px;  
+    font-size: 14px;
 `
 
 export default {

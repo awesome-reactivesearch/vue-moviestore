@@ -18,9 +18,10 @@
                                 </div>
                                 <Flex :class="mainCls" v-show="productData.title">
                                     <Flex>
-                                        <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`" />
+                                        <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`"/>
                                     </Flex>
                                     <Flex :class="contentCls" flexDirection="column">
+                                        <h2>{{productData.title}}</h2>
                                         <br/>
                                         <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
                                         <Star :rating="productData.vote_average" />
@@ -157,6 +158,7 @@ const footerCls = css`
     color: #fff;
     padding: 24px 50px;  
     margin-bottom: 60px;
+    font-size: 14px;
 `
 
 export default {
@@ -172,7 +174,7 @@ export default {
         Star
     },
    data() {
-
+       
        return {
            contentCls,
            mainCls,
