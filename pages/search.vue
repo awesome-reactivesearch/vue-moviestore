@@ -294,7 +294,6 @@ const searchCls = css`
 	.year-filter {
 		color: #808184;
 		font-size: 13px;
-		font-family: "Open Sans";
 	}
 
 	.year-filter>div>div {
