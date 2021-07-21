@@ -50,7 +50,7 @@
                                     <h2>${{ $store.state.totalPrice || 0 }}</h2>
                                 </Flex>
                                 
-                                <purchase-button :price="totalPrice" :showSlot="true">
+                                <purchase-button :price="$store.state.totalPrice" :showSlot="true">
                                     <template v-slot:purchaseButton>
                                         <primary-button :style="{ width: '100%', 'margin-top': '20px' }"  :isCheckout="true">
                                             <template v-slot:primaryButton>
@@ -112,8 +112,9 @@ const mainCls = css`
 		min-width: 200px;
 	}
 	${media.medium(css`
-		flex-direction: column;
+		flex-direction: column !important;
 		padding: 20px;
+        margin-top: 40px;
 		.cart-items {
 			width: 100%;
 			margin: 0;

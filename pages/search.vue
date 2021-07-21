@@ -4,7 +4,7 @@
             <template v-slot:container>
                 <app-header />
 
-                <app-content :style="{ height: '84vh', overflowY: 'scroll' }">
+                <app-content :class="contentCls">
                     <template v-slot:content>
 						<Flex :class="searchCls" :style="{ width: '100%' }">
 							<Flex
@@ -211,6 +211,9 @@
 									</div>
 								</reactive-list> 
 							</Flex>
+							<a-button @click="toggleFilters" class="filter-btn">
+								<a-icon :type="displayFilter()" />
+							</a-button>
 						</Flex> 
 						<div :class="footerCls">
 							Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
@@ -263,6 +266,13 @@ export const Title = styled('h3')`
 	
 `;
 
+const contentCls = css`
+	height: 84vh;
+    overflow-y: scroll;
+	${media.medium(css`
+		margin-top: 112px;
+    `)};
+`;
 const searchCls = css`
 	margin-bottom:40px;
 	.filter-class {
@@ -280,7 +290,7 @@ const searchCls = css`
 		height: 40px;
 		border-radius: 20px;
 		position: fixed;
-		top: 140px;
+		top: 180px;
 		right: 20px;
 		color: #fff;
 		font-size: 26px;
@@ -305,6 +315,7 @@ const searchCls = css`
 	}
 
 	.multilist-checkbox {
+		margin-right: 10px;
 		&:before {
 			border: 1px solid #808184;
 			background-color: transparent;
@@ -486,8 +497,21 @@ export default {
             languageMap,
 			themeConfig,
 			searchCls,
-			footerCls
+			footerCls,
+			contentCls,
         }
-    }
+    },
+	methods: {
+		toggleFilters() {
+			this.showFilters = !this.showFilters;
+		},
+		displayFilter() {
+			if(this.showFilters) {
+				return 'close'
+			} else {
+				return 'filter'
+			}
+		}
+	}
 }
 </script>

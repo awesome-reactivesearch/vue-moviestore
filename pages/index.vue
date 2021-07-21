@@ -40,8 +40,7 @@
                 Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
             </div>
           </div>
-      
-        <app-footer />
+    
       </template>
     </app-container>
   </div>
@@ -128,7 +127,7 @@ const mainCls = css`
     padding: 20px;
   `)};
   ${media.medium(css`
-    flex-direction: column-reverse;
+    flex-direction: column-reverse !important;
     padding: 20px;
     margin-top: 0;
     img {
@@ -142,6 +141,7 @@ const mainCls = css`
       font-size: 60px;
     }
   `)};
+  
 `;
 
 const footerCls = css`

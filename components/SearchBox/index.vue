@@ -132,8 +132,7 @@ const dataSearchCls = isFullWidth => css`
 		font-size: 100%;
 		${isFullWidth
 			&& media.medium(css`
-				width: calc(100% - 40px);
-				color: #000;
+				width: 300px;
 			`)}
 		${isFullWidth
 			? `width: 400px;
@@ -177,10 +176,14 @@ const dataSearchCls = isFullWidth => css`
 	}
 	${media.medium(css`
 		input:focus {
-			width: calc(100% - 40px);
-			color: #000;
+			width: 300px;
+		}
+		#SearchSensor-downshift > div > ul {
+			width: 345px;
+    		margin-left: 105px;
 		}
 	`)}
+
 `;
 
 
@@ -207,7 +210,7 @@ export default {
     methods: {
         isSearchPage() {
             try {
-                return window.location.href.includes('search') || window.location.href.includes('product') || window.location.href.includes('cart');
+                return window.location.href.includes('search') ;
             } catch (e) {
                 return false;
             }

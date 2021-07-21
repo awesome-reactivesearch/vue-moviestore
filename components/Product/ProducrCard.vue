@@ -1,7 +1,7 @@
 <template>
     <div :class="mainCls" key="id">
         <Flex class="result-card-content">
-			<div @click="handleProductSelect(product)">
+			<div style="display: flex; justify-content: center" @click="handleProductSelect(product)">
 			<!-- <nuxt-link
 				:to="{
 					path: 'product',

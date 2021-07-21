@@ -14,6 +14,7 @@
 
 <script>
 import { css } from '@emotion/css'
+import media from '../../utils/media'
 
 const MarketplaceFooter = css`
     font-family: inherit;
@@ -44,6 +45,15 @@ const MarketplaceFooter = css`
         box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
         transition: all ease .2s;
     }
+    ${media.medium(css`
+        flex-direction: column;
+        align-items: flex-start;
+        .marketplaceButton {
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+  `)};
 `;
 
 const footerCls = css`

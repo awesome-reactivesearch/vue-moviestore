@@ -20,7 +20,7 @@
                 <div class="rightMenu">
                     <right-menu />
                 </div>
-                <a-button class="barsMenu" @click="showDrawer">
+                <a-button @click="toggleDrawers" class="barsMenu" >
                     <span class="barsBtn" />
                 </a-button>
                 <a-drawer
@@ -28,10 +28,10 @@
                     placement="right"
                     :closable="true"
                     :visible="visible"
-                    @close="onClose"
+                    @close="toggleDrawers"
                 >
                     <left-menu />
-                    <right-menu mode="vertical" :onClose="onClose()"/>
+                    <right-menu mode="vertical" />
                 </a-drawer>
             </div>
         </nav>
@@ -45,6 +45,11 @@ import RightMenu from './RightMenu.vue';
 import AppImage from '../../CustomImage.vue';
 
 export default {
+    components: {
+        'product-image': AppImage,
+        'left-menu': LeftMenu,
+        'right-menu': RightMenu,
+    },
     data() {
         return {
             visible: false,
@@ -56,18 +61,12 @@ export default {
         }
     },
     methods: {
-        showDrawer() {
-            this.visible = true
+        toggleDrawers() {
+            console.log("enter");
+            this.visible = !this.visible         
         },
-        onClose() {
-            this.visible = false
-        }
     },
-    components: {
-        'product-image': AppImage,
-        'left-menu': LeftMenu,
-        'right-menu': RightMenu,
-    }
+    
 }
 </script>
 

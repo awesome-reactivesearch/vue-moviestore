@@ -3,19 +3,11 @@
         <a-menu :mode="mode">
             <a-menu-item :class="searchLink" key="search">
                 <Flex justifyContent="flex-end">
-                    <!-- <search-box /> -->
-                    
-                    
+                    <!-- <search-box /> -->                   
                     <!-- <a-icon
-                        :class="css({
-                        display: 'none',
-                        [mediaKey.medium]: {
-                            display: 'block',
-                            padding: '8px 0px 8px 10px',
-                        },
-                        })"
+                        class="close-placement"
                         :style="{
-                        fontSize: 20,
+                            fontSize: 20,
                         }"
                         type="close"
                         @click="onClose"
@@ -54,9 +46,18 @@ import SearchBox from "../../SearchBox"
 import { mediaKey } from '../../../utils/media';
 import { css } from '@emotion/css';
 import Flex from "../../Flex";
-
+import media from "../../../utils/media";
 const searchLink = css`
   margin-bottom: 4px;
+  .close-placement {
+      display: none;
+  }
+   ${media.medium(css`
+		.close-placement {
+            display: block;
+            padding: 8px 0px 8px 10px,;
+        }
+	`)}
 `;
 
 // const searchIcon = css `

@@ -125,7 +125,7 @@ const mainCls = css`
 		height: 539px;
 	}
 	${media.medium(css`
-		flex-direction: column;
+		flex-direction: column !important;
 		img {
 			max-height: 360px;
 			margin: 0 auto;
