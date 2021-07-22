@@ -2,7 +2,14 @@
     <div>
         <a-layout :class="layoutCls" class="layout">
             <reactive-base
-                :appbaseConfig="{ recordAnalytics: true,enableQueryRules: false }"
+                :appbaseConfig="{ 
+                    recordAnalytics: true,
+                    enableQueryRules: false,
+                    customEvents: {
+                        device: detectDevice(),
+                        browser: detectBrowser(),
+                    },
+                }"
                 enableAppbase
                 url="https://appbase-demo-ansible-abxiydt-arc.searchbase.io" 
                 app="movies-store-app" 
@@ -107,6 +114,48 @@ export default {
         },
         reactiveSearchStore: Object,
 	    updateRoute: Function,
-    },  
+    },
+    methods: {
+       detectBrowser() {
+           let browser;
+
+           if(this.$browserDetect?.isChrome) {
+               browser = "Chrome";
+           } else if(this.$browserDetect?.isChromeIOS) {
+               browser = "Chrome IOS";
+           } else if(this.$browserDetect?.isEdge) {
+               browser = "Edge";
+           } else if(this.$browserDetect?.isFirefox) {
+               browser = "Firefox";
+           } else if(this.$browserDetect?.isIE) {
+               browser = "Internet Explorer";
+           } else if(this.$browserDetect?.isIOS) {
+               browser = "IOS";
+           } else if(this.$browserDetect?.isOpera) {
+               browser = "Opera";
+           } else if(this.$browserDetect?.isSafari) {
+               browser = "Safari";
+           } else {
+               browser = "Unknown";
+           }
+    
+           return browser;
+       },
+        detectDevice() {
+            let device;
+
+            if(this.$device?.isMobile) {
+                device = "Mobile"
+            } else if(this.$device?.isTablet) {
+                device = "Tablet"
+            } else if(this.$device?.isDesktop) {
+                device = "Desktop"
+            } else {
+                device = "Unknown"
+            }
+
+            return device;
+        }
+    }  
 };
 </script>

@@ -31,6 +31,7 @@ export default {
     { src: '@/plugins/progressive-image', ssr: false },
     { src: '~/plugins/persistedState.js', ssr: false },
     { src: '~/plugins/vue-stripe.js', ssr: false },
+    { src: '~/plugins/browser-detect', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,6 +39,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    'vue-browser-detect-plugin/nuxt','@nuxtjs/device',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

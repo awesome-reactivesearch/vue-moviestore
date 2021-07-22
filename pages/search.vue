@@ -22,54 +22,30 @@
 								</app-section>
 								<app-section>
 									<app-title>Release Year</app-title>
-
-									<!-- <multi-list
-										className="year-filter"
+									<range-input
 										componentId="year-list"
 										dataField="release_year"
-										:size="20"
-										sortBy="desc"
-										queryFormat="or"
-										selectAllLabel="All"
-										:showCheckbox="true"
-										:showSearch="true"
-										:innerClass="{
-											label: 'multilist-checkbox',
-											checkbox: 'checkbox',
-											input: 'multilist-input',
+										filterLabel="Release Year"
+										:range="{
+											start: 1990,
+											end: 2021,
 										}"
-										placeholder="Search for a Year"
-										:react="{ and: ['SearchSensor', 'results', 'price', 'language-list'] }"
-										:showFilter="true"
-										:showCount="false"
-										filterLabel="Year"
-										:URLParams="false"
-									/>  -->
-									  <range-input
-											componentId="year-list"
-											dataField="release_year"
-											:range="{
-												start: 1990,
-												end: 2021,
-											}"
-											:rangeLabels="{
-												start: '1990',
-												end: '2021',
-											}"
-											:defaultValue="{
-												start: 1990,
-												end: 2021
-											}"
-											className="range-slider-input"
-											:showHistogram="false"
-											:stepValue="1"
-											
-											:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
-											:innerClass="{
-												slider: 'range-slider',
-											}"
-										/>
-
+										:rangeLabels="{
+											start: '1990',
+											end: '2021',
+										}"
+										:defaultValue="{
+											start: 1990,
+											end: 2021
+										}"
+										className="range-slider-input"
+										:showHistogram="false"
+										:stepValue="1"										
+										:react="{ and: ['SearchSensor', 'language-list', 'results', 'price'] }"
+										:innerClass="{
+											slider: 'range-slider',
+										}"
+									/>
 								</app-section>
 								<app-section>
 									<app-title>Genres</app-title>
@@ -91,7 +67,7 @@
 										placeholder="Search for a genre"
 										:react="{ and: ['SearchSensor', 'results', 'price', 'year-list'] }"
 										:showFilter="true"
-										filterLabel="Language"
+										filterLabel="Genre"
 										:URLParams="false"
 									>
 										<div 
@@ -123,6 +99,7 @@
 										componentId="price"
 										:react="{ and: ['SearchSensor', 'language-list', 'year-list'] }"
 										dataField="price"
+										filterLabel="Price"
 										:innerClass="{
 											title: 'range-slider-title',
 											label: 'range-slider-label',
@@ -169,20 +146,20 @@
 									noResults="No results were found..."
 									:sortOptions="[
 										{
-										'dataField': 'popularity',
+										'dataField': '_score',
 										'sortBy': 'desc',
-										'label': 'Sort by Popularity(High to Low)\u00A0 \u00A0'
-										},
-										{
-										'dataField': 'price',
-										'sortBy': 'asc',
-										'label': 'Sort by Price(Low to High) \u00A0'
+										'label': 'Sort by Best Match \u00A0 \u00A0'
 										},
 										{
 										'dataField': 'vote_average',
 										'sortBy': 'desc',
 										'label': 'Sort by Ratings(High to Low) \u00A0'
 										},
+										{
+										'dataField': 'price',
+										'sortBy': 'asc',
+										'label': 'Sort by Price(Low to High) \u00A0'
+										},										
 										{
 										'dataField': 'original_title.keyword',
 										'sortBy': 'asc',
@@ -273,6 +250,7 @@ const contentCls = css`
 		margin-top: 112px;
     `)};
 `;
+
 const searchCls = css`
 	margin-bottom:40px;
 	.filter-class {
@@ -494,6 +472,7 @@ export default {
     data() {
         return {
 			showFilters: false,
+			error: false,
             languageMap,
 			themeConfig,
 			searchCls,
@@ -511,7 +490,7 @@ export default {
 			} else {
 				return 'filter'
 			}
-		}
+		},
 	}
 }
 </script>

@@ -10,12 +10,10 @@
 				'original_title.search',
 				'overview',
 				'overview.autosuggest',
-				'overview.keyword',
-				'overview.search',
 			]"
+			:fieldWeights="[10, 2, 10, 1, 3, 0.1]"
 			ref="data-search"
-			:fieldWeights="[10, 4, 10, 4, 2, 1, 2, 1]"
-			:fuzziness="1"
+			:fuzziness="0"
 			:autosuggest="!isSearchPage()"
 			:enablePredictiveSuggestions="!isSearchPage()"
 			:enableRecentSearches="true"
@@ -60,6 +58,7 @@ const dataSearchCls = isFullWidth => css`
 	}
 
 	#SearchSensor-downshift > div > ul{
+		border: 1.5px solid #979797;
 		background: #05070b;
 		border-top: none;
 		margin-top: -7px;
