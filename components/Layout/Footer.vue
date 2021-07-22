@@ -48,6 +48,7 @@ const MarketplaceFooter = css`
     ${media.medium(css`
         flex-direction: column;
         align-items: flex-start;
+        padding: 12px;
         .marketplaceButton {
             padding: 5px 10px;
             font-size: 14px;

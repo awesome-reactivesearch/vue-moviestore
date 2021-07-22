@@ -97,6 +97,10 @@ const footerCls = css`
     right: 0;
     bottom: 60px;
     z-index: 1;
+    ${media.medium(css`
+      margin-bottom: 50px;
+      padding: 17px 50px;
+  `)};
 `
 
 const mainCls = css`
@@ -115,6 +119,7 @@ const mainCls = css`
 		flex-direction: column !important;
 		padding: 20px;
         margin-top: 40px;
+        margin-bottom: 100px;
 		.cart-items {
 			width: 100%;
 			margin: 0;

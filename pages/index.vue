@@ -150,6 +150,10 @@ const footerCls = css`
     color: #fff;
     padding: 24px 50px;  
     font-size: 14px;
+    ${media.medium(css`
+      margin-bottom: 60px;
+      padding: 17px 50px;
+  `)};
 `
 
 export default {

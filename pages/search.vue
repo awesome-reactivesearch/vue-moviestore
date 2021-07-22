@@ -229,6 +229,10 @@ const footerCls = css`
     right: 0;
     bottom: 60px;
     z-index: 999; 
+	${media.medium(css`
+      margin-bottom: 48px;
+      padding: 17px 50px;
+  `)};
 `
 
 export const Section = styled('div')`
@@ -253,6 +257,9 @@ const contentCls = css`
 
 const searchCls = css`
 	margin-bottom:40px;
+	${media.medium(css`
+      margin-bottom: 140px;
+  `)};
 	.filter-class {
 		a {
 			max-width: 230px;

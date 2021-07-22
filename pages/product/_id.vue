@@ -126,6 +126,7 @@ const mainCls = css`
 	}
 	${media.medium(css`
 		flex-direction: column !important;
+        margin-bottom: 65px;
 		img {
 			max-height: 360px;
 			margin: 0 auto;
@@ -143,6 +144,7 @@ const mainContentCls = css`
     overflow-y: auto;
 	${media.medium(css`
 		padding: 20px;
+        margin-bottom: 95px;
 	`)}
 	.back-to-results {
 		cursor: pointer;
@@ -166,6 +168,10 @@ const footerCls = css`
     right: 0;
     bottom: 60px;
     z-index: 1;
+    ${media.medium(css`
+     
+      padding: 17px 50px;
+  `)};
 `
 
 export default {
