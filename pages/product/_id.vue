@@ -35,7 +35,7 @@
                                         <Flex class="action">
                                             <purchase-button :price="productData.price" :showSlot="true">
                                                 <template v-slot:purchaseButton>
-                                                    <primary-button class="purchase-button">
+                                                    <primary-button class="purchase-button" @click="handleConversion(productData)">
                                                         <template v-slot:primaryButton>
                                                             PURCHASE
                                                         </template>
@@ -76,6 +76,7 @@ import WatchTrailer from "../../components/Button/WatchTrailer.vue";
 import PurchaseButton from "../../components/Button/Purchase.vue";
 import PrimaryButton from "../../components/Button/Primary.vue";
 import media from '../../utils/media';
+import { conversionAnalytics } from '../../utils/analytics';
 
 // Page, PuchaseButton,WatchTrailer,PrimaryButton, { fetchProduct, addToCart } from '../modules/actions';
 
@@ -206,6 +207,16 @@ export default {
         },
         handleBuy(product) {
             this.$store.commit("addToCart",product);
+            // product.id
+            conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`])
+            // .then(result => console.log(result))
+            
+
+        },
+        handleConversion(product) {
+            // product.id
+            conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`])
+            // .then(result => console.log(result))
         }
     },
 }

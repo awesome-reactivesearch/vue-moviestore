@@ -45,7 +45,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
      '@nuxtjs/axios',
-     '@nuxtjs/auth'
+     '@nuxtjs/auth',
+     '@nuxtjs/proxy',
+     '@nuxtjs/pwa',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -74,5 +76,11 @@ export default {
         client_id: 'EtRB3aMxyaoBGdAOChBNJKUSzSgUS8MQ'
       }
     }
+  },
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/analytics/': { target: 'https://a03a1cb71321:75b6603d-9456-4a5a-af6b-a487b309eb61@appbase-demo-ansible-abxiydt-arc.searchbase.io/movies-store-app/', pathRewrite: {'^/analytics/': ''}, changeOrigin: true }
   },
 }

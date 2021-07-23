@@ -15,6 +15,7 @@
     "@nuxt/utils": "^2.15.7",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/proxy": "^2.1.0",
     "@vue-stripe/vue-stripe": "^4.2.5",
     "ant-design-vue": "^1.7.6",
     "antd": "^4.16.6",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
+    "@nuxtjs/pwa": "^3.3.5",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",

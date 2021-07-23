@@ -27,7 +27,7 @@ router.use('/checkout-api', async (req, res) => {
           success_url: `${req.headers.origin}/`,
           cancel_url: `${req.headers.origin}${cancelRoute}`,
         });
-  
+        
         res.json({ url: session.url });
       } catch (err) {
         res.status(500).json({ statusCode: 500, message: err.message });

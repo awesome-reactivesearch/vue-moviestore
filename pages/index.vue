@@ -15,7 +15,7 @@
                     <div class="overview">{{bannerConfig._source.overview}}</div>
                     <div class="price">${{bannerConfig._source.price}}</div>
                     <div class="action">
-                      <purchase-button :price="bannerConfig._source.price" />
+                      <purchase-button :price="bannerConfig._source.price" @click="handleConversion(bannerConfig._source.id)"/>
                       <watch-trailer href="https://www.youtube.com/watch?v=EXeTwQWrcwY" />
                     </div>
                   </Flex>
@@ -191,6 +191,9 @@ export default {
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
 		},
+    handleConversion(product) {
+      // product.id
+    }
   },
 };
 </script>

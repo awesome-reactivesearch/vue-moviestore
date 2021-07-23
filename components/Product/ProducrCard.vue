@@ -36,7 +36,7 @@
 				</div>
 				<Flex justifyContent="space-between">
 					<h2>${{price}}</h2>
-					<puchase-button :title="originalTitle" :price="price" /> 
+					<puchase-button :title="originalTitle" :price="price" @click="handleConversion(id)"/> 
 				</Flex>
 			</Flex>
 		</Flex>
@@ -161,6 +161,9 @@ export default {
 			this.$store.state.recentRoute = '/search';
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
+		},
+		handleConversion(id) {
+			// id
 		}
 	}
 }
