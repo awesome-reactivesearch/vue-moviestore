@@ -39,7 +39,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    'vue-browser-detect-plugin/nuxt','@nuxtjs/device',
+    'vue-browser-detect-plugin/nuxt','@nuxtjs/device', '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -47,7 +47,6 @@ export default {
      '@nuxtjs/axios',
      '@nuxtjs/auth',
      '@nuxtjs/proxy',
-     '@nuxtjs/pwa',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -83,4 +82,12 @@ export default {
   proxy: {
     '/analytics/': { target: 'https://a03a1cb71321:75b6603d-9456-4a5a-af6b-a487b309eb61@appbase-demo-ansible-abxiydt-arc.searchbase.io/movies-store-app/', pathRewrite: {'^/analytics/': ''}, changeOrigin: true }
   },
+  pwa: {
+    manifest: {
+      name: 'Movie Store',
+      lang: 'en',
+      useWebmanifestExtension: false
+    }
+  }
+
 }

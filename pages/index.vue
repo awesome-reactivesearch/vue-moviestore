@@ -15,7 +15,7 @@
                     <div class="overview">{{bannerConfig._source.overview}}</div>
                     <div class="price">${{bannerConfig._source.price}}</div>
                     <div class="action">
-                      <purchase-button :price="bannerConfig._source.price" @click="handleConversion(bannerConfig._source.id)"/>
+                      <purchase-button :price="bannerConfig._source.price" :productIds="[`${bannerConfig._source.id}`]" />
                       <watch-trailer href="https://www.youtube.com/watch?v=EXeTwQWrcwY" />
                     </div>
                   </Flex>
@@ -59,6 +59,7 @@ import TrendingList from '../components/TrendingList.vue';
 import Flex from '../components/Flex';
 import { H2 } from '../components/Typography';
 import media from '../utils/media';
+import {conversionAnalytics} from '../utils/analytics';
 
 const listCls = css`
   background: ${themeConfig.secondaryBg};
@@ -167,7 +168,16 @@ export default {
     Flex,
     H2,
   },
+  mounted() {
+    if(window.location.search.includes('is_stripe')) {
+      conversionAnalytics(this.$store.state.searchQuery, this.$store.state.productIds);
+      this.$store.commit('setProductIds',[]);
+      this.$store.commit('setQuery','');
+      this.$router.push({ path: '/', query: {} });
+    }
+  },
   data() {
+    console.log("env:",process.env.VUE_APP_AUTH_DOMAIN);
     return {
       bannerConfig,
       appBaseConfig,
@@ -191,9 +201,7 @@ export default {
 			this.$store.commit('setSelectedProduct', product);
 			this.$router.push(`/product/${product.id}`);
 		},
-    handleConversion(product) {
-      // product.id
-    }
+    
   },
 };
 </script>

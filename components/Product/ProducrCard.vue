@@ -36,7 +36,7 @@
 				</div>
 				<Flex justifyContent="space-between">
 					<h2>${{price}}</h2>
-					<puchase-button :title="originalTitle" :price="price" @click="handleConversion(id)"/> 
+					<puchase-button :title="originalTitle" :price="price" :productIds="[`${id}`]"/> 
 				</Flex>
 			</Flex>
 		</Flex>
@@ -157,14 +157,16 @@ export default {
     },
 	methods: {
 		handleProductSelect(product) {
+			const searchQuery = new URLSearchParams(window.location.search);
+			
 			this.$emit('productClick');
-			this.$store.state.recentRoute = '/search';
+			this.$store.commit('setRecentRoute','/search');
 			this.$store.commit('setSelectedProduct', product);
+			this.$store.commit('setQuery', searchQuery.get('SearchSensor'));
 			this.$router.push(`/product/${product.id}`);
+
 		},
-		handleConversion(id) {
-			// id
-		}
+		
 	}
 }
 </script>

@@ -11,7 +11,7 @@
                     },
                 }"
                 enableAppbase
-                url="https://appbase-demo-ansible-abxiydt-arc.searchbase.io" 
+                url="https://@appbase-demo-ansible-abxiydt-arc.searchbase.io"
                 app="movies-store-app" 
                 credentials="a03a1cb71321:75b6603d-9456-4a5a-af6b-a487b309eb61"
                 :initialState="reactiveSearchStore"
@@ -97,7 +97,10 @@ export default {
         return {
             layoutCls,
             appBaseConfig,
-            themeConfig
+            themeConfig,
+            // url: process.env.VUE_APP_APPBASE_URL,
+            // app: process.env.VUE_APP_APPBASE_APP_NAME,
+            // credentials: process.env.VUE_APP_APPBASE_APP_CREDENTIALS
         }
     },
     head() {

@@ -50,7 +50,7 @@
                                     <h2>${{ $store.state.totalPrice || 0 }}</h2>
                                 </Flex>
                                 
-                                <purchase-button :price="$store.state.totalPrice" :showSlot="true">
+                                <purchase-button :price="$store.state.totalPrice" :showSlot="true" :productIds="Object.keys($store.state.cartValues)" >
                                     <template v-slot:purchaseButton>
                                         <primary-button :style="{ width: '100%', 'margin-top': '20px' }"  :isCheckout="true">
                                             <template v-slot:primaryButton>

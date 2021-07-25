@@ -1,10 +1,11 @@
-const stripe = require('stripe')('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');
+const { conversionAnalytics } = require('../utils/analytics');
+const stripe = require('stripe')('sk_test_51JD79xSBwW0EiKyrzLMz3AcHzV45msUjBSaYlf5BPCQ6WUbdxpS0qgYb5JM7NN2Z5TBMj663qlBYXSiu0uGiUKso00UvTsbldh');
 const { Router } = require('express')
 const router = Router()
 
  
 router.use('/checkout-api', async (req, res) => {
-    const { totalAmount, cancelRoute } = req.body;
+    const { totalAmount, cancelRoute, productIds,searchQuery } = req.body;
 
     try {
         // Create Checkout Sessions from body params.
@@ -24,10 +25,10 @@ router.use('/checkout-api', async (req, res) => {
             },
           ],
           mode: 'payment',
-          success_url: `${req.headers.origin}/`,
+          success_url: `${req.headers.origin}?is_stripe=true`,
           cancel_url: `${req.headers.origin}${cancelRoute}`,
         });
-        
+        // await conversionAnalytics(searchQuery, productIds);
         res.json({ url: session.url });
       } catch (err) {
         res.status(500).json({ statusCode: 500, message: err.message });

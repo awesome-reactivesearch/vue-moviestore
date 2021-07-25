@@ -39,25 +39,32 @@ export default {
         showSlot: {
             type: Boolean,
             default: false,
-        }
+        },
+        productIds: Array,
     },
     methods: {
         handleBuy() {
             const { totalPrice } = this.$store.state;
+            this.$store.commit('addProductIds',this.productIds);
+            if(window.location.path.includes('cart')) {
+                this.$store.commit('setQuery','');
+            }
             fetch('/api/checkout-api/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        totalAmount: this.price || totalPrice,
-                        cancelRoute: window.location.pathname,
-
-                    })
-                }).then(res =>res.json())
-                .then(json => {
-                    window.open(json.url, '_self');
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    totalAmount: this.price || totalPrice,
+                    cancelRoute: window.location.pathname,
+                    productIds: this.productIds,
+                    searchQuery: this.$store.state.searchQuery,
                 })
+            }).then(res =>res.json())
+            .then((json) => {
+                // await conversionAnalytics(searchQuery, productIds);
+                window.open(json.url, '_self');
+            })
             
 
         },

@@ -6,6 +6,7 @@ export const state = () => ({
     totalPrice: 0,
     recentRoute: '/',
     searchQuery: '',
+    productIds: [],
   })
   
   export const mutations = {
@@ -34,6 +35,9 @@ export const state = () => ({
     },
     setQuery(state,value) {
       state.searchQuery = value;
-    }
+    },
+    addProductIds(state, ids) {
+      state.productIds = [...ids];
+    },
     
   }

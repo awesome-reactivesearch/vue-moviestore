@@ -33,9 +33,9 @@
                                         />
 
                                         <Flex class="action">
-                                            <purchase-button :price="productData.price" :showSlot="true">
+                                            <purchase-button :price="productData.price" :showSlot="true" :productIds="[`${productData.id}`]">
                                                 <template v-slot:purchaseButton>
-                                                    <primary-button class="purchase-button" @click="handleConversion(productData)">
+                                                    <primary-button class="purchase-button">
                                                         <template v-slot:primaryButton>
                                                             PURCHASE
                                                         </template>
@@ -209,15 +209,9 @@ export default {
             this.$store.commit("addToCart",product);
             // product.id
             conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`])
-            // .then(result => console.log(result))
-            
+            // .then(result => console.log(result))           
 
         },
-        handleConversion(product) {
-            // product.id
-            conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`])
-            // .then(result => console.log(result))
-        }
     },
 }
 </script>
