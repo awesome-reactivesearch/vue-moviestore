@@ -23,15 +23,6 @@ export const purchaseButton = styled('button')`
     border: none;
 `;
 
-// const purchaseBtn = css`
-// 	color: ${themeConfig.secondary};
-// 	font-size: 14px;
-// 	letter-spacing: 0.14px;
-// 	cursor: pointer;
-// 	margin-right: 20px;
-//     margin-bottom: 0px;
-// `;
-
 export default {
     data() {
         return {

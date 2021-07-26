@@ -29,22 +29,6 @@ export const CustomButton = styled('button')`
     }
 `;
 
-
-// const btnCls = css`
-//   background-color: ${themeConfig.secondary};
-//   color: #fff;
-//   font-size: 14px;
-//   letter-spacing: 0.14px;
-//   line-height: 13px;
-//   border: none;
-//   text-transform: uppercase;
-//   margin-right: 20px;
-//   &:hover {
-//     background-color: ${themeConfig.secondary};
-//     color: #fff;
-//   }
-// `;
-
 export default {
     data() {
        return {
