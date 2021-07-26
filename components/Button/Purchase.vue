@@ -2,33 +2,45 @@
     <div @click="handleBuy">
         <slot name="purchaseButton" v-if="showSlot">
         </slot>
-        <span :class="purchaseBtn"  v-bind="$attrs" v-if="!showSlot">PURCHASE</span>
+        <purchase-button  v-bind="$attrs" v-if="!showSlot">PURCHASE</purchase-button>
     </div>    
 </template>
 
 <script>
 import { css } from '@emotion/css';
+import { styled } from '@egoist/vue-emotion'
 import { themeConfig } from '../../utils/constants';
 import PrimaryButton from "../../components/Button/Primary.vue";
 
-const purchaseBtn = css`
+export const purchaseButton = styled('button')`
 	color: ${themeConfig.secondary};
 	font-size: 14px;
 	letter-spacing: 0.14px;
 	cursor: pointer;
 	margin-right: 20px;
     margin-bottom: 0px;
+    background: none;
+    border: none;
 `;
+
+// const purchaseBtn = css`
+// 	color: ${themeConfig.secondary};
+// 	font-size: 14px;
+// 	letter-spacing: 0.14px;
+// 	cursor: pointer;
+// 	margin-right: 20px;
+//     margin-bottom: 0px;
+// `;
 
 export default {
     data() {
         return {
-            purchaseBtn,
             loading: false,
         }
     },
     components: {
         'primary-button': PrimaryButton,
+        'purchase-button': purchaseButton,
     },
     props: {
         price: {

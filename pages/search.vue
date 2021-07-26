@@ -218,23 +218,6 @@ import media from '../utils/media';
 import { themeConfig } from '../utils/constants';
 import { languageMap } from '../utils/helper';
 
-const footerCls = css`
-    text-align: center;
-    background: #04070b;
-    color: #fff;
-    padding: 24px 50px; 
-	font-size: 14px;
-	position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-    z-index: 999; 
-	${media.medium(css`
-      margin-bottom: 48px;
-      padding: 17px 50px;
-  `)};
-`
-
 export const Section = styled('div')`
 	border-bottom: 0.5px solid #29303e;
 	padding: 30px;
@@ -464,6 +447,23 @@ const searchCls = css`
 			display: none;
 		}
 	`)}
+`;
+
+const footerCls = css`
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px; 
+	font-size: 14px;
+	position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    z-index: 999; 
+	${media.medium(css`
+      margin-bottom: 48px;
+      padding: 17px 50px;
+  `)};
 `;
 
 export default {

@@ -1,35 +1,57 @@
 <template>
     <Flex justifyContent="center">
-        <a-button :class="btnCls" v-bind="$attrs">
+        <custom-button v-bind="$attrs">
             <slot name="primaryButton"></slot>
-        </a-button>
+        </custom-button>
     </Flex>
 </template>
 
 <script>
 import { css } from '@emotion/css';
+import { styled } from '@egoist/vue-emotion'
 import { themeConfig } from '../../utils/constants';
 
-const btnCls = css`
-  background-color: ${themeConfig.secondary};
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.14px;
-  line-height: 13px;
-  border: none;
-  text-transform: uppercase;
-  margin-right: 20px;
-  &:hover {
-    background-color: ${themeConfig.secondary};
+export const CustomButton = styled('button')`
+	background-color: ${themeConfig.secondary};
+    padding: 10px;
+    border-radius: 4px;
     color: #fff;
-  }
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 13px;
+    border: none;
+    text-transform: uppercase;
+    margin-right: 20px;
+    &:hover {
+        background-color: ${themeConfig.secondary};
+        color: #fff;
+    }
 `;
+
+
+// const btnCls = css`
+//   background-color: ${themeConfig.secondary};
+//   color: #fff;
+//   font-size: 14px;
+//   letter-spacing: 0.14px;
+//   line-height: 13px;
+//   border: none;
+//   text-transform: uppercase;
+//   margin-right: 20px;
+//   &:hover {
+//     background-color: ${themeConfig.secondary};
+//     color: #fff;
+//   }
+// `;
 
 export default {
     data() {
        return {
-           btnCls,
+           
        } 
+    },
+    components: {
+        'custom-button': CustomButton,
     },
     props: {
         isCheckout: Boolean,
