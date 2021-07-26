@@ -14,6 +14,7 @@ import { themeConfig } from '../../utils/constants';
 export const CustomButton = styled('button')`
 	background-color: ${themeConfig.secondary};
     padding: 10px;
+    cursor: pointer;
     border-radius: 4px;
     color: #fff;
     font-size: 14px;
