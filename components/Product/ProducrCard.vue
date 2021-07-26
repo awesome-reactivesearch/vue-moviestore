@@ -1,7 +1,7 @@
 <template>
     <div :class="mainCls" key="id">
         <Flex class="result-card-content">
-			<div style="display: flex; justify-content: center" @click="handleProductSelect(product)">
+			<Flex justifyContent="center" @click="handleProductSelect(product)">
 			<!-- <nuxt-link
 				:to="{
 					path: 'product',
@@ -19,7 +19,7 @@
 					alt="originalTitle"
 				/>
 			<!-- </nuxt-link> -->
-			</div>
+			</Flex>
 			<Flex
 				justifyContent="space-between"
 				class="content"
