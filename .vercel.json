@@ -1,31 +1,31 @@
 {
   "version": 2,
+  "routes": [
+    
+    {
+      "src": "/api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+        "src": "/sw.js",
+        "continue": true,
+        "headers": {
+          "Cache-Control": "public, max-age=0, must-revalidate",
+          "Service-Worker-Allowed": "/"
+        }
+    }
+  ],
   "builds": [
     {
       "src": "nuxt.config.js",
       "use": "@nuxtjs/vercel-builder",
       "config": {
-        "serverFiles": ["api/**"],
-        "internalServer": true
+        "serverFiles": ["api/**"]
       }
     },
     {
         "src": "api/**/*.js",
         "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/sw.js",
-      "continue": true,
-      "headers": {
-        "Cache-Control": "public, max-age=0, must-revalidate",
-        "Service-Worker-Allowed": "/"
-      }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
     }
   ]
 }

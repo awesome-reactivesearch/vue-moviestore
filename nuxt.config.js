@@ -59,9 +59,7 @@ export default {
     timing: false
   },
 
-  serverMiddleware: {
-    '/api': '~/api'
-  },
+  serverMiddleware:   process.env.NODE_ENV === 'production' ? [] : ['~/api'],
   
   auth: {
     redirect: {
