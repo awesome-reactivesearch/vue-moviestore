@@ -1,84 +1,101 @@
 <template>
-    <div>
-        <app-container>           
-            <template v-slot:container>
-                <client-only>
-                    <app-header />
-                    
-                    <app-content :class="mainContentCls">
-                        <template v-slot:content>
-                            <div>
-                                <div v-if="lastPage">
-                                    <nuxt-link :to="lastPage">
-                                        <div class="back-to-results">
-                                            <a-icon type="arrow-left" />
-                                            Go Back
-                                        </div>
-                                    </nuxt-link>
-                                </div>
-                                <Flex :class="mainCls" v-show="productData.title">
-                                    <Flex>
-                                        <img :alt="productData.title" :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`"/>
-                                    </Flex>
-                                    <Flex :class="contentCls" flexDirection="column">
-                                        <h2>{{productData.title}}</h2>
-                                        <br/>
-                                        <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
-                                        <Star :rating="productData.vote_average" />
-                                        <div class="overview">{{productData.overview}}</div>
-                                        <div class="price">${{productData.price}}</div>
-                                        <watch-trailer
-                                            v-show="productData.title"
-                                            :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
-                                        />
+  <div>
+    <app-container>
+      <template #container>
+        <client-only>
+          <app-header />
 
-                                        <Flex class="action">
-                                            <purchase-button :price="productData.price" :showSlot="true" :productIds="[`${productData.id}`]">
-                                                <template v-slot:purchaseButton>
-                                                    <primary-button class="purchase-button">
-                                                        <template v-slot:primaryButton>
-                                                            PURCHASE
-                                                        </template>
-                                                    </primary-button>
-                                                </template> 
-                                            </purchase-button>
-                                            <a-button class="cart-button" @click="handleBuy(productData)"> 
-                                                ADD TO CART
-                                            </a-button>
-                                        </Flex>
-                                    </Flex>                          
-                                </Flex>
-                            </div>    
+          <app-content :class="mainContentCls">
+            <template #content>
+              <div>
+                <div v-if="lastPage">
+                  <nuxt-link :to="lastPage">
+                    <div class="back-to-results">
+                      <a-icon type="arrow-left" />
+                      Go Back
+                    </div>
+                  </nuxt-link>
+                </div>
+                <Flex
+                  v-show="productData.title"
+                  :class="mainCls"
+                >
+                  <Flex>
+                    <img
+                      :alt="productData.title"
+                      :src="`https://image.tmdb.org/t/p/w500/${productData.poster_path}`"
+                    >
+                  </Flex>
+                  <Flex
+                    :class="contentCls"
+                    flexDirection="column"
+                  >
+                    <h2>{{ productData.title }}</h2>
+                    <br>
+                    <h3>{{ getGenresTag(productData.release_year, productData.genres_data) }}</h3>
+                    <Star :rating="productData.vote_average" />
+                    <div class="overview">
+                      {{ productData.overview }}
+                    </div>
+                    <div class="price">
+                      ${{ productData.price }}
+                    </div>
+                    <watch-trailer
+                      v-show="productData.title"
+                      :href="`https://www.youtube.com/results?search_query=${productData.title.replace(/ /g,'+',)}+trailer`"
+                    />
+
+                    <Flex class="action">
+                      <purchase-button
+                        :price="productData.price"
+                        :showSlot="true"
+                        :productIds="[`${productData.id}`]"
+                      >
+                        <template #purchaseButton>
+                          <primary-button class="purchase-button">
+                            <template #primaryButton>
+                              PURCHASE
+                            </template>
+                          </primary-button>
                         </template>
-                        
-                    </app-content>
-                    
-                    <div :class="footerCls">
-                        Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
-                    </div> 
-
-                    <app-footer />
-                </client-only>    
+                      </purchase-button>
+                      <a-button
+                        class="cart-button"
+                        @click="handleBuy(productData)"
+                      >
+                        ADD TO CART
+                      </a-button>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              </div>
             </template>
-        </app-container>
-    </div>
+          </app-content>
+
+          <div :class="footerCls">
+            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+          </div>
+
+          <app-footer />
+        </client-only>
+      </template>
+    </app-container>
+  </div>
 </template>
 
 <script>
 import { css } from '@emotion/css';
-import Container from "../../components/Layout/Container.vue";
-import Header from "../../components/Layout/Header";
-import Footer from "../../components/Layout/Footer";
-import Content from "../../components/Layout/Content.vue";
-import Flex from "../../components/Flex";
-import Star from "../../components/Star.vue";
-import WatchTrailer from "../../components/Button/WatchTrailer.vue";
-import PurchaseButton from "../../components/Button/Purchase.vue";
-import PrimaryButton from "../../components/Button/Primary.vue";
+import Container from '../../components/Layout/Container.vue';
+import Header from '../../components/Layout/Header/index.vue';
+import Footer from '../../components/Layout/Footer.vue';
+import Content from '../../components/Layout/Content.vue';
+import Flex from '../../components/Flex';
+import Star from '../../components/Star.vue';
+import WatchTrailer from '../../components/Button/WatchTrailer.vue';
+import PurchaseButton from '../../components/Button/Purchase.vue';
+import PrimaryButton from '../../components/Button/Primary.vue';
 import media from '../../utils/media';
 import { conversionAnalytics } from '../../utils/analytics';
-
-// Page, PuchaseButton,WatchTrailer,PrimaryButton, { fetchProduct, addToCart } from '../modules/actions';
 
 const contentCls = css`
 	padding: 50px;
@@ -173,45 +190,47 @@ const footerCls = css`
      
       padding: 17px 50px;
   `)};
-`
+`;
 
 export default {
-    components: {
-        'app-container': Container,
-        'app-content': Content,
-        'app-header': Header,
-        'app-footer': Footer,
-        'watch-trailer': WatchTrailer,
-        'purchase-button': PurchaseButton,
-        'primary-button': PrimaryButton,
-        Flex,
-        Star
-    },
-   data() {
-       
-       return {
-           contentCls,
-           mainCls,
-           mainContentCls,
-           footerCls,
-           productData: this.$store?.state?.selectedProduct ? JSON.parse(JSON.stringify(this.$store?.state?.selectedProduct)) : { genresData: [], title: '', vote_average: 0.0, overview: '' },
-           lastPage: this.$store?.state.recentRoute || '/',
-       }
-   },
-   methods: {
-       getGenresTag(releaseYear, genresData) {
-           if (genresData?.length) {
-                return `${releaseYear}  | ${genresData?.toString()?.replace(/,/g, ', ')}`;
-            }
-            return releaseYear;
+  components: {
+    'app-container': Container,
+    'app-content': Content,
+    'app-header': Header,
+    'app-footer': Footer,
+    'watch-trailer': WatchTrailer,
+    'purchase-button': PurchaseButton,
+    'primary-button': PrimaryButton,
+    Flex,
+    Star,
+  },
+  data() {
+    return {
+      contentCls,
+      mainCls,
+      mainContentCls,
+      footerCls,
+      productData: this.$store?.state?.selectedProduct
+        ? JSON.parse(JSON.stringify(this.$store?.state?.selectedProduct))
+        : {
+          genresData: [], title: '', vote_average: 0.0, overview: '',
         },
-        handleBuy(product) {
-            this.$store.commit("addToCart",product);
-            // product.id
-            conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`])
-            // .then(result => console.log(result))           
-
-        },
+      lastPage: this.$store?.state.recentRoute || '/',
+    };
+  },
+  methods: {
+    getGenresTag(releaseYear, genresData) {
+      if (genresData?.length) {
+        return `${releaseYear}  | ${genresData?.toString()?.replace(/,/g, ', ')}`;
+      }
+      return releaseYear;
     },
-}
+    handleBuy(product) {
+      this.$store.commit('addToCart', product);
+      // product.id
+      conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`]);
+      // .then(result => console.log(result))
+    },
+  },
+};
 </script>

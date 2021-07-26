@@ -5,7 +5,7 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "lint": "eslint --ext .js,.vue pages",
+    "lint": "eslint --ext .js,.vue pages --fix",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {

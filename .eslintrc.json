@@ -14,5 +14,18 @@
   "rules": {
       "vue/attribute-hyphenation": 0,
       "no-tabs": 0
+  },
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+          "extensions": [".js", ".vue", ".css"],
+          "moduleDirectory": ["node_modules", "../"]
+      },
+      "import/extensions": [
+        ".js",
+        ".vue"
+      ]
+    }
   }
 }
