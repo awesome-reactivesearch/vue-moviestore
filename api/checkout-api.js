@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 const { Router } = require('express')
 const router = Router()
  
-router.use('/checkout-api', async (req, res) => {
+router.post('/checkout-api', async (req, res) => {
     const { totalAmount, cancelRoute, productIds,searchQuery } = req.body;
 
     try {
