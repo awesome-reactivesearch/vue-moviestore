@@ -1,9 +1,9 @@
 <template>
-    <div :style="{ display: 'flex',justifyContent:'center'}">
+    <Flex justifyContent="center">
         <a-button :class="btnCls" v-bind="$attrs">
             <slot name="primaryButton"></slot>
         </a-button>
-    </div>
+    </Flex>
 </template>
 
 <script>

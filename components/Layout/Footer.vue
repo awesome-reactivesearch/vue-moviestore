@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-layout-footer style="padding: 0px; position: fixed; bottom: 0px; left: 0px; right: 0px; z-index:1">
+        <a-layout-footer :class="footerPosition">
               
             <div :class="MarketplaceFooter">
                 <p style="margin: 0px">
@@ -57,17 +57,19 @@ const MarketplaceFooter = css`
   `)};
 `;
 
-const footerCls = css`
-    text-align: center;
-    background: #04070b;
-    color: #fff;
-    padding: 24px 50px;  
-`
+const footerPosition = css`
+    padding: 0px; 
+    position: fixed; 
+    bottom: 0px; 
+    left: 0px; 
+    right: 0px; 
+    z-index:1;
+`;
 export default {
    data() {
        return {
            MarketplaceFooter,
-           footerCls,
+           footerPosition,
        }
    },
    methods: {

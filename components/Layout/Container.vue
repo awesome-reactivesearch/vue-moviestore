@@ -96,6 +96,7 @@ export default {
     },
 
     data() {
+        // console.log("env:",process.env.VUE_APP_APPBASE_URL);
         return {
             layoutCls,
             appBaseConfig,
