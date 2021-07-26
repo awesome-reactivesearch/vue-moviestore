@@ -18,9 +18,6 @@ Create a `.env` file at the root & add the following config variables:
 APPBASE_URL = <YOUR_APPBASE_CLUSTER_URL>
 APPBASE_APP_NAME = <YOUR_APPBASE_APP_NAME>
 APPBASE_APP_CREDENTIALS = <YOUR_APP_CREDENTIALS>
-AUTH_AUDIENCE = <YOUR_APP_AUTH_0_AUDIENCE>
-AUTH_CLIENT_ID = <YOUR_APP_AUTH__0_CLIENT_ID>
-AUTH_DOMAIN = <YOUR_APP_AUTH__0_DOMAIN>
 ```
 ### 3. Run the project
 Run the following command to run the project locally
