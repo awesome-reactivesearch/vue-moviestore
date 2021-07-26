@@ -11,5 +11,8 @@
       "airbnb-base",
       "plugin:vue/recommended"
   ],
-  "rules": {}
+  "rules": {
+      "vue/attribute-hyphenation": 0,
+      "no-tabs": 0
+  }
 }

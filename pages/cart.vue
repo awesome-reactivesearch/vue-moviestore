@@ -158,7 +158,7 @@ export default {
 			this.$router.push(`/product/${product.id}`);
 		},
         removeFromCart(product,index) {
-            this.$store.commit('removeFromCart', {'product': product, 'index': index});
+            this.$store.commit('removeFromCart', { product, index});
         }
    }
 }
