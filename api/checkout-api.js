@@ -43,7 +43,6 @@ async function checkout(req, res) {
 }
 
 router.post('/api/checkout-api', (req, res) => {
-  console.log('/api called with data', req.body)
   checkout(req, res);
 });
 
