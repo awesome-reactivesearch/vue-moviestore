@@ -46,7 +46,8 @@ export default {
         handleBuy() {
             const { totalPrice } = this.$store.state;
             this.$store.commit('addProductIds',this.productIds);
-            if(window.location.path.includes('cart')) {
+
+            if(window?.location?.path?.includes('cart')) {
                 this.$store.commit('setQuery','');
             }
             fetch('/api/checkout-api/', {
@@ -56,7 +57,7 @@ export default {
                 },
                 body: JSON.stringify({ 
                     totalAmount: this.price || totalPrice,
-                    cancelRoute: window.location.pathname,
+                    cancelRoute: window?.location?.pathname,
                     productIds: this.productIds,
                     searchQuery: this.$store.state.searchQuery,
                 })

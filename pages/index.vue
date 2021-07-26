@@ -169,7 +169,7 @@ export default {
     H2,
   },
   mounted() {
-    if(window.location.search.includes('is_stripe')) {
+    if(window?.location?.search.includes('is_stripe')) {
       conversionAnalytics(this.$store.state.searchQuery, this.$store.state.productIds);
       this.$store.commit('setProductIds',[]);
       this.$store.commit('setQuery','');
@@ -188,7 +188,7 @@ export default {
   },
 
   async created() {
-      if (window.location.hash.indexOf('access_token') !== -1) {
+      if (window?.location?.hash.indexOf('access_token') !== -1) {
           window.history.pushState({}, document.title, window.location.pathname);
           window.location.reload();
       }

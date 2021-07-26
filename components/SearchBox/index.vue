@@ -198,7 +198,7 @@ export default {
 			this.$refs['data-search'].$children[0].$refs['input'].addEventListener('keydown', (e) => {
 				const { value } = e.target;
 				if (e.key === 'Enter' && value.trim()) {
-					if (!window.location.href.includes('search')) {
+					if (!window?.location?.href.includes('search')) {
 						this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
 					}
 				}
@@ -209,7 +209,7 @@ export default {
     methods: {
         isSearchPage() {
             try {
-                return window.location.href.includes('search') ;
+                return window?.location?.href.includes('search') ;
             } catch (e) {
                 return false;
             }
@@ -218,13 +218,13 @@ export default {
 		handleKeyPress(e) {
 			const { value } = e.target;
 			if (e.key === 'Enter' && value.trim()) {
-				if (!window.location.href.includes('search')) {
+				if (!window?.location?.href.includes('search')) {
 					this.$router.push(`/search?SearchSensor="${value.replace(/\s/g, '+')}"`);
 				}
 			}
 		},
 		handleSuggestion(currentValue) {
-			if (!window.location.href.includes('search') && arguments[1] !== 'ENTER') {
+			if (!window?.location?.href.includes('search') && arguments[1] !== 'ENTER') {
 				this.$router.push(`/search?SearchSensor="${currentValue.replace(/\s/g, '+')}"`);
 			}
 		},

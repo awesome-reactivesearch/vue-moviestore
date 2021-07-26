@@ -1,5 +1,6 @@
 <template>
     <div>
+        <app-offline />
         <a-layout :class="layoutCls" class="layout">
             <reactive-base
                 :appbaseConfig="{ 
@@ -69,6 +70,7 @@ import {
 import Footer from './Footer.vue';
 import TutorialMenu from "../TutorialMenu.vue";
 import SearchBox from '../SearchBox';
+import Offline from '../Offline';
 
 const layoutCls = css`
  background: ${themeConfig.primary};
@@ -90,7 +92,7 @@ export default {
         'tutorial-menu': TutorialMenu,
         'app-footer': Footer,
         'search-box': SearchBox,
-
+        'app-offline': Offline,
     },
 
     data() {
