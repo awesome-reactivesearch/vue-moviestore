@@ -1,8 +1,7 @@
 const { conversionAnalytics } = require('../utils/analytics');
-const stripe = require('stripe')('sk_test_51JD79xSBwW0EiKyrzLMz3AcHzV45msUjBSaYlf5BPCQ6WUbdxpS0qgYb5JM7NN2Z5TBMj663qlBYXSiu0uGiUKso00UvTsbldh');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 const { Router } = require('express')
 const router = Router()
-
  
 router.use('/checkout-api', async (req, res) => {
     const { totalAmount, cancelRoute, productIds,searchQuery } = req.body;

@@ -12,9 +12,9 @@
                     },
                 }"
                 enableAppbase
-                url="https://@appbase-demo-ansible-abxiydt-arc.searchbase.io"
-                app="movies-store-app" 
-                credentials="a03a1cb71321:75b6603d-9456-4a5a-af6b-a487b309eb61"
+                :url="this.$config.appUrl"
+                :app="this.$config.appName" 
+                :credentials="this.$config.appCredentials"
                 :initialState="reactiveSearchStore"
 				themePreset="dark" 
                 :theme="{
@@ -61,7 +61,6 @@
 
 </style>
 <script>
-// import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { css } from '@emotion/css'
 import {
 	themeConfig,
@@ -96,14 +95,10 @@ export default {
     },
 
     data() {
-        // console.log("env:",process.env.VUE_APP_APPBASE_URL);
         return {
             layoutCls,
             appBaseConfig,
             themeConfig,
-            // url: process.env.VUE_APP_APPBASE_URL,
-            // app: process.env.VUE_APP_APPBASE_APP_NAME,
-            // credentials: process.env.VUE_APP_APPBASE_APP_CREDENTIALS
         }
     },
     head() {

@@ -177,7 +177,6 @@ export default {
     }
   },
   data() {
-    console.log("env1:",process.env.VUE_APP_AUTH_DOMAIN);
     return {
       bannerConfig,
       appBaseConfig,

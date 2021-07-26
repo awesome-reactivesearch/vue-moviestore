@@ -9,7 +9,7 @@ If you're using a Zip of the project, just unzip and go to the root directory.
 If you're accessing this via the Github repository, you can clone the project using:
 
 ```js
-git clone --url--
+git clone git@github.com:appbaseio-confidential/vue-moviestore.git
 ```
 
 ### 2. Set up Environment variables

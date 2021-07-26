@@ -89,6 +89,11 @@ export default {
       useWebmanifestExtension: false
     }
   },
-  
+  publicRuntimeConfig: {  
+    appUrl: process.env.APPBASE_URL,
+    appName: process.env.APPBASE_APP_NAME,
+    appCredentials: process.env.APPBASE_APP_CREDENTIALS,
+    stripeKey: process.env.STRIPE_KEY,
+  },
 
 }
