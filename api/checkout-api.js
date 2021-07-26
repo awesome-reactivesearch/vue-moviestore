@@ -6,6 +6,7 @@ const router = Router()
 router.post('/checkout-api', async (req, res) => {
     const { totalAmount, cancelRoute, productIds,searchQuery } = req.body;
 
+    console.log('/api called with data', req.body)
     try {
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({

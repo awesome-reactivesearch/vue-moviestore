@@ -9,9 +9,7 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(express.json())
 
-const stripecheckout = require('./checkout-api');
-
-app.use(stripecheckout);
+app.use(require('./checkout-api'));
 
 if (require.main === module) {
   const port = 3001
