@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <a target="_blank" :href="href" :class="mainCls" v-bind="$attrs">
-            {{ title }}
-            <a-icon type="play-circle" class="play-icon" />
-        </a>
-    </div>
+  <div>
+    <a target="_blank" :href="href" :class="mainCls" v-bind="$attrs">
+      {{ title }}
+      <a-icon type="play-circle" class="play-icon" />
+    </a>
+  </div>
 </template>
 
 <script>
@@ -23,19 +23,19 @@ const mainCls = css`
 `;
 
 export default {
-    data() {
-       return {
-           mainCls,
-       } 
+  data() {
+    return {
+      mainCls,
+    };
+  },
+  props: {
+    title: {
+      type: String,
+      default: function () {
+        return 'Watch Trailer';
+      },
     },
-    props: {
-        title: {
-            type: String,
-            default: function () {
-                return 'Watch Trailer';
-            },
-        },
-        href: String,
-    }
-}
+    href: String,
+  },
+};
 </script>

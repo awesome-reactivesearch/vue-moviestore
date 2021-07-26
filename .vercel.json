@@ -1,18 +1,17 @@
 {
   "version": 2,
   "routes": [
-    
     {
       "src": "/api/checkout-api.js",
       "use": "@vercel/node"
     },
     {
-        "src": "/sw.js",
-        "continue": true,
-        "headers": {
-          "Cache-Control": "public, max-age=0, must-revalidate",
-          "Service-Worker-Allowed": "/"
-        }
+      "src": "/sw.js",
+      "continue": true,
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Service-Worker-Allowed": "/"
+      }
     }
   ],
   "builds": [
@@ -24,8 +23,8 @@
       }
     },
     {
-        "src": "api/**/*.js",
-        "use": "@vercel/node"
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
   ]
 }

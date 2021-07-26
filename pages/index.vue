@@ -6,10 +6,7 @@
         <div :style="{ height: '84vh', 'overflow-y': 'scroll' }">
           <app-content>
             <template #content>
-              <Flex
-                :class="mainCls"
-                justifyContent="space-between"
-              >
+              <Flex :class="mainCls" justifyContent="space-between">
                 <Flex
                   class="content"
                   flexDirection="column"
@@ -19,27 +16,32 @@
                     {{ bannerConfig._source.original_title }}
                   </div>
                   <div class="subtitle">
-                    2008 | {{ bannerConfig._source.genres_data.toString().replace(/,/g, ', ') }}
+                    2008 |
+                    {{
+                      bannerConfig._source.genres_data
+                        .toString()
+                        .replace(/,/g, ', ')
+                    }}
                   </div>
                   <div class="overview">
                     {{ bannerConfig._source.overview }}
                   </div>
-                  <div class="price">
-                    ${{ bannerConfig._source.price }}
-                  </div>
+                  <div class="price">${{ bannerConfig._source.price }}</div>
                   <div class="action">
                     <purchase-button
                       :price="bannerConfig._source.price"
                       :productIds="[`${bannerConfig._source.id}`]"
                     />
-                    <watch-trailer href="https://www.youtube.com/watch?v=EXeTwQWrcwY" />
+                    <watch-trailer
+                      href="https://www.youtube.com/watch?v=EXeTwQWrcwY"
+                    />
                   </div>
                 </Flex>
                 <div @click="handleProductSelect(bannerConfig._source)">
                   <img
                     :src="`https://image.tmdb.org/t/p/w500${bannerConfig._source.poster_path}`"
                     :alt="bannerConfig._source.original_title"
-                  >
+                  />
                 </div>
               </Flex>
 
@@ -65,7 +67,6 @@
 </template>
 
 <script>
-
 import { css } from '@emotion/css';
 import Container from '../components/Layout/Container.vue';
 import Header from '../components/Layout/Header/index.vue';
@@ -160,18 +161,17 @@ const mainCls = css`
       font-size: 60px;
     }
   `)};
-  
 `;
 
 const footerCls = css`
-    text-align: center;
-    background: #04070b;
-    color: #fff;
-    padding: 24px 50px;  
-    font-size: 14px;
-    ${media.medium(css`
-      margin-bottom: 60px;
-      padding: 17px 50px;
+  text-align: center;
+  background: #04070b;
+  color: #fff;
+  padding: 24px 50px;
+  font-size: 14px;
+  ${media.medium(css`
+    margin-bottom: 60px;
+    padding: 17px 50px;
   `)};
 `;
 
@@ -197,7 +197,10 @@ export default {
   },
   mounted() {
     if (window?.location?.search.includes('is_stripe')) {
-      conversionAnalytics(this.$store.state.searchQuery, this.$store.state.productIds);
+      conversionAnalytics(
+        this.$store.state.searchQuery,
+        this.$store.state.productIds
+      );
       this.$store.commit('setProductIds', []);
       this.$store.commit('setQuery', '');
       this.$router.push({ path: '/', query: {} });
@@ -217,7 +220,6 @@ export default {
       this.$store.commit('setSelectedProduct', product);
       this.$router.push(`/product/${product.id}`);
     },
-
   },
 };
 </script>

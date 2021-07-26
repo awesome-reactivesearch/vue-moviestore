@@ -4,20 +4,22 @@
       <template #container>
         <app-header />
 
-        <app-content :style="{ 'height': 'calc(100vh - 134px)', overflow: 'auto' }">
+        <app-content
+          :style="{ height: 'calc(100vh - 134px)', overflow: 'auto' }"
+        >
           <template #content>
             <Flex :class="mainCls">
               <a-card
                 class="cart-items"
                 :title="`My Cart(${$store.state.cartCount || 0})`"
               >
-                <div
-                  v-for="(item,index) in cartItems"
-                  :key="index"
-                >
+                <div v-for="(item, index) in cartItems" :key="index">
                   <Flex
                     :key="item.id"
-                    :style="{ padding: '20px', 'border-bottom': 'solid 1px #E8E8E8'}"
+                    :style="{
+                      padding: '20px',
+                      'border-bottom': 'solid 1px #E8E8E8',
+                    }"
                   >
                     <img
                       :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
@@ -28,7 +30,7 @@
                         cursor: 'pointer',
                       }"
                       @click="handleProductSelect(item)"
-                    >
+                    />
                     <Flex
                       :style="{ 'margin-left': '20px' }"
                       flexDirection="column"
@@ -38,10 +40,10 @@
                       <a-button
                         :style="{
                           'margin-top': '30px',
-                          'width': '100px'
+                          width: '100px',
                         }"
                         type="danger"
-                        @click="removeFromCart(item,index)"
+                        @click="removeFromCart(item, index)"
                       >
                         Remove
                       </a-button>
@@ -49,10 +51,7 @@
                   </Flex>
                 </div>
               </a-card>
-              <a-card
-                class="total-price"
-                title="Total Price"
-              >
+              <a-card class="total-price" title="Total Price">
                 <a-card-meta>
                   <a-button>Checkout</a-button>
                 </a-card-meta>
@@ -71,18 +70,13 @@
                       :style="{ width: '100%', 'margin-top': '20px' }"
                       :isCheckout="true"
                     >
-                      <template #primaryButton>
-                        Checkout
-                      </template>
+                      <template #primaryButton> Checkout </template>
                     </primary-button>
                   </template>
                 </purchase-button>
               </a-card>
             </Flex>
-            <div
-              id="app-footer-container"
-              :class="footerCls"
-            >
+            <div id="app-footer-container" :class="footerCls">
               Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
             </div>
           </template>
@@ -103,51 +97,51 @@ import PrimaryButton from '../components/Button/Primary.vue';
 import PurchaseButton from '../components/Button/Purchase.vue';
 
 const footerCls = css`
-    text-align: center;
-    background: #04070b;
-    color: #fff;
-    padding: 24px 50px; 
-    font-size: 14px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-    z-index: 1;
-    ${media.medium(css`
-      margin-bottom: 50px;
-      padding: 17px 50px;
+  text-align: center;
+  background: #04070b;
+  color: #fff;
+  padding: 24px 50px;
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  z-index: 1;
+  ${media.medium(css`
+    margin-bottom: 50px;
+    padding: 17px 50px;
   `)};
 `;
 
 const mainCls = css`
-    margin-bottom:60px;
-	.cart-items {
-		width: 70%;
-		margin: 20px;
-	}
-	.total-price {
-		width: 20%;
-		margin: 20px;
-		max-height: 200px;
-		min-width: 200px;
-	}
-	${media.medium(css`
-		flex-direction: column !important;
-		padding: 20px;
-        margin-top: 40px;
-        margin-bottom: 100px;
-		.cart-items {
-			width: 100%;
-			margin: 0;
-		}
-		.total-price {
-			width: 100%;
-			margin: 0;
-			max-height: auto;
-			min-width: auto;
-			margin-top: 20px;
-		}
-	`)}
+  margin-bottom: 60px;
+  .cart-items {
+    width: 70%;
+    margin: 20px;
+  }
+  .total-price {
+    width: 20%;
+    margin: 20px;
+    max-height: 200px;
+    min-width: 200px;
+  }
+  ${media.medium(css`
+    flex-direction: column !important;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    .cart-items {
+      width: 100%;
+      margin: 0;
+    }
+    .total-price {
+      width: 100%;
+      margin: 0;
+      max-height: auto;
+      min-width: auto;
+      margin-top: 20px;
+    }
+  `)}
 `;
 
 export default {

@@ -1,4 +1,4 @@
-import { styled } from '@egoist/vue-emotion'
+import { styled } from '@egoist/vue-emotion';
 import { css } from '@emotion/css';
 
 const Flex = styled('div')`

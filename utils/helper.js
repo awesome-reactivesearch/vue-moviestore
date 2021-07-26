@@ -1,5 +1,6 @@
 // eslint-disable-next-line
-export const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+export const capitalizeFirstLetter = (string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
 
 export const languageMap = {
   en: 'English',

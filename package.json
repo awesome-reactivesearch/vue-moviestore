@@ -6,7 +6,11 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue pages --fix",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@appbaseio/reactivesearch-vue": "^1.19.0",
@@ -40,6 +44,8 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-vue": "^7.13.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
     "prettier": "^2.3.2"
   }
 }

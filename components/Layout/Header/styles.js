@@ -1,4 +1,4 @@
-import { css } from '@emotion/css'
+import { css } from '@emotion/css';
 
 export const headerCls = css`
   background-color: #04070b;
@@ -8,7 +8,7 @@ export const headerCls = css`
   right: 0px;
   left: 0px;
   z-index: 99;
-  
+
   ul {
     background-color: #04070b;
     li {
