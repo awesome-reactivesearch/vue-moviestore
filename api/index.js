@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(express.json())
 
-const stripecheckout = require('./stripe-checkout');
+const stripecheckout = require('./checkout-api');
 
 app.use(stripecheckout);
 
