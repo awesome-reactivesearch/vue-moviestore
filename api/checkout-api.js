@@ -1,13 +1,19 @@
 const { conversionAnalytics } = require('../utils/analytics');
+var bodyParser = require('body-parser')
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 const express = require('express')
 const router = express();
  
 
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+// parse application/json
+router.use(express.json())
+
 async function checkout(req, res) {
   const { totalAmount, cancelRoute, productIds,searchQuery } = req.body;
-
-  console.log('/api called with data', req.body)
   try {
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create({
@@ -36,12 +42,13 @@ async function checkout(req, res) {
     }
 }
 
-router.post('/api/checkout-api', async (req, res) => {
+router.post('/api/checkout-api', (req, res) => {
+  console.log('/api called with data', req.body)
   checkout(req, res);
 });
 
 
-router.post('/checkout-api', async (req, res) => {
+router.post('/checkout-api', (req, res) => {
   checkout(req, res);
 });
 
