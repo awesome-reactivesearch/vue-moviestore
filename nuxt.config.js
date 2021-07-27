@@ -54,7 +54,8 @@ export default {
   },
 
   serverMiddleware:
-    process.env.NODE_ENV === 'production'
+    process.env.NODE_ENV === 'production' &&
+    process.env.DEPLOY_ENVIRONMENT !== 'heroku'
       ? {}
       : {
           '/api': '~/api',
