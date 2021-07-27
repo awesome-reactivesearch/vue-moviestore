@@ -15,7 +15,7 @@
       :pagination="true"
     >
       <div slot="renderItem" slot-scope="{ item }">
-        <div class="trending-card" :style="{ cursor: 'pointer' }">
+        <div class="trending-card">
           <div @click="handleProductSelect(item)">
             <img
               :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
@@ -39,6 +39,7 @@ const trendingCls = css`
   .trending-card {
     margin-right: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
     ${media.medium(css`
       margin-right: 0;
     `)}

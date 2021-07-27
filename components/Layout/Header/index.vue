@@ -3,14 +3,7 @@
     <nav class="menuBar">
       <div class="logo">
         <nuxt-link to="/">
-          <img
-            style="{
-                            width: '210px',
-                            height: '64px',
-                        }"
-            src="/images/logo@1x.png"
-            alt="logo"
-          />
+          <img class="img-position" src="/images/logo@1x.png" alt="logo" />
         </nuxt-link>
       </div>
       <div class="menuCon">
@@ -61,7 +54,6 @@ export default {
   },
   methods: {
     toggleDrawers() {
-      console.log('enter');
       this.visible = !this.visible;
     },
   },

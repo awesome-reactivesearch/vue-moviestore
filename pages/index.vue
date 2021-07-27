@@ -3,7 +3,7 @@
     <app-container>
       <template #container>
         <app-header />
-        <div :style="{ height: '84vh', 'overflow-y': 'scroll' }">
+        <div :class="contentCls">
           <app-content>
             <template #content>
               <Flex :class="mainCls" justifyContent="space-between">
@@ -175,6 +175,11 @@ const footerCls = css`
   `)};
 `;
 
+const contentCls = css`
+  height: 84vh;
+  overflow-y: scroll;
+`;
+
 export default {
   components: {
     'app-container': Container,
@@ -193,6 +198,7 @@ export default {
       mainCls,
       listCls,
       footerCls,
+      contentCls,
     };
   },
   mounted() {

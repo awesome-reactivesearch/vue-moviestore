@@ -68,7 +68,7 @@ const footerPosition = css`
   bottom: 0px;
   left: 0px;
   right: 0px;
-  z-index: 1;
+  z-index: 9;
 `;
 export default {
   data() {

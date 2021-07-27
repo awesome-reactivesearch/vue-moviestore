@@ -231,9 +231,7 @@ export default {
     },
     handleBuy(product) {
       this.$store.commit('addToCart', product);
-      // product.id
       conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`]);
-      // .then(result => console.log(result))
     },
   },
 };

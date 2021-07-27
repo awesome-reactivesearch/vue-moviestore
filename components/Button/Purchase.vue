@@ -66,7 +66,6 @@ export default {
       })
         .then((res) => res.json())
         .then((json) => {
-          // await conversionAnalytics(searchQuery, productIds);
           window.open(json.url, '_self');
         });
     },

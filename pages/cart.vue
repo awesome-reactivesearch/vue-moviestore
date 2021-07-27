@@ -4,9 +4,7 @@
       <template #container>
         <app-header />
 
-        <app-content
-          :style="{ height: 'calc(100vh - 134px)', overflow: 'auto' }"
-        >
+        <app-content :class="contentCls">
           <template #content>
             <Flex :class="mainCls">
               <a-card
@@ -24,11 +22,7 @@
                     <img
                       :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
                       :alt="item.original_title"
-                      :style="{
-                        height: '150px',
-                        'align-self': 'flex-start',
-                        cursor: 'pointer',
-                      }"
+                      class="img-position"
                       @click="handleProductSelect(item)"
                     />
                     <Flex
@@ -38,10 +32,7 @@
                       <h2>{{ item.original_title }}</h2>
                       <h2>$ {{ item.price }}</h2>
                       <a-button
-                        :style="{
-                          'margin-top': '30px',
-                          width: '100px',
-                        }"
+                        class="btn-position"
                         type="danger"
                         @click="removeFromCart(item, index)"
                       >
@@ -67,7 +58,7 @@
                 >
                   <template #purchaseButton>
                     <primary-button
-                      :style="{ width: '100%', 'margin-top': '20px' }"
+                      class="primary-btn-container"
                       :isCheckout="true"
                     >
                       <template #primaryButton> Checkout </template>
@@ -119,6 +110,19 @@ const mainCls = css`
     width: 70%;
     margin: 20px;
   }
+  .img-position {
+    height: 150px;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+  .btn-position {
+    margin-top: 30px;
+    width: 100px;
+  }
+  .primary-btn-container {
+    width: 100%;
+    margin-top: 20px;
+  }
   .total-price {
     width: 20%;
     margin: 20px;
@@ -144,6 +148,11 @@ const mainCls = css`
   `)}
 `;
 
+const contentCls = css`
+  height: calc(100vh - 134px);
+  overflow: auto;
+`;
+
 export default {
   components: {
     'app-container': Container,
@@ -157,6 +166,7 @@ export default {
     return {
       mainCls,
       footerCls,
+      contentCls,
       cartItems: this.$store.state.cartItems || [],
     };
   },

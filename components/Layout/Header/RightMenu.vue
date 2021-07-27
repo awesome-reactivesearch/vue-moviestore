@@ -1,19 +1,7 @@
 <template>
   <div>
     <a-menu :mode="mode">
-      <a-menu-item :class="searchLink" key="search">
-        <Flex justifyContent="flex-end">
-          <!-- <search-box /> -->
-          <!-- <a-icon
-                        class="close-placement"
-                        :style="{
-                            fontSize: 20,
-                        }"
-                        type="close"
-                        @click="onClose"
-                    /> -->
-        </Flex>
-      </a-menu-item>
+      <a-menu-item :class="searchLink" key="search"> </a-menu-item>
       <a-menu-item key="cart">
         <nuxt-link to="/cart"
           >Cart ({{ this.$store.state.cartCount }})</nuxt-link
@@ -60,13 +48,6 @@ const searchLink = css`
     }
   `)}
 `;
-
-// const searchIcon = css `
-//   display: 'none';
-//   [mediaKey.medium]: {
-//     display: 'block';
-//     padding: '8px 0px 8px 10px';
-// `;
 
 export default {
   data() {

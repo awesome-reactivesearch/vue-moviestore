@@ -6,7 +6,7 @@
 
         <app-content :class="contentCls">
           <template #content>
-            <Flex :class="searchCls" :style="{ width: '100%' }">
+            <Flex :class="searchCls">
               <Flex
                 :class="[showFilters ? 'leftbar' : 'leftbar-optional']"
                 :style="{ flex: '20%', background: '#0C0E12' }"
@@ -84,16 +84,7 @@
                       slot-scope="{ label, count }"
                       :style="{ width: '100%' }"
                     >
-                      <span
-                        :style="{
-                          width: '100%',
-                          display: 'flex',
-                          'flex-direction': 'row',
-                          '-webkit-box-pack': 'justify',
-                          'justify-content': 'space-between',
-                          'line-height': '1.3rem',
-                        }"
-                      >
+                      <span class="lang-container">
                         <span class="multilist-checkbox">
                           {{ languageMap[label] || label }}
                         </span>
@@ -261,6 +252,7 @@ const contentCls = css`
 
 const searchCls = css`
   margin-bottom: 40px;
+  width: 100%;
   ${media.medium(css`
     margin-bottom: 140px;
   `)};
@@ -301,7 +293,14 @@ const searchCls = css`
       }
     }
   }
-
+  .lang-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    line-height: 1.3rem;
+  }
   .multilist-checkbox {
     margin-right: 10px;
     &:before {

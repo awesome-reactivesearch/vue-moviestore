@@ -39,6 +39,10 @@ export const headerCls = css`
       text-transform: capitalize;
     }
   }
+  .img-position {
+    width: '210px';
+    height: '64px';
+  }
   .menuCon {
     width: calc(100% - 220px);
     float: left;
