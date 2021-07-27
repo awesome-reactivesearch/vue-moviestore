@@ -16,7 +16,7 @@
                     </div>
                   </nuxt-link>
                 </div>
-                <Flex v-show="productData.title" :class="mainCls">
+                <Flex v-if="productData.title" :class="mainCls">
                   <Flex>
                     <img
                       :alt="productData.title"
@@ -40,7 +40,7 @@
                     </div>
                     <div class="price">${{ productData.price }}</div>
                     <watch-trailer
-                      v-show="productData.title"
+                      v-if="productData.title"
                       :href="`https://www.youtube.com/results?search_query=${productData.title.replace(
                         / /g,
                         '+'

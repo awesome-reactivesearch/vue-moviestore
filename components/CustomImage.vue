@@ -8,7 +8,7 @@
           class="[loading ? `${className} loading-img` : className]"
           v-bind="$attrs"
         />
-        <div v-show="visible">
+        <div v-if="visible">
           <div
             :style="{
               background: themeConfig.primaryImage,

@@ -1,45 +1,47 @@
 <template>
   <div>
-    <app-offline />
-    <a-layout :class="layoutCls" class="layout">
-      <reactive-base
-        :appbaseConfig="{
-          recordAnalytics: true,
-          enableQueryRules: false,
-          customEvents: {
-            device: detectDevice(),
-            browser: detectBrowser(),
-          },
-        }"
-        enableAppbase
-        :url="this.$config.appUrl"
-        :app="this.$config.appName"
-        :credentials="this.$config.appCredentials"
-        :initialState="reactiveSearchStore"
-        themePreset="dark"
-        :theme="{
-          typography: {
-            'font-family': 'Lato',
-          },
-          colors: {
-            textColor: '#979797',
-            primaryTextColor: '#fff',
-            primaryColor: themeConfig.secondary,
-          },
-        }"
-      >
-        <no-ssr>
-          <div class="header-search-container">
-            <search-box />
+    <client-only>
+      <app-offline />
+      <a-layout :class="layoutCls" class="layout">
+        <reactive-base
+          :appbaseConfig="{
+            recordAnalytics: true,
+            enableQueryRules: false,
+            customEvents: {
+              device: detectDevice(),
+              browser: detectBrowser(),
+            },
+          }"
+          enableAppbase
+          :url="this.$config.appUrl"
+          :app="this.$config.appName"
+          :credentials="this.$config.appCredentials"
+          :initialState="reactiveSearchStore"
+          themePreset="dark"
+          :theme="{
+            typography: {
+              'font-family': 'Lato',
+            },
+            colors: {
+              textColor: '#979797',
+              primaryTextColor: '#fff',
+              primaryColor: themeConfig.secondary,
+            },
+          }"
+        >
+          <no-ssr>
+            <div class="header-search-container">
+              <search-box />
+            </div>
+          </no-ssr>
+          <tutorial-menu />
+          <div style="margin-top: 70px">
+            <slot name="container"></slot>
           </div>
-        </no-ssr>
-        <tutorial-menu />
-        <div style="margin-top: 70px">
-          <slot name="container"></slot>
-        </div>
-      </reactive-base>
-      <app-footer />
-    </a-layout>
+        </reactive-base>
+        <app-footer />
+      </a-layout>
+    </client-only>
   </div>
 </template>
 
