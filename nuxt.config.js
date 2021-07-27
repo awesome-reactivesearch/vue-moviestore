@@ -29,6 +29,7 @@ export default {
     { src: '~/plugins/persistedState.js', ssr: false },
     { src: '~/plugins/vue-stripe.js', ssr: false },
     { src: '~/plugins/browser-detect', ssr: false },
+    '~/plugins/sw.client.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -93,6 +94,9 @@ export default {
     },
     meta: {
       theme_color: '#17181B',
+    },
+    workbox: {
+      enabled: true,
     },
   },
   publicRuntimeConfig: {
