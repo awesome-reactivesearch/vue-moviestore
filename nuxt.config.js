@@ -95,9 +95,6 @@ export default {
     meta: {
       theme_color: '#17181B',
     },
-    workbox: {
-      enabled: true,
-    },
   },
   publicRuntimeConfig: {
     appUrl: process.env.APPBASE_URL,
