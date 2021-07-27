@@ -8,14 +8,12 @@
         'original_title.autosuggest',
         'original_title.keyword',
         'original_title.search',
-        'overview',
-        'overview.autosuggest',
       ]"
-      :fieldWeights="[10, 2, 10, 1, 3, 0.1]"
+      :fieldWeights="[10, 2, 10, 1]"
       ref="data-search"
       :fuzziness="0"
       :autosuggest="!isSearchPage()"
-      :enablePredictiveSuggestions="!isSearchPage()"
+      :enablePredictiveSuggestions="false"
       :enableRecentSearches="true"
       filterLabel="search"
       placeholder="Search for movies"

@@ -1,13 +1,11 @@
 <template>
   <div :style="placeholderStyle">
-    <progressive-img :imageCustomClass="mainCls" :src="src" placeholder="">
+    <progressive-background
+      :imageCustomClass="mainCls"
+      :src="src"
+      placeholder=""
+    >
       <div slot="content" slot-scope="{ visible }">
-        <img
-          :src="src"
-          alt="alt"
-          class="[loading ? `${className} loading-img` : className]"
-          v-bind="$attrs"
-        />
         <div v-if="visible">
           <div
             :style="{
@@ -18,7 +16,7 @@
           />
         </div>
       </div>
-    </progressive-img>
+    </progressive-background>
   </div>
 </template>
 
