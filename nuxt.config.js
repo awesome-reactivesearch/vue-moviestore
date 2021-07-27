@@ -91,6 +91,9 @@ export default {
       lang: 'en',
       useWebmanifestExtension: false,
     },
+    meta: {
+      theme_color: '#17181B',
+    },
   },
   publicRuntimeConfig: {
     appUrl: process.env.APPBASE_URL,
