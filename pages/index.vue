@@ -228,10 +228,5 @@ export default {
       this.$router.push(`/product/${product.id}`);
     },
   },
-
-  beforeMount() {
-    const img = new Image();
-    img.src = `https://image.tmdb.org/t/p/w500${this.bannerConfig._source.poster_path}`;
-  },
 };
 </script>

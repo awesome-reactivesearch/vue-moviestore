@@ -230,6 +230,12 @@ import ProductCard from '../components/Product/ProducrCard.vue';
 import media from '../utils/media';
 import { themeConfig } from '../utils/constants';
 import { languageMap } from '../utils/helper';
+import {
+  // SelectedFilters,
+  RangeInput,
+  RangeSlider,
+  // MultiList,
+} from '@appbaseio/reactivesearch-vue';
 
 export const Section = styled('div')`
   border-bottom: 0.5px solid #29303e;
@@ -492,6 +498,10 @@ export default {
     'product-card': ProductCard,
     'app-title': Title,
     'app-section': Section,
+    // SelectedFilters,
+    RangeInput,
+    RangeSlider,
+    // MultiList,
   },
   data() {
     return {
