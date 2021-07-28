@@ -49,7 +49,9 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy', 'nuxt-ssr-cache'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    analyze: true,
+  },
 
   server: {
     port: process.env.PORT || 4000,
