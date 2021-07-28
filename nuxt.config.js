@@ -1,5 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  router: {
+    prefetchLinks: false,
+  },
   head: {
     title: 'nuxtApp',
     script: [],
