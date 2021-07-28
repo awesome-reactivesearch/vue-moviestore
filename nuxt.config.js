@@ -18,14 +18,15 @@ export default {
       },
 
       shouldPreload: (file, type) => {
-        if (type === 'image') {
-          // only preload important images
-          return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
-        }
-        return (
-          file.indexOf('vendors/app') !== -1 ||
-          file.indexOf('commons/app') !== -1
-        );
+        // if (type === 'image') {
+        //   // only preload important images
+        //   return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
+        // }
+        // return (
+        //   file.indexOf('vendors/app') !== -1 ||
+        //   file.indexOf('commons/app') !== -1
+        // );
+        return ['script', 'style', 'font', 'image'].includes(type);
       },
     },
   },
@@ -72,7 +73,13 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy', 'nuxt-ssr-cache'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/proxy',
+    'nuxt-ssr-cache',
+    '@nuxt/image',
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
 
