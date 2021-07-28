@@ -130,17 +130,14 @@ export default {
     filenames: {
       chunk: ({ isDev }) => (isDev ? '[name].js' : '[name].[contenthash].js'),
     },
-    terser: {
-      parallel: true,
-      cache: false,
-      sourceMap: false,
-      extractComments: {
-        filename: 'LICENSES',
-      },
-      terserOptions: {
-        output: {
-          comments: /^\**!|@preserve|@license|@cc_on/,
-        },
+    optimization: {
+      minimize: true,
+      runtimeChunk: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: undefined,
+        cacheGroups: {},
       },
     },
   },
