@@ -35,9 +35,6 @@ export default {
     { src: '~/plugins/browser-detect', ssr: false },
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     'vue-browser-detect-plugin/nuxt',
@@ -49,22 +46,6 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy', 'nuxt-ssr-cache'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    cache: true,
-    extractCSS: true,
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.(css|vue)$/,
-            chunks: 'all',
-            enforce: true,
-          },
-        },
-      },
-    },
-  },
 
   server: {
     port: process.env.PORT || 4000,
@@ -110,15 +91,22 @@ export default {
     appCredentials: process.env.APPBASE_APP_CREDENTIALS,
     stripeKey: process.env.STRIPE_KEY,
   },
-
-  workbox: {
-    runtimeCaching: [
-      {
-        urlPattern: 'https://vue-moviestore.vercel.app/.*',
-        handler: 'staleWithRevalidate',
+  build: {
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
       },
-    ],
+    },
   },
+
   pwa: {
     manifest: {
       name: 'Movie Store',
@@ -129,8 +117,5 @@ export default {
       theme_color: '#17181B',
     },
     workbox: {},
-  },
-  cache: {
-    pages: ['/'],
   },
 };

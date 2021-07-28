@@ -188,7 +188,7 @@ export default {
     'app-header': Header,
     'purchase-button': PurchaseButton,
     'watch-trailer': WatchTrailer,
-    'trending-list': TrendingList,
+    'trending-list': () => import('../components/TrendingList.vue'),
     Flex,
     H2,
   },
