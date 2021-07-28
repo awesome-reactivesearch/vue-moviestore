@@ -111,6 +111,15 @@ export default {
     appCredentials: process.env.APPBASE_APP_CREDENTIALS,
     stripeKey: process.env.STRIPE_KEY,
   },
+
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: 'https://vue-moviestore.vercel.app/.*',
+        handler: 'staleWithRevalidate',
+      },
+    ],
+  },
   pwa: {
     manifest: {
       name: 'Movie Store',
