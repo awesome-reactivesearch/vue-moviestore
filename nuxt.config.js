@@ -15,6 +15,14 @@ export default {
         }
         return true;
       },
+
+      shouldPreload: (file, type) => {
+        if (type === 'image') {
+          // only preload important images
+          return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
+        }
+        return false;
+      },
     },
   },
   head: {
