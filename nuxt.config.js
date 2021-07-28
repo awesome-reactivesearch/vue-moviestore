@@ -15,6 +15,15 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  generate: {
+    cache: {
+      ignore: [
+        // When something changed in the docs folder, do not re-build via webpack
+        'docs',
+      ],
+    },
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
