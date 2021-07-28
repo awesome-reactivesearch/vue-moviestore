@@ -105,5 +105,4 @@ export default {
   cache: {
     pages: ['/'],
   },
-  target: 'static',
 };
