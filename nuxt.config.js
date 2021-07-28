@@ -123,6 +123,9 @@ export default {
       pages: true,
       commons: true,
     },
+    filenames: {
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[name].[contenthash].js'),
+    },
     optimization: {
       minimize: true,
       splitChunks: {
