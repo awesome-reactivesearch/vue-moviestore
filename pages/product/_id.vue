@@ -85,9 +85,15 @@
 
 <script>
 import { css } from '@emotion/css';
-// import Container from '../../components/Layout/Container.vue';
+import Container from '../../components/Layout/Container.vue';
+import Header from '../../components/Layout/Header/index.vue';
+import Footer from '../../components/Layout/Footer.vue';
+import Content from '../../components/Layout/Content.vue';
+import Flex from '../../components/Flex';
 import Star from '../../components/Star.vue';
 import WatchTrailer from '../../components/Button/WatchTrailer.vue';
+import PurchaseButton from '../../components/Button/Purchase.vue';
+import PrimaryButton from '../../components/Button/Primary.vue';
 import media from '../../utils/media';
 import { conversionAnalytics } from '../../utils/analytics';
 
@@ -187,14 +193,14 @@ const footerCls = css`
 
 export default {
   components: {
-    'app-container': () => import('../../components/Layout/Container.vue'),
-    'app-content': () => import('../../components/Layout/Content.vue'),
-    'app-header': () => import('../../components/Layout/Header/index.vue'),
-    'app-footer': () => import('../../components/Layout/Footer.vue'),
+    'app-container': Container,
+    'app-content': Content,
+    'app-header': Header,
+    'app-footer': Footer,
     'watch-trailer': WatchTrailer,
-    'purchase-button': () => '../../components/Button/Purchase.vue',
-    'primary-button': () => import('../../components/Button/Primary.vue'),
-    Flex: () => import('../../components/Flex'),
+    'purchase-button': PurchaseButton,
+    'primary-button': PrimaryButton,
+    Flex,
     Star,
   },
   data() {

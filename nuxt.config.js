@@ -73,13 +73,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth',
-    '@nuxtjs/proxy',
-    'nuxt-ssr-cache',
-    '@nuxt/image',
-  ],
+  modules: ['@nuxtjs/auth', '@nuxtjs/proxy'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
 
