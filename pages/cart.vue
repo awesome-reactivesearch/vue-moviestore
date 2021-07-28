@@ -180,5 +180,6 @@ export default {
       this.$store.commit('removeFromCart', { product, index });
     },
   },
+  preload: false,
 };
 </script>

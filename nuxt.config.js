@@ -3,6 +3,20 @@ export default {
   router: {
     prefetchLinks: false,
   },
+  render: {
+    resourceHints: true,
+    asyncScripts: true,
+    bundleRenderer: {
+      shouldPrefetch: (file, type) => {
+        if (type === 'script') {
+          if (/search/.test(file)) {
+            return false;
+          }
+        }
+        return true;
+      },
+    },
+  },
   head: {
     title: 'nuxtApp',
     script: [],
@@ -102,6 +116,7 @@ export default {
       commons: true,
     },
     optimization: {
+      minimize: true,
       splitChunks: {
         cacheGroups: {
           styles: {
