@@ -23,7 +23,6 @@ export default {
     '@/plugins/ant-design-vue',
     { src: '@/plugins/progressive-image', ssr: false },
     { src: '~/plugins/persistedState.js', ssr: false },
-    { src: '~/plugins/vue-stripe.js', ssr: false },
     { src: '~/plugins/browser-detect', ssr: false },
   ],
 
