@@ -69,13 +69,9 @@
 
 <script>
 import { css } from '@emotion/css';
-import Container from '../components/Layout/Container.vue';
-import Header from '../components/Layout/Header/index.vue';
-import Content from '../components/Layout/Content.vue';
 import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
 import PurchaseButton from '../components/Button/Purchase.vue';
 import WatchTrailer from '../components/Button/WatchTrailer.vue';
-import TrendingList from '../components/TrendingList.vue';
 import Flex from '../components/Flex';
 import { H2 } from '../components/Typography';
 import media from '../utils/media';
@@ -183,9 +179,9 @@ const contentCls = css`
 
 export default {
   components: {
-    'app-container': Container,
-    'app-content': Content,
-    'app-header': Header,
+    'app-container': () => import('../components/Layout/Container.vue'),
+    'app-content': () => import('../components/Layout/Content.vue'),
+    'app-header': () => import('../components/Layout/Header/index.vue'),
     'purchase-button': PurchaseButton,
     'watch-trailer': WatchTrailer,
     'trending-list': () => import('../components/TrendingList.vue'),
