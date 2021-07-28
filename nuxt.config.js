@@ -2,11 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxtApp',
-    script: [
-      {
-        src: 'https://js.stripe.com/v3',
-      },
-    ],
+    script: [],
     htmlAttrs: {
       lang: 'en',
     },
