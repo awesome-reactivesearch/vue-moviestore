@@ -42,7 +42,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy', 'nuxt-ssr-cache'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -85,6 +85,12 @@ export default {
       changeOrigin: true,
     },
   },
+  publicRuntimeConfig: {
+    appUrl: process.env.APPBASE_URL,
+    appName: process.env.APPBASE_APP_NAME,
+    appCredentials: process.env.APPBASE_APP_CREDENTIALS,
+    stripeKey: process.env.STRIPE_KEY,
+  },
   pwa: {
     manifest: {
       name: 'Movie Store',
@@ -96,11 +102,8 @@ export default {
     },
     workbox: {},
   },
-  target: 'static',
-  publicRuntimeConfig: {
-    appUrl: process.env.APPBASE_URL,
-    appName: process.env.APPBASE_APP_NAME,
-    appCredentials: process.env.APPBASE_APP_CREDENTIALS,
-    stripeKey: process.env.STRIPE_KEY,
+  cache: {
+    pages: ['/'],
   },
+  target: 'static',
 };
