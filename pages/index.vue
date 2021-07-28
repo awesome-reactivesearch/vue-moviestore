@@ -39,7 +39,7 @@
                 </Flex>
                 <div @click="handleProductSelect(bannerConfig._source)">
                   <img
-                    :src="`https://image.tmdb.org/t/p/w500${bannerConfig._source.poster_path}`"
+                    :src="`https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg`"
                     :alt="bannerConfig._source.original_title"
                     rel="preload"
                   />
