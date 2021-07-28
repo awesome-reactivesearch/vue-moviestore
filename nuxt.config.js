@@ -96,6 +96,9 @@ export default {
   },
   build: {
     extractCSS: true,
+    splitChunks: {
+      layouts: true,
+    },
     optimization: {
       splitChunks: {
         cacheGroups: {
@@ -106,7 +109,9 @@ export default {
             enforce: true,
           },
         },
+        name: true,
       },
+      runtimeChunk: true,
     },
   },
 
