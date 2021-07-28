@@ -96,6 +96,7 @@ export default {
     },
     workbox: {},
   },
+  target: 'static',
   publicRuntimeConfig: {
     appUrl: process.env.APPBASE_URL,
     appName: process.env.APPBASE_APP_NAME,
