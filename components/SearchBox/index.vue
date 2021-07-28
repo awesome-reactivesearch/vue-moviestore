@@ -89,7 +89,7 @@ const dataSearchCls = (isFullWidth) => css`
   }
 
   #SearchSensor-downshift > div > ul > li {
-    background: none !important;
+    background: transparent !important;
   }
 
   #SearchSensor-downshift > div > ul > li:hover,
