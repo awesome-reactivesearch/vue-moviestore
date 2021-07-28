@@ -29,11 +29,10 @@
             },
           }"
         >
-          <no-ssr>
-            <div class="header-search-container">
-              <search-box />
-            </div>
-          </no-ssr>
+          <div class="header-search-container">
+            <search-box />
+          </div>
+
           <tutorial-menu />
           <div style="margin-top: 70px">
             <slot name="container"></slot>
