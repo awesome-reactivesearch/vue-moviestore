@@ -41,6 +41,7 @@
                   <img
                     :src="`https://image.tmdb.org/t/p/w500${bannerConfig._source.poster_path}`"
                     :alt="bannerConfig._source.original_title"
+                    rel="preload"
                   />
                 </div>
               </Flex>
