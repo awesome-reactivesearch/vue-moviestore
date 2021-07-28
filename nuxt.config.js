@@ -98,6 +98,8 @@ export default {
     extractCSS: true,
     splitChunks: {
       layouts: true,
+      pages: true,
+      commons: true,
     },
     optimization: {
       splitChunks: {
