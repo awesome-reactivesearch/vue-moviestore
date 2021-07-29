@@ -1,10 +1,10 @@
 <template>
   <div>
     <app-container>
-      <template v-slot:container>
+      <template #container>
         <app-header />
         <app-content>
-          <template v-slot:content>
+          <template #content>
             <div :class="mainCls" justify-content="space-between">
               <div class="content">
                 <div class="title">{{bannerConfig.original_title}}</div>
@@ -36,11 +36,11 @@
 
 <script>
   
-  import Container from "../components/Layout/Container.vue";
-  import Header from "../components/Layout/Header/index.vue";
-  import Footer from "../components/Layout/Footer.vue";
-  import Content from "../components/Layout/Content.vue";
   import { css } from '@emotion/css';
+  import Container from '../components/Layout/Container.vue';
+  import Header from '../components/Layout/Header/index.vue';
+  import Footer from '../components/Layout/Footer.vue';
+  import Content from '../components/Layout/Content.vue';
 
   const mainCls = css`
   max-width: 1000px;
@@ -112,6 +112,12 @@
 `;
 
   export default {
+    components: {
+        'app-container': Container,
+        'app-content': Content,
+        'app-header': Header,
+        'app-footer': Footer
+    },
     data() {
       return {
         bannerConfig : {
@@ -126,12 +132,6 @@
         },
         mainCls,
       }
-    },
-    components: {
-        'app-container': Container,
-        'app-content': Content,
-        'app-header': Header,
-        'app-footer': Footer
     }
   }
 </script>
