@@ -8,6 +8,7 @@ export default {
     asyncScripts: true,
     bundleRenderer: {
       shouldPrefetch: (file, type) => {
+        console.log(file);
         if (type === 'script') {
           if (/search/.test(file)) {
             return false;
@@ -21,7 +22,10 @@ export default {
           // only preload important images
           return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
         }
-        return false;
+        return (
+          file.indexOf('vendors/app') !== -1 ||
+          file.indexOf('commons/app') !== -1
+        );
       },
     },
   },
@@ -68,7 +72,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/auth', '@nuxtjs/proxy'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/proxy', 'nuxt-ssr-cache'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
 
@@ -119,7 +123,7 @@ export default {
   build: {
     extractCSS: true,
     splitChunks: {
-      layouts: true,
+      layouts: false,
       pages: true,
       commons: true,
     },
@@ -129,6 +133,12 @@ export default {
     optimization: {
       minimize: true,
       runtimeChunk: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: undefined,
+        cacheGroups: {},
+      },
     },
   },
 
