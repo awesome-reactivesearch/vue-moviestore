@@ -1,0 +1,26 @@
+{
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "extends": ["airbnb-base", "plugin:vue/recommended", "prettier"],
+    "rules": {
+      "vue/attribute-hyphenation": 0,
+      "no-tabs": 0,
+      "quotes": [2, "single"]
+    },
+    "plugins": ["import"],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".vue", ".css"],
+          "moduleDirectory": ["node_modules", "../"]
+        },
+        "import/extensions": [".js", ".vue"]
+      }
+    }
+}

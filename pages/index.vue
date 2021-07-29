@@ -37,8 +37,8 @@
 <script>
   
   import Container from "../components/Layout/Container.vue";
-  import Header from "../components/Layout/Header";
-  import Footer from "../components/Layout/Footer";
+  import Header from "../components/Layout/Header/index.vue";
+  import Footer from "../components/Layout/Footer.vue";
   import Content from "../components/Layout/Content.vue";
   import { css } from '@emotion/css';
 
