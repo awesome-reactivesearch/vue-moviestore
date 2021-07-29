@@ -3,49 +3,108 @@
     <app-container>
       <template #container>
         <app-header />
-        <app-content>
-          <template #content>
-            <div :class="mainCls" justify-content="space-between">
-              <div class="content">
-                <div class="title">{{bannerConfig.original_title}}</div>
-                <div class="subtitle">
-                2016 | {{bannerConfig.genres_data.toString().replace(/,/g, ', ')}}  
+        <div :class="contentCls">
+          <app-content>
+            <template #content>
+              <Flex :class="mainCls" justifyContent="space-between">
+                <Flex
+                  class="content"
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  <div class="title">
+                    {{ bannerConfig._source.original_title }}
+                  </div>
+                  <div class="subtitle">
+                    2008 |
+                    {{
+                      bannerConfig._source.genres_data
+                        .toString()
+                        .replace(/,/g, ', ')
+                    }}
+                  </div>
+                  <div class="overview">
+                    {{ bannerConfig._source.overview }}
+                  </div>
+                  <div class="price">${{ bannerConfig._source.price }}</div>
+                  <div class="action">
+                    <purchase-button
+                      :price="bannerConfig._source.price"
+                      :productIds="[`${bannerConfig._source.id}`]"
+                    />
+                    <watch-trailer
+                      href="https://www.youtube.com/watch?v=EXeTwQWrcwY"
+                    />
+                  </div>
+                </Flex>
+                <div @click="handleProductSelect(bannerConfig._source)">
+                  <img
+                    :src="`https://image.tmdb.org/t/p/w500${bannerConfig._source.poster_path}`"
+                    :alt="bannerConfig._source.original_title"
+                    rel="preload"
+                  />
                 </div>
-                <div class="overview">{{bannerConfig.overview}}</div>
-                <div class="price">${{bannerConfig.price}}</div>
-                <div class="action">
-                  <a-button @click="addToCart(bannerConfig.id)">Purchase</a-button>
-                  <a-button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">Watch Trailer</a-button>
-                </div>
-              </div>
-              <nuxt-link :to="`/product/${bannerConfig.id}`">
-                <img
-                  :src="`https://image.tmdb.org/t/p/w500${bannerConfig.poster_path}`"
-                  :alt="bannerConfig.original_title"
-                />
-              </nuxt-link>
-            </div>
-          </template>
-        </app-content>
-       
-        <app-footer />
+              </Flex>
+
+              <Flex
+                flexDirection="column"
+                :class="listCls"
+                :style="{ width: '100%', 'margin-top': '50px' }"
+              >
+                <H2>Trending Now</H2>
+                <Flex>
+                  <trending-list />
+                </Flex>
+              </Flex>
+            </template>
+          </app-content>
+          <div :class="footerCls">
+            Appbase.io ©{{ new Date().getFullYear() }} created by Appbase Inc.
+          </div>
+        </div>
       </template>
     </app-container>
   </div>
 </template>
 
 <script>
-  
-  import { css } from '@emotion/css';
-  import Container from '../components/Layout/Container.vue';
-  import Header from '../components/Layout/Header/index.vue';
-  import Footer from '../components/Layout/Footer.vue';
-  import Content from '../components/Layout/Content.vue';
+import { css } from '@emotion/css';
+import Container from '../components/Layout/Container.vue';
+import Header from '../components/Layout/Header/index.vue';
+import Content from '../components/Layout/Content.vue';
+import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
+import PurchaseButton from '../components/Button/Purchase.vue';
+import WatchTrailer from '../components/Button/WatchTrailer.vue';
+import Flex from '../components/Flex';
+import { H2 } from '../components/Typography';
+import media from '../utils/media';
 
-  const mainCls = css`
+const listCls = css`
+  background: ${themeConfig.secondaryBg};
+  padding: 50px 50px;
+  .trending-list {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+  }
+  .no-results {
+    display: none;
+  }
+  .powered-by {
+    display: none;
+  }
+  .trending-card {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    ${media.medium(css`
+      margin-right: 0;
+    `)}
+  }
+`;
+
+const mainCls = css`
   max-width: 1000px;
-  display: flex;
-  flex-direction: row;
   margin: 0 auto;
   margin-top: 50px;
   color: #fff;
@@ -76,26 +135,18 @@
     line-height: 18px;
   }
   .action {
-    margin-top: 20px;
-    .ant-btn {
-      margin-right: 20px;
-    }
-  }
-  .content {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
+    margin-top: 20px;
   }
   img {
     height: 500px;
     cursor: pointer;
   }
-  @media (max-width: 992px) {
+  ${media.large(css`
     padding: 20px;
-  }
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
+  `)};
+  ${media.medium(css`
+    flex-direction: column-reverse !important;
     padding: 20px;
     margin-top: 0;
     img {
@@ -108,38 +159,54 @@
     .title {
       font-size: 60px;
     }
-  }
+  `)};
 `;
 
-  export default {
-    components: {
-        'app-container': Container,
-        'app-content': Content,
-        'app-header': Header,
-        'app-footer': Footer
+const footerCls = css`
+  text-align: center;
+  background: #04070b;
+  color: #fff;
+  padding: 24px 50px;
+  font-size: 14px;
+  ${media.medium(css`
+    margin-bottom: 60px;
+    padding: 17px 50px;
+  `)};
+`;
+
+const contentCls = css`
+  height: 84vh;
+  overflow-y: scroll;
+`;
+
+export default {
+  components: {
+    'app-container': Container,
+    'app-content': Content,
+    'app-header': Header,
+    'purchase-button': PurchaseButton,
+    'watch-trailer': WatchTrailer,
+    'trending-list': () => import('../components/TrendingList.vue'),
+    Flex,
+    H2,
+  },
+  data() {
+    return {
+      bannerConfig,
+      appBaseConfig,
+      mainCls,
+      listCls,
+      footerCls,
+      contentCls,
+    };
+  },
+
+  methods: {
+    handleProductSelect(product) {
+      this.$store.commit('setRecentRoute', '/');
+      this.$store.commit('setSelectedProduct', product);
+      this.$router.push(`/product/${product.id}`);
     },
-    data() {
-      return {
-        bannerConfig : {
-          id: 278927,
-          original_title: 'The Jungle Book',
-          overview:
-            'After a threat from the tiger Shere Khan forces him to flee the jungle, a man-cub named Mowgli embarks on a journey of self discovery with the help of panther, Bagheera, and free spirited bear, Baloo.',
-          poster_path: '/tOEOlmLP71IojeJ91dyJ9Nsb8O8.jpg',
-          release_year: 2016,
-          genres_data: ['Family', 'Adventure', 'Drama', 'Fantasy'],
-          price: 305,
-        },
-        mainCls,
-      }
-    },
-    methods: {
-      addToCart(id) {
-        if (!this.$store.state.cartValues[id]) {
-          this.$store.state.cartValues[id] = 1;
-        } 
-        this.$store.commit('addToCart');
-      },
-    }
-  }
+  },
+};
 </script>

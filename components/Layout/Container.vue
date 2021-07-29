@@ -28,6 +28,9 @@
             },
           }"
         >
+          <div class="header-search-container">
+            <search-box />
+          </div>
           <tutorial-menu />
           <div style="margin-top: 70px">
             <slot name="container"></slot>
@@ -58,6 +61,7 @@
 import { css } from '@emotion/css';
 import { themeConfig, appBaseConfig } from '../../utils/constants';
 import Footer from './Footer.vue';
+import SearchBox from '../SearchBox';
 import TutorialMenu from '../TutorialMenu.vue';
 
 const layoutCls = css`
@@ -79,6 +83,7 @@ export default {
   components: {
     'tutorial-menu': TutorialMenu,
     'app-footer': Footer,
+    'search-box': SearchBox,
   },
 
   data() {
