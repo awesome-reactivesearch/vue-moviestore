@@ -23,9 +23,7 @@
 // import { ReactiveBase } from '@appbaseio/reactivesearch';
 import { css } from '@emotion/css'
 import {
-	themeConfig,
 	appBaseConfig,
-	MIXPANEL_TOKEN,
 } from '../../utils/constants';
 
 const layoutCls = css`
