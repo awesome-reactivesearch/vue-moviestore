@@ -1,59 +1,107 @@
 <template>
-    <div>
-        <a-layout :class="layoutCls" class="layout">
-            <reactive-base
-                enableAppbase
-                url="https://appbase-demo-ansible-abxiydt-arc.searchbase.io" 
-                app="movies-store-app" 
-                credentials="a03a1cb71321:75b6603d-9456-4a5a-af6b-a487b309eb61" 
-                :theme="{
-                    typography: {
-                        fontFamily: 'Lato',
-                    },
-                }"
-                :appbaseConfig="{ recordAnalytics: true }"
-            >
-                <slot name="container"></slot>
-            </reactive-base>
-        </a-layout>
-    </div>
+  <div>
+    <client-only>
+      <a-layout :class="layoutCls" class="layout">
+        <reactive-base
+          :appbaseConfig="{
+            recordAnalytics: true,
+            enableQueryRules: false,
+            customEvents: {
+              device: detectDevice(),
+              browser: detectBrowser(),
+            },
+          }"
+          enableAppbase
+          :url="this.$config.appUrl"
+          :app="this.$config.appName"
+          :credentials="this.$config.appCredentials"
+          :initialState="reactiveSearchStore"
+          themePreset="dark"
+          :theme="{
+            typography: {
+              'font-family': 'Lato',
+            },
+            colors: {
+              textColor: '#979797',
+              primaryTextColor: '#fff',
+              primaryColor: themeConfig.secondary,
+            },
+          }"
+        >
+          <tutorial-menu />
+          <div style="margin-top: 70px">
+            <slot name="container"></slot>
+          </div>
+        </reactive-base>
+        <app-footer />
+      </a-layout>
+    </client-only>
+  </div>
 </template>
 
+<style>
+.header-search-container {
+  top: 14px;
+  position: fixed;
+  right: 180px;
+  z-index: 999;
+}
+
+@media (max-width: 600px) {
+  .header-search-container {
+    top: 60px;
+    right: 20px;
+  }
+}
+</style>
 <script>
-// import { ReactiveBase } from '@appbaseio/reactivesearch';
-import { css } from '@emotion/css'
-import {
-	themeConfig,
-	appBaseConfig,
-	MIXPANEL_TOKEN,
-} from '../../utils/constants';
+import { css } from '@emotion/css';
+import { themeConfig, appBaseConfig } from '../../utils/constants';
+import Footer from './Footer.vue';
+import TutorialMenu from '../TutorialMenu.vue';
 
 const layoutCls = css`
- background: #152530;
- color: #fff;
- font-family: Lato;
+  background: ${themeConfig.primary};
+  color: #fff;
+  height: 100vh;
+  .footerCls {
+    text-align: center;
+    background: #04070b;
+    color: #fff;
+    padding: 24px 50px;
+    position: relative;
+    font-size: 14px;
+  }
 `;
 
 export default {
-    name: "Container",   
-    props: {
-        title: {
-            type: String,
-            default: function () {
-                return 'Movies Store';
-            }
-        }
+  name: 'Container',
+  components: {
+    'tutorial-menu': TutorialMenu,
+    'app-footer': Footer,
+  },
+
+  data() {
+    return {
+      layoutCls,
+      appBaseConfig,
+      themeConfig,
+    };
+  },
+  head() {
+    return {
+      title: 'Movies Store',
+    };
+  },
+  props: {
+    title: {
+      type: String,
+      default: function () {
+        return 'Movies Store';
+      },
     },
-    head() {
-        return {
-            title: "Movies Store",
-        }
-    },
-    data() {
-        return {
-            layoutCls,
-            appBaseConfig
-        }
-    }
+    reactiveSearchStore: Object,
+    updateRoute: Function,
+  },
 };
 </script>
