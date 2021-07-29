@@ -8,7 +8,6 @@ export default {
     asyncScripts: true,
     bundleRenderer: {
       shouldPrefetch: (file, type) => {
-        console.log(file);
         if (type === 'script') {
           if (/search/.test(file)) {
             return false;
@@ -18,15 +17,11 @@ export default {
       },
 
       shouldPreload: (file, type) => {
-        // if (type === 'image') {
-        //   // only preload important images
-        //   return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
-        // }
-        // return (
-        //   file.indexOf('vendors/app') !== -1 ||
-        //   file.indexOf('commons/app') !== -1
-        // );
-        return ['script', 'style', 'font', 'image'].includes(type);
+        if (type === 'image') {
+          // only preload important images
+          return file.indexOf('qJ2tW6WMUDux911r6m7haRef0WH.jpg') !== -1;
+        }
+        return false;
       },
     },
   },
@@ -124,7 +119,7 @@ export default {
   build: {
     extractCSS: true,
     splitChunks: {
-      layouts: false,
+      layouts: true,
       pages: true,
       commons: true,
     },
@@ -134,12 +129,6 @@ export default {
     optimization: {
       minimize: true,
       runtimeChunk: true,
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.',
-        name: undefined,
-        cacheGroups: {},
-      },
     },
   },
 
