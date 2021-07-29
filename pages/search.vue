@@ -204,6 +204,7 @@
                   </div>
                 </reactive-list>
               </Flex>
+
               <a-button class="filter-btn" @click="toggleFilters">
                 <a-icon :type="displayFilter()" />
               </a-button>
@@ -251,6 +252,8 @@ const contentCls = css`
 `;
 
 const searchCls = css`
+  display: flex;
+  felx-direction: row;
   margin-bottom: 40px;
   width: 100%;
   ${media.medium(css`
