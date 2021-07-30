@@ -6,10 +6,6 @@
           :appbaseConfig="{
             recordAnalytics: true,
             enableQueryRules: false,
-            customEvents: {
-              device: detectDevice(),
-              browser: detectBrowser(),
-            },
           }"
           enableAppbase
           :url="this.$config.appUrl"

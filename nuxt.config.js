@@ -22,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/ant-design-vue'
+    '@/plugins/ant-design-vue',
+    { src: '~/plugins/persistedState.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,9 +35,30 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/auth'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/',
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: process.env.AUTH_DOMAIN,
+        client_id: process.env.AUTH_CLIENT_ID,
+      },
+    },
+  },
+  publicRuntimeConfig: {
+    appUrl: process.env.APPBASE_URL,
+    appName: process.env.APPBASE_APP_NAME,
+    appCredentials: process.env.APPBASE_APP_CREDENTIALS,
+    stripeKey: process.env.STRIPE_KEY,
+  },
 }
