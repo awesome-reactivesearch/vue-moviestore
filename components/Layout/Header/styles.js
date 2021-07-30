@@ -1,8 +1,14 @@
-import { css } from '@emotion/css'
+import { css } from '@emotion/css';
 
 export const headerCls = css`
   background-color: #04070b;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 99;
+
   ul {
     background-color: #04070b;
     li {
@@ -14,6 +20,14 @@ export const headerCls = css`
     padding: 0 20px;
     overflow: auto;
   }
+  @media (max-width: 768px) {
+    height: 112px;
+    .menuBar {
+      height: 120px;
+      padding: 0 20px;
+      overflow: auto;
+    }
+  }
   .logo {
     width: 220px;
     float: left;
@@ -24,6 +38,10 @@ export const headerCls = css`
       cursor: pointer;
       text-transform: capitalize;
     }
+  }
+  .img-position {
+    width: '210px';
+    height: '64px';
   }
   .menuCon {
     width: calc(100% - 220px);

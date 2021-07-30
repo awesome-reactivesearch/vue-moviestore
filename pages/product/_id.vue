@@ -95,6 +95,7 @@ import WatchTrailer from '../../components/Button/WatchTrailer.vue';
 import PurchaseButton from '../../components/Button/Purchase.vue';
 import PrimaryButton from '../../components/Button/Primary.vue';
 import media from '../../utils/media';
+import { conversionAnalytics } from '../../utils/analytics';
 
 const contentCls = css`
   padding: 50px;
@@ -230,6 +231,7 @@ export default {
     },
     handleBuy(product) {
       this.$store.commit('addToCart', product);
+      conversionAnalytics(this.$store.state.searchQuery, [`${product.id}`]);
     },
   },
 };

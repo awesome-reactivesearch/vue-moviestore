@@ -1,3 +1,4 @@
+const { conversionAnalytics } = require('../utils/analytics');
 var bodyParser = require('body-parser');
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 const express = require('express');
@@ -35,6 +36,7 @@ async function checkout(req, res) {
       success_url: `${req.headers.origin}?is_stripe=true`,
       cancel_url: `${req.headers.origin}${cancelRoute}`,
     });
+    // await conversionAnalytics(searchQuery, productIds);
     res.json({ url: session.url });
   } catch (err) {
     res.status(500).json({ statusCode: 500, message: err.message });

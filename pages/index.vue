@@ -75,9 +75,11 @@ import Content from '../components/Layout/Content.vue';
 import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
 import PurchaseButton from '../components/Button/Purchase.vue';
 import WatchTrailer from '../components/Button/WatchTrailer.vue';
+import TrendingList from '../components/TrendingList.vue';
 import Flex from '../components/Flex';
 import { H2 } from '../components/Typography';
 import media from '../utils/media';
+import { conversionAnalytics } from '../utils/analytics';
 
 const listCls = css`
   background: ${themeConfig.secondaryBg};
@@ -199,6 +201,24 @@ export default {
       footerCls,
       contentCls,
     };
+  },
+  mounted() {
+    if (window?.location?.search.includes('is_stripe')) {
+      conversionAnalytics(
+        this.$store.state.searchQuery,
+        this.$store.state.productIds
+      );
+      this.$store.commit('setProductIds', []);
+      this.$store.commit('setQuery', '');
+      this.$router.push({ path: '/', query: {} });
+    }
+  },
+
+  async created() {
+    if (window?.location?.hash.indexOf('access_token') !== -1) {
+      window.history.pushState({}, document.title, window.location.pathname);
+      window.location.reload();
+    }
   },
 
   methods: {

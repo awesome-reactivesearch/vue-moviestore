@@ -1,9 +1,7 @@
 import auth0 from 'auth0-js';
 
 export default class Auth {
-  constructor({
- domain, clientID, audience, source,
-}) {
+  constructor({ domain, clientID, audience, source }) {
     this.auth0 = new auth0.WebAuth({
       domain,
       clientID,
@@ -21,7 +19,8 @@ export default class Auth {
   }
 
   parseTokens() {
-    return new Promise((resolve, reject) => this.auth0.parseHash((err, result) => {
+    return new Promise((resolve, reject) =>
+      this.auth0.parseHash((err, result) => {
         if (err) {
           reject(err);
         } else {
@@ -31,6 +30,7 @@ export default class Auth {
             expiresAt: (result.expiresIn * 1000) + new Date().getTime(),
           });
         }
-      }));
+      })
+    );
   }
 }

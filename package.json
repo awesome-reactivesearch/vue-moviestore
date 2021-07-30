@@ -5,7 +5,8 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "lint": "eslint --ext .js,.vue pages --fix",
+    "lint": "eslint --ext .js,.vue pages",
+    "heroku-postbuild": "npm run build",
     "prepare": "husky install"
   },
   "lint-staged": {
