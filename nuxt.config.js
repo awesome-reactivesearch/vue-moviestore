@@ -42,6 +42,17 @@ export default {
   build: {
   },
 
+  axios: {
+    proxy: true,
+  },
+  serverMiddleware:
+  process.env.NODE_ENV === 'production' &&
+  process.env.DEPLOY_ENVIRONMENT !== 'heroku'
+    ? {}
+    : {
+        '/api': '~/api',
+      },
+
   auth: {
     redirect: {
       login: '/', // redirect user when not connected
