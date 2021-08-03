@@ -35,6 +35,7 @@
       innerRef="input"
     >
       <div
+        v-if="isOpen"
         style="border: 1.5px solid #979797; border-top: 0; background: #05070b"
         slot="render"
         slot-scope="{
@@ -47,7 +48,7 @@
           data: suggestions,
         }"
       >
-        <h1 style="color: #fff">{{ isOpen }}</h1>
+        <!-- <h1 style="color: #fff">{{ isOpen }}</h1> -->
         <div v-for="(suggestion, index) in suggestions" :key="index">
           <div
             v-if="isOpen"
@@ -240,6 +241,7 @@ export default {
         'keydown',
         (e) => {
           const { value } = e.target;
+          console.log(e.target);
           if (e.key === 'Enter' && value.trim()) {
             if (!window?.location?.href.includes('search')) {
               this.$router.push(
