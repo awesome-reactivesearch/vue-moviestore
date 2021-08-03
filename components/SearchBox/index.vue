@@ -33,7 +33,38 @@
       @keyDown="handleKeyPress"
       @valueSelected="handleSuggestion"
       innerRef="input"
-    />
+    >
+      <div
+        style="border: 1.5px solid #979797; border-top: 0; background: #05070b"
+        slot="render"
+        slot-scope="{
+          downshiftProps: {
+            isOpen,
+            highlightedIndex,
+            getItemProps,
+            getItemEvents,
+          },
+          data: suggestions,
+        }"
+      >
+        <h1 style="color: #fff">{{ isOpen }}</h1>
+        <div v-for="(suggestion, index) in suggestions" :key="index">
+          <div
+            v-if="isOpen"
+            :style="{
+              'background-color':
+                index === highlightedIndex ? '#cccccc24' : 'transparent',
+              padding: '5px',
+            }"
+            v-bind="getItemProps({ item: suggestion })"
+            v-on="getItemEvents({ item: suggestion })"
+            :key="suggestion._id"
+          >
+            {{ suggestion.label }}
+          </div>
+        </div>
+      </div>
+    </data-search>
   </div>
 </template>
 
@@ -166,6 +197,7 @@ const dataSearchCls = (isFullWidth) => css`
     color: #979797;
     background-color: transparent;
     cursor: auto;
+    border-bottom: none;
     ${!isFullWidth
       ? `
 			border-radius: 0;

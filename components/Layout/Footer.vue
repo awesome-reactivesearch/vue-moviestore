@@ -5,9 +5,7 @@
         <p style="margin: 0px">
           This app is part of the ReactiveSearch Marketplace. You can check more
           apps
-          <a href="https://www.reactiveapps.io/" :style="{ color: 'white' }"
-            >here</a
-          >.
+          <a href="https://www.reactiveapps.io/">here</a>.
         </p>
         <button class="marketplaceButton" @click="handlePurchaseClick">
           Buy Now for $49

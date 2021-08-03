@@ -354,6 +354,11 @@ const searchCls = css`
     border: none;
   }
 
+  .vue-slider-tooltip {
+    background: #ff3957;
+    border: #ff3957;
+  }
+
   .range-slider {
     color: #ff3957;
     .vue-slider-dot-handle {
