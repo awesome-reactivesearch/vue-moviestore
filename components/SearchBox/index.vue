@@ -35,8 +35,13 @@
       innerRef="input"
     >
       <div
-        v-if="isOpen"
-        style="border: 1.5px solid #979797; border-top: 0; background: #05070b"
+        v-if="suggestions.length"
+        id="suggestions-container"
+        :style="{
+          border: '1.5px solid #979797',
+          'border-top': '0px',
+          background: '#05070b',
+        }"
         slot="render"
         slot-scope="{
           downshiftProps: {
@@ -48,10 +53,8 @@
           data: suggestions,
         }"
       >
-        <!-- <h1 style="color: #fff">{{ isOpen }}</h1> -->
         <div v-for="(suggestion, index) in suggestions" :key="index">
           <div
-            v-if="isOpen"
             :style="{
               'background-color':
                 index === highlightedIndex ? '#cccccc24' : 'transparent',
@@ -198,14 +201,13 @@ const dataSearchCls = (isFullWidth) => css`
     color: #979797;
     background-color: transparent;
     cursor: auto;
-    border-bottom: none;
     ${!isFullWidth
       ? `
-			border-radius: 0;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-			width: 405px; 
-		`
+      border-radius: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      width: 405px; 
+    `
       : ''}
   }
 
@@ -233,6 +235,7 @@ export default {
   data() {
     return {
       dataSearchCls,
+      showAutoSuggestions: false,
     };
   },
   mounted() {
@@ -241,7 +244,16 @@ export default {
         'keydown',
         (e) => {
           const { value } = e.target;
-          console.log(e.target);
+          setTimeout(() => {
+            const suggestionsContainer = document.getElementById(
+              'suggestions-container'
+            );
+            suggestionsContainer.style.display = 'block';
+            suggestionsContainer.style.border = '1.5px solid #979797';
+            suggestionsContainer.style.borderTop = 'none';
+          }, 0);
+          e.target.style.borderBottom = 'none';
+          this.showAutoSuggestions = true;
           if (e.key === 'Enter' && value.trim()) {
             if (!window?.location?.href.includes('search')) {
               this.$router.push(
@@ -249,6 +261,18 @@ export default {
               );
             }
           }
+        }
+      );
+      this.$refs['data-search'].$children[0].$refs['input'].addEventListener(
+        'blur',
+        function (e) {
+          const suggestionsContainer = document.getElementById(
+            'suggestions-container'
+          );
+          suggestionsContainer.style.display = 'none';
+          suggestionsContainer.style.border = 'none';
+          e.target.style.borderBottom = '1.5px solid #979797';
+          this.showAutoSuggestions = false;
         }
       );
     }
