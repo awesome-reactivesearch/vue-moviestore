@@ -44,12 +44,7 @@
         }"
         slot="render"
         slot-scope="{
-          downshiftProps: {
-            isOpen,
-            highlightedIndex,
-            getItemProps,
-            getItemEvents,
-          },
+          downshiftProps: { highlightedIndex, getItemProps, getItemEvents },
           data: suggestions,
         }"
       >

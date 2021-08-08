@@ -20,7 +20,7 @@
           themePreset="dark"
           :theme="{
             typography: {
-              'font-family': 'Lato',
+              fontFamily: 'Lato',
             },
             colors: {
               textColor: '#979797',
@@ -71,6 +71,7 @@ const layoutCls = css`
   background: ${themeConfig.primary};
   color: #fff;
   height: 100vh;
+  font-family: Lato;
   .footerCls {
     text-align: center;
     background: #04070b;

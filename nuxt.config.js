@@ -41,7 +41,13 @@ export default {
       { hid: 'description', name: 'description', content: 'Movie Store' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Lato',
+      },
+    ],
   },
 
   generate: {
@@ -69,6 +75,7 @@ export default {
     'vue-browser-detect-plugin/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/pwa',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -152,5 +159,10 @@ export default {
       theme_color: '#17181B',
     },
     workbox: {},
+  },
+  googleFonts: {
+    families: {
+      Lato: [100, 300],
+    },
   },
 };

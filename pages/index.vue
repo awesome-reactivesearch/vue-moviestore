@@ -75,7 +75,6 @@ import Content from '../components/Layout/Content.vue';
 import { themeConfig, bannerConfig, appBaseConfig } from '../utils/constants';
 import PurchaseButton from '../components/Button/Purchase.vue';
 import WatchTrailer from '../components/Button/WatchTrailer.vue';
-import TrendingList from '../components/TrendingList.vue';
 import Flex from '../components/Flex';
 import { H2 } from '../components/Typography';
 import media from '../utils/media';

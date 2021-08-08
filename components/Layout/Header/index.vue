@@ -3,11 +3,7 @@
     <nav class="menuBar">
       <div class="logo">
         <nuxt-link to="/">
-          <product-image
-            class="img-position"
-            src="/images/logo@1x.png"
-            alt="logo"
-          />
+          <img class="img-position" src="/images/logo@1x.png" alt="logo" />
         </nuxt-link>
       </div>
       <div class="menuCon">

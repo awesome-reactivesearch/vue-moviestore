@@ -241,6 +241,7 @@ export const Title = styled('h3')`
   padding: '10px 0';
   color: #fdfdfd;
   opacity: 0.65;
+  font-family: Lato;
 `;
 
 const contentCls = css`
