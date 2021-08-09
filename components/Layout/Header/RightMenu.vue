@@ -7,24 +7,22 @@
           >Cart ({{ this.$store.state.cartCount }})</nuxt-link
         >
       </a-menu-item>
-      <a-menu-item key="login">
-        <div v-if="$auth.loggedIn">
-          <a-dropdown>
-            <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-              {{ $auth.user.name }} <a-icon type="down" />
-            </a>
-            <a-menu slot="overlay">
-              <a-menu-item @click="logout">
-                <a href="javascript:;">Log Out</a>
-              </a-menu-item>
-            </a-menu>
-          </a-dropdown>
-        </div>
-        <div @click="login" v-else>
-          <nuxt-link to="/">
-            <div>Login</div>
-          </nuxt-link>
-        </div>
+      <a-menu-item key="loggedIn" v-if="$auth.loggedIn">
+        <a-dropdown>
+          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
+            {{ $auth.user.name.split(' ', 1)[0] }} <a-icon type="down" />
+          </a>
+          <a-menu slot="overlay">
+            <a-menu-item @click="logout">
+              <a href="javascript:;">Log Out</a>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
+      </a-menu-item>
+      <a-menu-item key="login" v-else @click="login">
+        <nuxt-link to="/">
+          <div>Login</div>
+        </nuxt-link>
       </a-menu-item>
     </a-menu>
   </div>
