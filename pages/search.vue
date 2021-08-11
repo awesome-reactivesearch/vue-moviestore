@@ -214,8 +214,6 @@
             </div>
           </template>
         </app-content>
-
-        <!-- <app-footer /> -->
       </template>
     </app-container>
   </div>
@@ -482,13 +480,8 @@ const footerCls = css`
   color: #fff;
   padding: 24px 50px;
   font-size: 14px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 60px;
-  z-index: 999;
   ${media.medium(css`
-    margin-bottom: 48px;
+    margin-bottom: 60px;
     padding: 17px 50px;
   `)};
 `;
