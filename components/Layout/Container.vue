@@ -48,7 +48,7 @@
 .header-search-container {
   top: 14px;
   position: fixed;
-  right: 180px;
+  right: 240px;
   z-index: 999;
 }
 

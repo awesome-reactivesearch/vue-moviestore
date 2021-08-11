@@ -143,7 +143,19 @@ const dataSearchCls = (isFullWidth) => css`
   input::-webkit-input-placeholder {
     color: transparent;
   }
-
+  .autosuggest-container {
+    border: 1.5px solid #979797;
+    background: #05070b;
+    border-top: none;
+    margin-top: -10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-animation: cssAnimation 0.5s forwards;
+    animation: cssAnimation 0.5s forwards;
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
   input {
     background: transparent
       url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png)

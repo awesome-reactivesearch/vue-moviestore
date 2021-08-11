@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ width: '210px' }">
     <a-menu :mode="mode">
       <a-menu-item :class="searchLink" key="search"> </a-menu-item>
       <a-menu-item key="cart">
