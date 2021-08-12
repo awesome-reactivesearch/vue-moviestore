@@ -256,7 +256,7 @@ const searchCls = css`
   margin-bottom: 40px;
   width: 100%;
   ${media.medium(css`
-    margin-bottom: 140px;
+    margin-bottom: 30px;
   `)};
   .filter-class {
     a {
@@ -481,7 +481,7 @@ const footerCls = css`
   padding: 24px 50px;
   font-size: 14px;
   ${media.medium(css`
-    margin-bottom: 60px;
+    margin-bottom: 100px;
     padding: 17px 50px;
   `)};
 `;
