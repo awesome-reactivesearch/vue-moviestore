@@ -82,6 +82,10 @@ const dataSearchCls = (isFullWidth) => css`
   #SearchSensor-downshift > div {
     width: 450px;
     font-size: 14px;
+    ${media.medium(css`
+      min-width: 100px;
+      width: 100%;
+    `)};
   }
 
   #SearchSensor-downshift > div > ul {
@@ -184,7 +188,7 @@ const dataSearchCls = (isFullWidth) => css`
     font-size: 100%;
     ${isFullWidth &&
     media.medium(css`
-      width: 300px;
+      width: 75vw;
     `)}
     ${isFullWidth
       ? `width: 400px;
@@ -270,18 +274,18 @@ export default {
           }
         }
       );
-      this.$refs['data-search'].$children[0].$refs['input'].addEventListener(
-        'blur',
-        function (e) {
-          const suggestionsContainer = document.getElementById(
-            'suggestions-container'
-          );
-          suggestionsContainer.style.display = 'none';
-          suggestionsContainer.style.border = 'none';
-          e.target.style.borderBottom = '1.5px solid #979797';
-          this.showAutoSuggestions = false;
-        }
-      );
+      // this.$refs['data-search'].$children[0].$refs['input'].addEventListener(
+      //   'blur',
+      //   function (e) {
+      //     const suggestionsContainer = document.getElementById(
+      //       'suggestions-container'
+      //     );
+      //     suggestionsContainer.style.display = 'none';
+      //     suggestionsContainer.style.border = 'none';
+      //     e.target.style.borderBottom = '1.5px solid #979797';
+      //     this.showAutoSuggestions = false;
+      //   }
+      // );
     }
   },
   methods: {

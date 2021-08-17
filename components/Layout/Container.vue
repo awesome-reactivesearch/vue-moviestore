@@ -56,7 +56,6 @@
   .header-search-container {
     top: 60px;
     right: 20px;
-    width: 90%;
   }
 }
 </style>
