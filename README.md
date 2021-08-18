@@ -37,4 +37,4 @@ Voila! Your project is live at `localhost:4000`.
 
 ### 4. Customize Theme
 
-You can easily customize the app UI just by modifying the theme variables at `utils/constants.js` file.
+You can easily customize the app UI just by modifying the theme variables in `utils/constants.js` file.
