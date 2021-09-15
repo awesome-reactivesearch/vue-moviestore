@@ -40,6 +40,12 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Movie Store' },
       { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content:
+          'This is a web app + tutorial series teaching how to build a feature-rich, scalable e-commerce app using Vue, Vuex and Nuxt.',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
