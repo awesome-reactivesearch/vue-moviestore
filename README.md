@@ -47,5 +47,5 @@ B) [Deployment with Vercel](https://medium.com/p/ab26996ddad2)
 
 11. [PWA (Progressive Web App) compatibility](https://medium.com/p/ef22344c4a2b)
 
-If you’re looking for the React version of our series, you can check out this post that uses React, Redux, Next.JS and appbase.io.
+If you’re looking for the React version of our series, you can check out this post that uses React, Redux, Next.JS and appbase.io:
 [**Build an end-to-end Movie Store App with React + Redux + Appbase.io (2021)**](https://medium.appbase.io/build-an-end-to-end-movies-store-app-with-react-redux-appbase-a8622f7e0c7a)
