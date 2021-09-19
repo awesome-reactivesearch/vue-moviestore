@@ -20,7 +20,6 @@ You will learn the following concepts:
 * Auth0 (for user authentication functionality),
 * Stripe (for handling payments), and
 * Heroku and Vercel(for hosting the app).
->  **Note:** Only the first three parts of this series are out right now. We will be publishing the next parts over the coming weeks.
 
 ## Table of Contents
 
