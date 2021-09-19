@@ -3,7 +3,7 @@
 
 ![Checkout the final app that we will build at the end of this series — [https://vue-moviestore.vercel.app/](https://vue-moviestore.vercel.app/) or [https://vue-moviestore.herokuapp.com/](https://vue-moviestore.herokuapp.com/)](https://cdn-images-1.medium.com/max/3840/1*x-N63XCQtgMUR6Drzk7fTQ.jpeg)
 
-This is a tutorial series aiming to teach how to build a [feature-rich, scalable e-commerce app using Vue, Vuex and Nuxt ](https://vue-moviestore.vercel.app/).
+This is a tutorial series aiming to teach how to build a [feature-rich, scalable e-commerce app using Vue, Vuex and Nuxt](https://vue-moviestore.vercel.app/).
 
 You will learn the following concepts:
 
